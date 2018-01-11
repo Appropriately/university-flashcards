@@ -41,6 +41,8 @@
   Branch: Operations that change the value of the PC depending on a certain condition.
 }
 
+\flashcard{You use bit \blank{12} to determine whether an instruction is Type 1 or 2.}
+
 \flashcard{Shifter operations are applied to the \blank{srcA} register in \blank{type 1} operations.}
 
 \card{
@@ -60,8 +62,44 @@
 }
 
 \card{
+  Do you have to use the default case in Verilog? When would you use it?
+}{
+  Not necessarily. It is useful to cover cases not listed in the case statement, trapping any invalid states you shouldn't be in.
+}
+
+\card{
+  What is the difference between a Verilog \textbf{task} and a Verilog \textbf{function}?
+}{
+  A task can change any number of outputs whereas a function can update only one.
+}
+
+\card{
+  Where would you locate a \textbf{task} or \textbf{function} in your Verilog code?
+}{
+  It needs to be within the module but outside any always/initial blocks.
+}
+
+\card{
+  Why does Stump's R0 exist? Give some examples illustrating its use.
+}{
+  Allows you to enable further operations to be implemented that are not part of the ISA.\\
+  \begin{tabularx}{0.32\textwidth}{l X}
+    - & MOV: ADD  R3, R2, R0\\
+    - & NOP: ADD  R0, R0, R0\\
+    - & CMP: SUBS R0, R3, R4\\
+	\end{tabularx}
+}
+
+\card{
+  What is a load/store architecture?
+}{
+  Data within registers will only be operated on, with results being written back to registers. LD/ST operations will be included for memory operations.
+}
+
+\card{
   How can pipelining accelerate performance of a processing system?
 }{
+  By introducing parallelism at a small cost. It allows more instruction throughput at a given clock rate than would traditionally be possible.
   % TO DO
 }
 
