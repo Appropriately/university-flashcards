@@ -1,0 +1,87 @@
+\documentclass[frontgrid]{flacards}
+\usepackage{color}
+\usepackage{mathtools}
+
+\definecolor{light-gray}{gray}{0.75}
+
+\newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
+\newcommand{\backcard}[1]{#1} 
+
+\newcommand{\flashcard}[1]{% create new command for cards with blanks
+    \card{% call the original \card command with twice the same argument (#1)
+        \let\blank\frontcard% but let \blank behave like \frontcard the first time
+        #1
+    }{%
+        \let\blank\backcard% and like \backcard the second time
+        #1
+    }%
+}
+
+\begin{document}
+
+\pagesetup{2}{4} 
+
+\card{
+  What does $O(<expr>)$ mean?
+}{
+  The complexity (i.e. running time/space) is bounded by the $<expr>$.
+}
+
+\card{
+  What does $\Theta(<expr>)$ mean?
+}{
+  The complexity (i.e. space/running time) has the complexity proportional to
+  $<expr>$.
+}
+
+\card{
+  What does $\Omega(<expr>)$ mean?
+}{
+  The complexity (i.e. running time/space) is \textit{at least} by the $<expr>$.
+}
+
+\card{ 
+  Say that the input represents a positive integer, $x$, what is the size of $n$?
+ }{
+  $\left \lfloor \log_b x \right \rfloor + 1$
+  Where $b$ is the number representation, usually binary (so 2).
+ }
+
+\card{
+  What does it mean by $O(1)$?
+}{
+  It takes a constant time, no matter the amount of data, to perform the operation.
+}
+
+\card{
+  What is the minimum time for any sorting algorithm that uses only number comparisons.
+}{
+  $n\log_2n$
+}
+
+\card{
+  How do you argue correctness of Euclid's algorithm?
+}{
+  Let $r = a mod b$. $hcf(a,b)=hcf(b,r)$ because all factors of a and b are also factors of b and r and vice versa. If they have the same factors, they have the same highest common factor.
+}
+
+\card{
+  What would half the correctness proof be for Euclid's algorithm?
+}{
+  As $r=a mod b$, $\exists q$ such that $a=bq+r$, $\therefore r = a-bq$.
+  Suppose x is a factor of a and b, then $\exists y and z$ such that $a=xy$, $b=xz$. Hence:
+  $r=xy-xzq$, $r=x(y-zq)$. $\therefore x$ is a factor of r (and also of b and r).
+}
+
+\card{
+  
+}{
+
+}
+
+\card{
+  What does saying that algorithm A runs in time g mean?
+}{
+  Given an input of size n, the number of operations executed by A is bounded above by g(n).
+}
+\end{document} 
