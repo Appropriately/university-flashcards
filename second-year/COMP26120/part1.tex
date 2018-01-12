@@ -161,6 +161,21 @@
 }
 
 \card{
+  Give pseudo code for calculating the Discrete Logarithm?
+}{
+  \begin{flushleft}
+    discreteLog(p,g,b) \\
+    \tab $x := 1$ \\
+    \tab While x is less than p \\
+    \tab \tab $y = g^x mod p$ \\ 
+    \tab \tab if $x=b$ \\ 
+    \tab \tab \tab return x \\ 
+    \tab \tab $x++$ \\
+  \end{flushleft}
+  \textit{Calculates Discrete Logarithm}
+}
+
+\card{
   Consider the equation $a^x = y mod p$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
 }{
   X is the \textbf{discrete logarithm} of $y$ with base $a$, modulo $p$.
