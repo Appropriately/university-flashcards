@@ -162,7 +162,24 @@
 }
 
 \card{
-  Consider the equation $a^x = y mod p$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
+  Describe public key generation in ElGamal encryption using p as the Prime
+  Modulus and g as the Primitive root (as described in the COMP26120 lab)
+}{
+  Generate an $x$ randomly from $1\leq x<p$. This is the private key to be kept secret.
+  Now compute $h$, part of the public key, using \\ $h = g^x \pmod{p}$ \\
+  (This is modular exponentiation) \\
+  Note that the full public key is a combination of (h, g, p)
+}
+
+% \card{
+%   Describe ElGamal encryption given that you know h (the Modular exponential of
+%   $g^x \pmod{p}$), g (the primitive root), and p (the prime modulus)
+% }{
+%   Create a message $M$ from $1\leq M < q$ then calculate
+% }
+
+\card{
+  Consider the equation $a^x = y \bmod{p}$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
 }{
   X is the \textbf{discrete logarithm} of $y$ with base $a$, modulo $p$.
 }
