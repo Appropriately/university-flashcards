@@ -7,7 +7,7 @@
 \definecolor{light-gray}{gray}{0.75}
 
 \newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
-\newcommand{\backcard}[1]{#1} 
+\newcommand{\backcard}[1]{#1}
 \newcommand\tab[1][0.5cm]{\hspace*{#1}}
 
 \newcommand{\flashcard}[1]{% create new command for cards with blanks
@@ -22,7 +22,9 @@
 
 \begin{document}
 
-\pagesetup{2}{4} 
+\pagesetup{2}{4}
+
+
 
 \card{
   What does $O(<expr>)$ mean?
@@ -68,7 +70,7 @@
     \tab $L'_2 = L_2 [1 : \vert L_2 \vert - 1]$ \\
     \tab if $x_1 \leq x_2$ \\
     \tab \tab return $[x_1]+$Merge($L'_1$ ,$L_2$) \\
-    \tab return $[x_2]+$Merge($L_1$ ,$L'_2$) 
+    \tab return $[x_2]+$Merge($L_1$ ,$L'_2$)
   \end{flushleft}
   \textit{Merge two sorted lists}
 }
@@ -103,13 +105,13 @@
     \tab $L_\leq :=$ elements of L less than or equal to x \\
     \tab $L_> :=$ elements of L greater than x \\
     \tab $L_l :=$ quicksort($L_\leq$) \\
-    \tab $L_r :=$ quicksort($L_>$) \\ 
+    \tab $L_r :=$ quicksort($L_>$) \\
     \tab return $L_l$ + [x] + $L_r$ \\
   \end{flushleft}
   \textit{Quick Sort}
 }
 
-\card{ 
+\card{
   Say that the input represents a positive integer, $x$, what is the size of $n$?
  }{
   $\left \lfloor \log_b x \right \rfloor + 1$
@@ -161,21 +163,6 @@
 }
 
 \card{
-  Give pseudo code for calculating the Discrete Logarithm?
-}{
-  \begin{flushleft}
-    discreteLog(p,g,b) \\
-    \tab $x := 1$ \\
-    \tab While x is less than p \\
-    \tab \tab $y = g^x mod p$ \\ 
-    \tab \tab if $x=b$ \\ 
-    \tab \tab \tab return x \\ 
-    \tab \tab $x++$ \\
-  \end{flushleft}
-  \textit{Calculates Discrete Logarithm}
-}
-
-\card{
   Consider the equation $a^x = y mod p$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
 }{
   X is the \textbf{discrete logarithm} of $y$ with base $a$, modulo $p$.
@@ -201,7 +188,7 @@
 }{
   As $r=a mod b$, $\exists q$ such that $a=bq+r$, $\therefore r = a-bq$. \\
   Suppose x is a factor of a and b, then $\exists y and z$ such that $a=xy$, $b=xz$. \\
-  Hence: $r=xy-xzq$, $r=x(y-zq)$. \\ 
+  Hence: $r=xy-xzq$, $r=x(y-zq)$. \\
   $\therefore x$ is a factor of r (and also of b and r).
 }
 
@@ -220,4 +207,107 @@
 }{
   Given an input of size n, the number of operations executed by A is bounded above by g(n).
 }
-\end{document} 
+
+\card{
+  What is a permutation of a set?
+}{
+  A 1-to-1 map of the set onto itself. In basic terms, it is a set mapped to
+  another order of itself. i.e $[0,1,2,3,4] \mapsto [2,4,1,0,3]$
+}
+
+\card{
+  What do we mean by a composition of two permutations?
+}{
+  The composition is the product of two permutations, $\alpha$ and $\beta$, on a set
+  n, given by $\alpha \cdot \beta (n)$ or $\beta (\alpha(n))$
+}
+
+\card{
+  What is the number of possible permutations on an n-element set?
+}{
+  $n!$
+}
+
+\card{
+  In the context of a permutation, what do we mean by a transposition?
+}{
+  A transposition is a special kind of permutation where only 2 elements in
+  a set are affected (they are swapped). On a set $X$ a transposition
+  $\sigma = (i, j)$ is given by
+  \[ \sigma(k) =
+    \begin{cases}
+      j  & \quad \text{if k = i}\\
+      i  & \quad \text{if k = j}\\
+      k  & \quad \text{ow.}
+    \end{cases}
+  \]
+}
+
+\card{
+  Convert this pair of simultaneous equations into matrix form \\
+  $a_{1,1} x_1 + a_{1,2} x_2 = b_1$\\
+  $a_{2,1} x_2 + a_{2,2} x_2 = b_2$
+}{
+\[
+ \begin{pmatrix}
+  a_{1,1} & a_{1,2} \\
+  a_{2,1} & a_{2,2}
+ \end{pmatrix}
+ \begin{pmatrix}
+  x_{1} \\
+  x_{2}
+\end{pmatrix} =
+\begin{pmatrix}
+  b_{1} \\
+  b_{2}
+ \end{pmatrix}
+\]
+}
+
+\card{
+  What is the determinant of the matrix:
+  \[  \begin{pmatrix}
+      a_{1} & a_{2} \\
+      a_{3} & a_{4}
+    \end{pmatrix}
+ \]
+}{
+  $a_1a_4 - a_2a_3$ \\
+  Often denoted as:
+  \[\begin{vmatrix}
+      a_{1} & a_{2} \\
+      a_{3} & a_{4}
+    \end{vmatrix}
+ \] \\
+ The original system of equations to which the matrix corresponds only has
+ a unique solution if the determinant is non-zero.
+}
+
+\card{
+  What is an upper triangular matrix and how do you calculate its determinant?
+}{
+  It is a matrix where all of its entries below the diagonal are zero.
+  \[
+ \begin{pmatrix}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+  0 & a_{2,2} & \cdots & a_{2,n} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  0 & 0 & \cdots & a_{n,n}
+ \end{pmatrix}
+ \]
+ Its determinant is calculated by taking the product of the entries on the
+ diagonal. i.e $a_{1,1} \cdot a_{2,2} \cdot ... \cdot a_{n,n}$
+}
+
+\card{
+  Which 4 operations have no effect on a matrix's determinant?
+}{
+  Transposing two rows \\
+  Transposing two columns \\
+  Adding a multiple of one row to another \\
+  Adding a multiple of one column to another \\
+  Also note that if all entries in any row or column are 0 then the determinant
+  is 0
+}
+
+\end{document}
