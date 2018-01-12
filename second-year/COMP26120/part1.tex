@@ -8,6 +8,7 @@
 
 \newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
 \newcommand{\backcard}[1]{#1} 
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
 
 \newcommand{\flashcard}[1]{% create new command for cards with blanks
     \card{% call the original \card command with twice the same argument (#1)
@@ -42,6 +43,72 @@
   The complexity (i.e. running time/space) is \textit{at least} by the $<expr>$.
 }
 
+\card{
+  What are the best, average and worst case complexities of \textbf{Bubble Sort}?
+}{
+  Best: $O(n)$,\\ Average: $O(n^2)$,\\ Worst: $O(n^2)$
+}
+
+\card{
+  What are the best, average and worst case complexities of \textbf{Merge Sort}?
+}{
+  Best: $O(nlog\log_2n)$,\\ Average: $O(nlog\log_2n)$,\\ Worst: $O(nlog\log_2n)$
+}
+
+\card{
+  Give pseudo code for merging 2 sorted lists, as part of merge sort.
+}{
+  \begin{flushleft}
+    Merge($L_1$, $L_2$) \\
+    \tab if $L_1 = []$ return $L_2$ \\
+    \tab if $L_2 = []$ return $L_1$ \\
+    \tab $x_1 = L_1 [0]$ \\
+    \tab $x_2 = L_2 [0]$ \\
+    \tab $L'_1 = L_1 [1 : \vert L_1 \vert - 1]$ \\
+    \tab $L'_2 = L_2 [1 : \vert L_2 \vert - 1]$ \\
+    \tab if $x_1 \leq x_2$ \\
+    \tab \tab return $[x_1]+$Merge($L'_1$ ,$L_2$) \\
+    \tab return $[x_2]+$Merge($L_1$ ,$L'_2$) 
+  \end{flushleft}
+  \textit{Merge two sorted lists}
+}
+
+\card{
+  Give pseudo code for MergeSort(L).
+}{
+  \begin{flushleft}
+    MergeSort(L) \\
+    \tab if $\vert L \vert \leq 1$ \\
+    \tab \tab return L \\
+    \tab Split L into roughly equal halves, $L_l$ and $L_r$ \\
+    \tab return Merge(MergeSort($L_l$),MergeSort($L_r$))
+  \end{flushleft}
+  \textit{MergeSort(L)}
+}
+
+\card{
+  What are the best, average and worst case complexities of \textbf{Quick Sort}?
+}{
+  Best: $O(nlog\log_2n)$,\\ Average: $O(nlog\log_2n)$,\\ Worst: $O(n^2)$
+}
+
+\card{
+  What would the pseudo code be for Quick Sort?
+}{
+  \begin{flushleft}
+    quicksort(L) \\
+    \tab if length of $L \leq 1$ \\
+    \tab\tab return L \\
+    \tab remove the first element, x, from L \\
+    \tab $L_\leq :=$ elements of L less than or equal to x \\
+    \tab $L_> :=$ elements of L greater than x \\
+    \tab $L_l :=$ quicksort($L_\leq$) \\
+    \tab $L_r :=$ quicksort($L_>$) \\ 
+    \tab return $L_l$ + [x] + $L_r$ \\
+  \end{flushleft}
+  \textit{Quick Sort}
+}
+
 \card{ 
   Say that the input represents a positive integer, $x$, what is the size of $n$?
  }{
@@ -56,13 +123,60 @@
 }
 
 \card{
-  What is the minimum time for any sorting algorithm that uses only number comparisons.
+  What is the minimum time for any sorting algorithm that uses only number comparisons?
 }{
   $n\log_2n$
 }
 
 \card{
-  How do you argue correctness of Euclid's algorithm?
+  What would the pseudo code be for Euclid's algorithm?
+}{
+  \begin{flushleft}
+    // Assume $a>=b$ \\
+    hcf(a,b) \\
+    \tab if $b = 0$ \\
+    \tab\tab return a \\
+    \tab $r=amodb$ \\
+    \tab return hcf(b,r)
+  \end{flushleft}
+  \textit{Euclid's algorithm}
+}
+
+\card{
+  What would the pseudo code be for Fast Modular Exponentiation?
+}{
+  \begin{flushleft}
+    fme(a,b,k) \\
+    \tab $d=a$ \\
+    \tab $e=b$ \\
+    \tab $s=1$ \\
+    \tab While $e>0$ \\
+    \tab\tab if e is odd \\
+    \tab\tab\tab $s=(s.d)mod k$ \\
+    \tab\tab $d = d^2 mod k$ \\
+    \tab\tab $e = \lfloor e / 2 \rfloor$ \\
+    \tab return s \\
+  \end{flushleft}
+  \textit{Fast Modular Exponentiation}
+}
+
+\card{
+  Consider the equation $a^x = y mod p$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
+}{
+  X is the \textbf{discrete logarithm} of $y$ with base $a$, modulo $p$.
+}
+
+\flashcard{The \blank{discrete logarithm} is the inverse of exponentiation.}
+
+\card{
+  Why can the private key not, in practice, be recovered from the public key when $p$ is large?
+}{
+  To calculate a public key, $y$, a private key, $x$ is needed. The equation for modular exponentiation can be used: $y = g^x mod p$ \\
+  It is considered a one-way function - easy to compute, hard to invert. For a large $p$, the only way to figure out the private key would be to use brute force, which would take a large amount of time.
+}
+
+\card{
+  What is one way you can argue correctness of Euclid's algorithm?
 }{
   Let $r = a mod b$. $hcf(a,b)=hcf(b,r)$ because all factors of a and b are also factors of b and r and vice versa. If they have the same factors, they have the same highest common factor.
 }
@@ -70,9 +184,10 @@
 \card{
   What would half the correctness proof be for Euclid's algorithm?
 }{
-  As $r=a mod b$, $\exists q$ such that $a=bq+r$, $\therefore r = a-bq$.
-  Suppose x is a factor of a and b, then $\exists y and z$ such that $a=xy$, $b=xz$. Hence:
-  $r=xy-xzq$, $r=x(y-zq)$. $\therefore x$ is a factor of r (and also of b and r).
+  As $r=a mod b$, $\exists q$ such that $a=bq+r$, $\therefore r = a-bq$. \\
+  Suppose x is a factor of a and b, then $\exists y and z$ such that $a=xy$, $b=xz$. \\
+  Hence: $r=xy-xzq$, $r=x(y-zq)$. \\ 
+  $\therefore x$ is a factor of r (and also of b and r).
 }
 
 \flashcard{
