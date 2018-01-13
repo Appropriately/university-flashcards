@@ -188,10 +188,11 @@
   Describe public key generation in ElGamal encryption using p as the Prime
   Modulus and g as the Primitive root (as described in the COMP26120 lab)
 }{
-  Generate an $x$ randomly from $1\leq x<p$. This is the private key to be kept secret.
-  Now compute $h$, part of the public key, using \\ $h = g^x \pmod{p}$ \\
-  (This is modular exponentiation) \\
-  Note that the full public key is a combination of (h, g, p)
+  Generate a large $p$ and a $g$ in $1 \leq g < p$ \\
+  Generate a random integer $a$ in $1 \leq a \leq p - 2$ \\
+  Compute $g^a \bmod{p}$. The public key is
+  $$(p, g, g^a)$$
+  The private key is $a$
 }
 
 % \card{
