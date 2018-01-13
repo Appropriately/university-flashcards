@@ -195,12 +195,28 @@
   The private key is $a$
 }
 
-% \card{
-%   Describe ElGamal encryption given that you know h (the Modular exponential of
-%   $g^x \pmod{p}$), g (the primitive root), and p (the prime modulus)
-% }{
-%   Create a message $M$ from $1\leq M < q$ then calculate
-% }
+\card{
+  Describe the encryption procedure used in the ElGamal cryptosystem given that
+  person B wants to send message M to preson A
+}{
+  Obtain A's public key $(p, g, g^a)$ \\
+  Represent the message M as integers in the range ${0, ..., p - 1}$ \\
+  Select a random integer k from $1 \leq k \leq p - 2$ \\
+  Compute $\gamma = g^k \bmod{p}$ and $\delta = m \cdot (g^a)^k$ \\
+  Send ciphertext $c = (\gamma, \delta)$ to A
+}
+
+\card{
+  Describe the decryption process used in the ElGamal cryptosystem given that
+  person A has received cyphertext $(\gamma, \delta)$ from person B, encrypted
+  encrypted using the public key $(p, g, g^a)$
+}{
+  Use private key a to compute $(\gamma^{p-1-a}) \bmod{p}$ \\
+  NOTE THAT: $(\gamma^{p-1-a}) = \gamma^{-a} = g^{-ak}$ \\
+  Recover the message M by computing $(\gamma^{-a} \cdot \delta \bmod{p})$ \\
+  Note that this evaluates to $(g^{-ak} \cdot g^{ak} \cdot M \bmod{p})$ or
+  $1 \cdot M \bmod{p}$
+}
 
 \card{
   Consider the equation $a^x = y \bmod{p}$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
