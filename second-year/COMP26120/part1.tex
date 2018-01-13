@@ -219,7 +219,7 @@
 }
 
 \card{
-  Consider the equation $a^x = y \bmod{p}$. If $a$ is a primitive root modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
+  Consider the equation $a^x = y \bmod{p}$. If $a$ is a primitive root of modulo $p$, then for every $y (1\leq y < p)$, such an $x (1\leq x < p)$ exists. What is $x$?
 }{
   X is the \textbf{discrete logarithm} of $y$ with base $a$, modulo $p$.
 }
@@ -227,10 +227,15 @@
 \flashcard{The \blank{discrete logarithm} is the inverse of exponentiation.}
 
 \card{
-  Why can the private key not, in practice, be recovered from the public key when $p$ is large?
+  Why can a private key in the ElGamal cryptosystem not, in practice, be recovered
+  using the public key when $p$ is large?
 }{
-  To calculate a public key, $y$, a private key, $x$ is needed. The equation for modular exponentiation can be used: $y = g^x mod p$ \\
-  It is considered a one-way function - easy to compute, hard to invert. For a large $p$, the only way to figure out the private key would be to use brute force, which would take a large amount of time.
+  To calculate a public key, $y$, a private key, $x$ is needed. The equation for
+  modular exponentiation can be used to generate the public key: $y = g^x \bmod{p}$
+  where $g$ is a primitive root of the modulus $p$. \\
+  It is considered a one-way, or trapdoor function - easy to compute, hard to invert.
+  For a large $p$, one of the few ways to figure out the private key x would be to calculate
+  $g^x \bmod{p}$ for every $x$ in $1 \leq x < p$ and find when one of these results matches $y$
 }
 
 \card{
@@ -242,7 +247,7 @@
 \card{
   What would half the correctness proof be for Euclid's algorithm?
 }{
-  As $r=a mod b$, $\exists q$ such that $a=bq+r$, $\therefore r = a-bq$. \\
+  As $r=a \bmod{b}$, $\exists q$ such that $a=bq+r$, $\therefore r = a-bq$. \\
   Suppose x is a factor of a and b, then $\exists y and z$ such that $a=xy$, $b=xz$. \\
   Hence: $r=xy-xzq$, $r=x(y-zq)$. \\
   $\therefore x$ is a factor of r (and also of b and r).
