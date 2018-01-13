@@ -162,6 +162,29 @@
 }
 
 \card{
+  What are some of the advantages of ElGamal encryption?
+}{
+     Sender Verification \\
+     Private key remains with owner \\
+     Public key is freely distributable \\
+     No secret channel needed at any point \\
+     No need for pre-shared keys
+}
+
+\card{
+  What is the basic procedure for an encryption and decryption using ElGamal if
+  Alice wants to send a message to Bob?
+}{
+  Alice generates a private random integer a and Bob generates a private
+  random integer b \\
+  Alice generates her public value $g^a \bmod{p}$ \\
+  Bob generates his public value $g^b \bmod{p}$ \\
+  Alice computes $g^{ab} = (g^a)^b \bmod{p}$ \\
+  Bob computes $g^{ba} = (g^b)^a \bmod{p}$ \\
+  Now they have a shared secret $k$ since $k = g^{ab} = g^{ba}$
+}
+
+\card{
   Describe public key generation in ElGamal encryption using p as the Prime
   Modulus and g as the Primitive root (as described in the COMP26120 lab)
 }{
