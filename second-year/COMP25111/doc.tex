@@ -1,0 +1,183 @@
+% Bascically just an adaption of Todd Davies flashcards for the subjects,
+% with plans to basically expand upon them
+
+\documentclass[frontgrid,backgrid,a4paper]{flacards}
+\usepackage{color}
+% For funky database symbols
+\usepackage{newlfont}
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+\definecolor{light-gray}{gray}{0.75}
+\fboxsep=20pt
+
+\newcommand{\frontcard}[1]{\fboxsep=2pt\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
+\newcommand{\backcard}[1]{#1}
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
+
+\newcommand{\flashcard}[1]{% create new command for cards with blanks
+    \card{% call the original \card command with twice the same argument (#1)
+        \let\blank\frontcard% but let \blank behave like \frontcard the first time
+        #1
+    }{%
+        \let\blank\backcard% and like \backcard the second time
+        #1
+    }%
+}
+
+\begin{document}
+
+\pagesetup{2}{4} 
+
+\card{
+  What is the difference between “virtual” and “physical” memory addresses? Which (if any) is the application programmer able to manipulate? 
+}{
+  Physical memory addresses refers to a specific location in memory, whereas virtual memory is a meaningless address that needs to be mapped to a physical address using a page table. A programmer will manipulate the virtual address space.
+}
+
+\card{
+  How does a system call differ from an application method/function call?
+}{
+  It changes mode to enter privileged code, having a fixed set of entry addresses in protected space. It is normally slower than a simple function call.
+}
+
+\flashcard{ 
+  A \blank{daemon} is a background process, typically owned by ‘root.’ Examples abound: page, cron, logging... 
+}
+
+\card{
+  If a page is pinned, what effect does this have (if any) on the page eviction policy? Give two different reasons for “pinning” a page.
+}{
+  A pinned page is not considered for page eviction; it is retained in RAM. A page may be pinned if the code or data it contains is likely to be wanted rapidly and unpredictably -- e.g. interrupt handlers. If the page is currently subject to a DMA transfer it must be kept in RAM even if that process is not running in software.  
+}
+
+\card{
+  What are the three main states a process can be in? 
+}{
+  Ready, running and blocked.
+}
+
+\card{
+  How can a state change?
+}{
+  \begin{flushleft}
+    - Running: can become stuck (e.g. on I/O) and change to blocked; can be preempted and change to ready. \\ 
+    - Ready: will be changed to running if chosen by the scheduler. \\ 
+    - Blocked: will be changed to ready (or, possibly, running) when unblocked (e.g. by a system call or interrupt).
+  \end{flushleft}
+  Ways in which states can change.
+}
+
+\card{
+  In a virtual memory system, under what circumstances might a page fault occur?
+}{
+  \begin{flushleft}
+    - an illegal virtual address (e.g. corrupted pointer) \\
+    - a legal virtual address with the page not present in memory \\
+    - a privilege violation \\
+    - a legitimate page which has had its privileges temporarily reduced (for monitoring purposes) 
+  \end{flushleft}
+  Reasons which may cause a page fault.
+}
+
+\card{
+  What does the operating system need to do to classify and process a page fault?
+}{
+  Identify the faulting address. Check validity against the process' segment definitions; permissions can be obtained and checked. If the address or the operation was illegal, a segmentation fault is indicated and the process is terminated. Else, if the operation was legitimate and the page is present but the page permissions have been artificially reduced, increase the permissions and return to the faulting operation (a minor page fault). Else, if the page is absent, set up a DMA transfer to fetch the faulting page from the disk.
+}
+
+\card{
+  Give an example of a hard real-time computer system. 
+}{
+  Any decent example will do: flight control, in-car control system, Segway balancing system etc.
+}
+
+\card{
+  What is the basic difference in process scheduling in a hard real-time computer compared to a Windows or Unix system? What is the role of the process' priority in each case?
+}{
+  A real-time system schedules to minimise latency, particularly preferring high-priority processes. It can assume that every process will block reasonable quickly and the processor(s) will spend some time in enforced idleness. Timeslicing is counterproductive and may not be used, or be confined to processes of equal priority. An interactive scheduler tries to balance general throughput; it will assume that any process may be running indefinitely and will timeslice running processes. All processes will progress: low-priority processes will receive a smaller share of (rather than no) processor time.
+}
+
+\card{
+  A real-time system has three processes, at high, medium and low priority. The high and the low priority processes share a data structure which is protected by a mutex. Describe how it might be possible to reach a circumstance where the medium priority process is delaying the running of the high-priority process.
+}{
+  \begin{flushleft} 
+    1) Low priority process wins the mutex \\ 
+    2) High priority process preempts  \\  
+    3) Medium priority process becomes ready  \\
+    4) High priority process blocks on mutex  \\ 
+    5) Medium priority process runs, preventing low priority process from releasing the mutex.   
+  \end{flushleft}
+  This is the classic priority inversion.
+}
+
+\card{
+  What is the main difference between a process and a thread? In what way(s) are they similar?
+}{
+  The context which is private to a process includes the address space and the resources it is using. Threads within a process share access to these resources. Both processes and threads are independently schedulable code units. Each has some private data such as register values and a stack.
+}
+
+\card{
+  Why is thread-switching within a process usually much quicker than process-switching?  Outline all the differences which you believe may have a significant impact on the time penalty for switching  processes in a system using virtual memory and note which (if any) are unnecessary when thread switching. 
+}{
+  Switching the processor context (registers) is common to both and takes a noticeable time. The major difference is the change of the memory view in process switching. Switching page tables is quite quick but the consequence of changing the virtual memory map is that the TLB and the (virtual) L1 cache(s) will need to be flushed. There is a penalty in writing back the dirty lines from the cache, plus an ongoing performance impact until the cache(s) and TLB have refilled for the new process. 
+}
+
+\card{
+  What implications are there for thread and process scheduling if the computer has multiple processors (using the same physical memory) rather than a single CPU?
+}{
+  For processes, really not much as each process has an independent context. For threads, the virtual address space is shared but will be  managed independently on each processor. Threads can only be switched cheaply if they use the same processor, otherwise they will be similar to processes. A kernel-based thread scheduler may take this into account.
+}
+
+\flashcard{
+  A \blank{critical section} is one which must be executed atomically.
+}
+
+\card{
+  A critical section of code is used by a single system call.  What are the simplest ways of guaranteeing its correct operation in a single-tasking uniprocessor system?
+}{
+  In a single-tasking system there can be no interruptions so there is no need for anything other than the code itself. 
+}
+
+\card{
+  A critical section of code is used by a single system call.  What are the simplest ways of guaranteeing its correct operation in a multi-tasking uniprocessor system?
+}{
+  In a multi-tasking system, context switching needs to be avoided; this can be done by disabling interrupts over the critical section. 
+}
+
+\card{
+  A critical section of code is used by a single system call.  What are the simplest ways of guaranteeing its correct operation in a multi-tasking, shared memory multiprocessor system?
+}{
+  In a multi-processor system interference from other processors must be prevented; some form of lock (e.g. a "mutex") will be needed.]
+}
+
+\flashcard{
+  \blank{Caching} is the keeping of copies of a subset of available data in a local, fast store. If the data is wanted in again it is   available rapidly.
+}
+
+\card{
+  What has happened if part of a cache is "dirty"?
+}{
+  There has been a write operation and the cache area is inconsistent with the original copy; it will need saving, later.
+}
+
+\card{
+  Give some examples of where the principle of caching is applied in computing, and how the kernel is involved (if it is).
+}{
+  \begin{flushleft}
+    - The memory data cache hierarchy. The kernel is responsible for managing cachability of different memory areas and flushing the virtual cache at context-switch time. \\
+    - Virtual memory. The kernel is responsible for trapping cache misses, choosing pages for eviction, setting up the refill transfers, etc. \\
+    - TLB. The kernel needs to flush the TLB on a context switch. \\
+    - Web cache. Not O.S. related.
+  \end{flushleft}
+  Examples of caching
+}
+
+\card{
+  In the general context of caching, what is "LRU" and why is it generally effective? 
+}{
+  LRU is "Least Recently Used" - an algorithm which can be used to evict part of a cache contents. It selects the part which has not been used in the longest time. It works because, statistically, data which haven't been used for some time are typically not going to be used in the immediate future either.
+}
+
+
+\end{document} 

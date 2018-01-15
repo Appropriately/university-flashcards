@@ -9,9 +9,11 @@
 \usepackage{graphicx}
 
 \definecolor{light-gray}{gray}{0.75}
+\fboxsep=20pt
 
-\newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
-\newcommand{\backcard}[1]{#1} 
+\newcommand{\frontcard}[1]{\fboxsep=2pt\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
+\newcommand{\backcard}[1]{#1}
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
 
 \newcommand{\flashcard}[1]{% create new command for cards with blanks
     \card{% call the original \card command with twice the same argument (#1)
