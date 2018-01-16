@@ -3,5 +3,4 @@
 *.fdb_latexmk
 *.aux
 *.gz
-*.pdf
 .nfs*
