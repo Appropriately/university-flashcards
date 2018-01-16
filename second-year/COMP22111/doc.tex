@@ -29,6 +29,8 @@
 
 \pagesetup{2}{4} 
 
+% Verilog Paul Nutter %
+
 \flashcard{\blank{Abstraction}: hiding the complexity of the design.}
 
 \flashcard{The \blank{datapath} realises the data operations required by the FSM.}
@@ -45,7 +47,7 @@
 
 \flashcard{You use bit \blank{12} to determine whether an instruction is Type 1 or 2.}
 
-\flashcard{Shifter operations are applied to the \blank{srcA} register in \blank{type 1} operations.}
+\flashcard{Shifter operations are applied to the \blank{srcA} register in type \blank{1} operations.}
 
 \card{
   In Verilog, there are four options for a bit to be. 0, 1, X and Z.\\In brief, what does each one mean?
@@ -97,6 +99,40 @@
 }{
   Data within registers will only be operated on, with results being written back to registers. LD/ST operations will be included for memory operations.
 }
+
+\card{
+  How would you setup a Stump FSM with the inputs \textit{clk}, \textit{rst}, a 16 bit \textit{ir} and a 2 bit register for \textit{state}.
+}{
+  \begin{flushleft}
+    module Stump\_FSM (input  wire	     clk,	\\
+                  \tab\tab input  wire	     rst,	\\
+                  \tab\tab input  wire [15:0] ir, \\
+                  \tab\tab output reg  [ 1:0] state); \\    
+    endmodule
+  \end{flushleft}
+  Stump FSM
+}
+
+\card{
+  How would you design a \textbf{clock} for a verilog test?
+}{
+  \begin{flushleft}
+    always \\
+    \tab begin \\
+    \tab\tab \#100 // Time per clock change \\
+    \tab\tab clock = !clock \\ 
+    \tab end
+  \end{flushleft}
+  Clock example
+}
+
+\card{
+  In Stump, name the four \textbf{flags} and, when \textbf{'S'} is appended to an instruction, how they go high.
+}{
+  [TO DO]
+}
+
+% The rest Dirk Koch %
 
 \card{
   How can pipelining accelerate performance of a processing system?
