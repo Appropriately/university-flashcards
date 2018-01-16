@@ -38,7 +38,7 @@
 \flashcard{The \blank{control} issues signals to control the operation of the datapath.}
 
 \card{
-  A Reduced Instruction Set Computer (RISC) has three instruction types. What are they, and in brief what do they do? \textit{Hint: Stump is a RISC computer}
+  A Reduced Instruction Set Computer (RISC) has three instruction types. What are they, and in brief what do they do? \textbf{Hint: Stump is a RISC computer}
 }{
   Register to Register: Instructions that perform operations on values inside of registers.\\
   Load/Store: The only operations that will be on memory.\\
@@ -101,7 +101,7 @@
 }
 
 \card{
-  How would you setup a Stump FSM with the inputs \textit{clk}, \textit{rst}, a 16 bit \textit{ir} and a 2 bit register for \textit{state}.
+  How would you setup a Stump FSM with the inputs \textit{clk}, \textit{rst}, a 16 bit \textit{ir} and a 2 bit register for \textit{state}?
 }{
   \begin{flushleft}
     module Stump\_FSM (input  wire	     clk,	\\
@@ -127,18 +127,118 @@
 }
 
 \card{
+  How would you instantiate a Stump\_FSM with the inputs \textit{clk}, \textit{rst}, an \textit{ir} and a \textit{state} for testing?
+}{
+  \begin{flushleft}
+    Stump\_FSM variableName ( \\
+    \tab .clk(var1), .rst(var2), .ir(var3), .state(var4) \\
+    );
+  \end{flushleft}
+  Instantiated Stump\_FSM
+}
+
+\card{
   In Stump, name the four \textbf{flags} and, when \textbf{'S'} is appended to an instruction, how they go high.
 }{
-  [TO DO]
+  \begin{flushleft}
+    \textbf{N} - the negative flag is set if the ALU result is negative. \\
+    \textbf{Z} - the zero flag is set if the result is zero. \\
+    \textbf{V} - the overflow is set if the result from an addition/subtraction interpreted as a two's complement is wrong. \\
+    \textbf{C} - the carry flag is set if there is a carry out from the most significant bit of the result (bit 15).
+  \end{flushleft}
+  Flags
 }
 
 % The rest Dirk Koch %
 
 \card{
-  How can pipelining accelerate performance of a processing system?
+  Compare and contrast the \textbf{ARM} ISA's and the \textbf{x86} ISA's techniques for branching to a subroutine.
 }{
-  By introducing parallelism at a small cost. It allows more instruction throughput at a given clock rate than would traditionally be possible.
-  % TO DO
+  \begin{flushleft}
+    \textbf{ARM} \\
+    - Single register allows for less implementation cost. \\
+    - Any other branch call will overwrite value in link register. \\
+    \textbf{x86} \\
+    - Stack based system has greater implementation cost. \\
+    - Allows for branch calls within branches, without loss of address.
+  \end{flushleft}
+  ARM ISA vs x86 ISA
+}
+
+\flashcard{
+  \blank{Instruction Set Architecture} (ISA) is the visible view of the processor (what is exposed to the programmer).
+}
+
+\flashcard{
+  \blank{Microarchitecture} is the hardware view on a processor. 
+}
+
+\card{
+  Name some ways that a processor can be made faster.
+}{
+  \begin{flushleft}
+    \textbf{Increase the clock rate} \\
+    - As a consequence of Moore's Law \\
+    - Through circuit design \\
+    - Through microarchitectural design, e.g. more parallelism \\
+    \textbf{Do more in each cycle} \\
+    - Parallelism within instruction execution \\
+    \textbf{Do more in each instruction} \\
+    - Somewhat limited by ISA as a completely new ISA is expensive.
+  \end{flushleft}
+  Some possible ways of making a processor faster
+}
+
+\card{
+  What are the basic principles of \textbf{pipelining}?
+}{
+  Pipelining works by starting executing one instruction before its predecessor(s) have finished. The time taken for a circuit to evaluate is a bit uncertain, so instructions are deliberately separated into \textbf{stages} with pipeline \textbf{latches}.
+}
+
+\flashcard{
+  \blank{Latches} prevent one operation from overrunning its predecessor (by delaying it).
+}
+
+\card{
+  How does pipelining effect latency?
+}{
+  It increases latency, with the speed being limited by the slowest stage.
+}
+
+\card{
+  What is the potential speed up of pipelining? Why isn't this always the case?
+}{
+  Partitioning a task into N stages gives a maximum speed-up of N times. \\
+  This assumes that all stages take exactly the same time and that the partitioning has some added cost due to the delay imposed by the pipeline registers.
+}
+
+\flashcard{
+  A \blank{Digital Signal Processor} (DSP) is specialised for high performance in a particular subset of computing tasks.
+}
+
+\card{
+  What is saturating arithmetic?
+}{
+  In two's complement arithmetic, adding two large positive numbers may result in an overflow. A Digital Signal Processor (DSP) may sometimes find it better to "clip" the value to the maximum representable one. This is called "saturation".
+}
+
+\flashcard{\blank{Single instruction, multiple data} (SIMD) describes computers with multiple processing elements that perform the same operation on multiple data points simultaneously.}
+
+\card{
+  What are the two basic types of \textbf{MOS-FETs} (Metal-Oxide-Semiconductor Field Effect Transistors)?
+}{
+  \begin{flushleft}
+    \textbf{NMOS} - with n-type channel (analogy to normally open switch) \\
+    \textbf{PMOS} - with p-type channel (analogy to normally closed switch)
+  \end{flushleft}
+  Two types of MOS-FETs
+}
+
+\card{
+  How do you calculate system performance?
+}{
+  $time per task = clock period \times number of clock cycles per task$ \\
+  $performance \approx 1 / (time per task)$
 }
 
 \end{document} 
