@@ -149,7 +149,29 @@
   Flags
 }
 
+\flashcard{
+  The \blank{Sign Extender} extends immediate values in Stump for Type 2 and Type 3 instructions.
+}
+
+\flashcard{
+  The \blank{Shifter} in stump performs shift operations on the srcA register on Type 1 instructions.
+}
+
 % The rest Dirk Koch %
+
+\card{
+  What are the differences between the \textbf{Von Neuman} architecture and the \textbf{Harvard} architecture?
+}{
+  \begin{flushleft}
+    \textbf{Von Neuman} \\
+    - has one bus for both data transfers and instructions fetches. \\
+    - a single, unified cache, which stores both instructions and data. \\
+    \textbf{Harvard} \\
+    - has separate data and instruction busses, allowing transfers to be performed simultaneously on both busses. \\
+    - separate caches for each bus, as a shared cache would be difficult to manage.
+  \end{flushleft}
+  \textbf{Von Neuman} v.s. \textbf{Harvard}
+}
 
 \card{
   Compare and contrast the \textbf{ARM} ISA's and the \textbf{x86} ISA's techniques for branching to a subroutine.
@@ -239,6 +261,31 @@
 }{
   $time per task = clock period \times number of clock cycles per task$ \\
   $performance \approx 1 / (time per task)$
+}
+
+\card{
+  When changing a functional design into a physical one, what is on the "wish list" of properties?
+}{
+  \begin{flushleft}
+    - Clock period (performance) \\
+    - Floorplan/pinout \\
+    - Area/density (cost) \\
+    \tab Using all the chip area for useful gates, but keeping the chip small to save cost. \\
+    - Power
+  \end{flushleft}
+  Wish list of properties
+}
+
+\card{
+  What does \textbf{PVT} stand for in the context of chip design?
+}{
+  \begin{flushleft}
+    - Manufacturing \textbf{P}rocess variation \\
+    - Varying operating \textbf{V}oltage \\
+    \tab Typical voltage ranges my be $\pm 10\%$ \\
+    - Different chip \textbf{T}emperature
+  \end{flushleft}
+  Typically, run simulation at extremes
 }
 
 \end{document} 
