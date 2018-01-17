@@ -1,7 +1,7 @@
 % Bascically just an adaption of Todd Davies flashcards for the subjects,
 % with plans to basically expand upon them
 
-\documentclass[frontgrid,backgrid,a4paper]{flacards}
+\documentclass[frontgrid,a4paper]{flacards}
 \usepackage{color}
 % For funky database symbols
 \usepackage{newlfont}
@@ -30,34 +30,197 @@
 \pagesetup{2}{4} 
 
 \card{
+  What is an \textbf{operating system}?
+}{
+  A layer of software which lies between application(s) programme(s) and the hardware. In primitive systems, its just an abstraction layer. But in more complex systems, it provides more services. This requires a degree of resource management.
+  \begin{flushleft}
+    - Protection: some security, in some cases prevent unauthorised access. \\
+    - Multi-tasking \\
+    - Multi-user: requires further security functionality.
+  \end{flushleft}  
+  Example services available
+}
+
+\card{
+  What are two common forms of lock?
+}{
+  \begin{flushleft}
+    - Mutex: one-at-a-time permission mechanism. Consider it a binary semaphore. \\
+    - Semaphores: allows a set number of threads into a critical section. A semaphore will have an initialized value. While a thread is in a critical section the value is reduced. If the semaphore is 0, a thread may block.
+  \end{flushleft}
+  Two forms of lock
+}
+
+\flashcard{The specification for communication between different programme elements at the object code level is the \blank{Application binary interface (ABI)}. E.g. when function arguments are passed on the stack the ABI specifies in which order they should go.}
+
+\card{
+  In C, what is an array?
+}{
+  Pointers to locations in memory. The required memory is allocated when they are declared. 
+}
+
+\flashcard{\blank{Atomicity} refers to a set of action that have to happen together. In a single processor system, disabling interrupts is enough to ensure atomicity. But in a multiple processor system, a lock is needed.}
+
+\card{
+  What is a canary?
+}{
+  A random value that may be placed near the buffer and can be checked for the correct value before the function return to detect a buffer overflow.
+}
+
+\card{
+  What is a cache? Why are there multiple cache levels? 
+}{
+  A small, fast memory that is close to the processor, used to increase performance. High performance machines have multiple caches, going frm a level one cache upwards, lower level caches are smaller but faster. The OS scheduler keeps track of any caches that need to be flushed.
+}
+
+\card{
+  What is a \textbf{Container}?
+}{
+  A virtual computer that exists within a host system. Its a form of virtualisation that may be used to contain some users and processes to using certain files or devices. Code/Hardware may be shared but it appears as its own virtual machine.
+}
+
+\card{
+  What is a context, and how is the switching of it managed?
+}{
+  An executing process has a \textbf{context} and a PCB which is used to hold information. Context switching is managed by the scheduler. All information held in hardware will be stored to the PCB. Old caches may need to be flushed.
+}
+
+\flashcard{A situation where progress cannot be made is called a \blank{deadlock}.}
+
+\flashcard{When a cache is about to be flushed the \blank{dirty bit} is checked, if the cache is clean it can be dropped, else the entry must be copied down the memory hierarchy.}
+
+\card{
+  What is a DMA controller? How does DMA work? 
+}{
+  A simple processor capable of moving data from one place to another and counting how much it has done. Direct memory access is a technique for letting I/O devices interact with memory via a simple controller rather than via the CPU, feeing it up. The CPU will set up the data transfer, telling the DMA controller the device, memory address and amount to transfer. It will raise an interrupt when it is complete.
+}
+
+\card{
+  How does Dynamic Memory Allocation alleviate the problem of fragmentation?
+}{
+  By allocating fixed size block but this can be wasteful or inconvenient when the programmer wants a larger block.
+}
+
+\flashcard{The OS is capable of generating \blank{exceptions} but most come from hardware and are then usually handled by the OS. They act as a call to the processor, causing it to call a subroutine, the call also raises the privilege of the processor so that it can deal with the hardware.}
+
+\card{
+  Give some examples of exceptions?
+}{
+  \begin{flushleft}
+      - Reset: used to start a system in a well defined way \\
+      - System call \\
+      - Emulator trap \\
+      - Memory fault \\
+      - Interrupt \\
+      - Privilege violation
+  \end{flushleft}
+  Example exceptions
+}
+
+\flashcard{
+  A \blank{Filing System} is a persistent and large data store that all processes can access. Access to the \blank{Filing System} is done via device drivers that are part of the O.S.
+}
+
+\card{
+  A typical computer might have a number of "levels" of storage. The machine's view is usually something like:
+}{
+  \begin{flushleft}
+    - Processor registers \\
+    - Primary memory - chiefly RAM \\
+    - Secondary storage - typically disks although other exists \\
+    - Network - not really part of the computer but a source of data nevertheless
+  \end{flushleft}
+  Storage "levels"
+}
+
+\card{
+  What are the four layers of the I/O stack?
+}{
+  \begin{flushleft}
+    - User-level processing - application code, application is responsible for formatting. \\
+    - Device-independent system calls - forces different devices to follow similar interface conventions and helps applications interface with hardware. \\
+    - Device driver - translates standard commands to communicate wit the hardware into the specific required sequences. \\
+    - Interrupt handlers - handle the normal servicing of the a device using ISRs.
+  \end{flushleft}
+  The 4 layers of the I/O stack
+}
+
+\flashcard{
+  It is the role of the OS to \blank{intermediate between peripheral devices and application software} as well providing as sensible abstraction of the IO resources.
+}
+
+\flashcard{
+  \blank{Interrupts} are a form of hardware level exception that is handled by a privileged function before returning to the code that was originally running.
+}
+
+\card{
+  What does an Interrupt Service Routine (ISR) do?
+}{
+  It is called when an interrupt is handled, borrowing the processor, some data, such as register state, has to be saved but not the entire process context. They are generally kept quite quick and lightweight, as interrupts are often urgent urgent and low latency is important.
+}
+
+\card{
+  How does priority affect the ISR?
+}{
+  Interrupts of a lower priority are disabled so that only higher priority interrupts can interrupt the one currently being serviced. ISR code is privileged and should not be accessible by the user for security reasons.
+}
+
+\flashcard{
+  Most of a processes context will be held in \blank{memory} and each process will have some \blank{address space} which it can use to store variables and code.
+}
+
+\flashcard{
+  The \blank{kernel} is the core of an OS and resides in protected space and is accessed by the user via system calls.
+}
+
+\card{
+  What is the kernel responsible for?
+}{
+  Implementing mechanisms, e.g. how a scheduler switches process.
+}
+
+\card{
+  What are the 3 types of kernel and briefly describe them?
+}{
+  \begin{flushleft}
+    - Monolithic: the entire operating system runs as a single program in kernel mode. \\
+    - Layered Systems: layers selected so each only uses functions, operations & services of lower layers. Lower layers (“kernel”) contain most fundamental functions to manage resources. \\
+    - Microkernels: keep only minimal functionality in the OS.
+  \end{flushleft}
+  3 types of kernel
+}
+
+% Midterm questions/answers %
+
+\card{MidTermQ: 
   What is the difference between “virtual” and “physical” memory addresses? Which (if any) is the application programmer able to manipulate? 
 }{
   Physical memory addresses refers to a specific location in memory, whereas virtual memory is a meaningless address that needs to be mapped to a physical address using a page table. A programmer will manipulate the virtual address space.
 }
 
-\card{
+\card{MidTermQ: 
   How does a system call differ from an application method/function call?
 }{
   It changes mode to enter privileged code, having a fixed set of entry addresses in protected space. It is normally slower than a simple function call.
 }
 
-\flashcard{ 
+\flashcard{MidTermQ:  
   A \blank{daemon} is a background process, typically owned by ‘root.’ Examples abound: page, cron, logging... 
 }
 
-\card{
+\card{MidTermQ: 
   If a page is pinned, what effect does this have (if any) on the page eviction policy? Give two different reasons for “pinning” a page.
 }{
   A pinned page is not considered for page eviction; it is retained in RAM. A page may be pinned if the code or data it contains is likely to be wanted rapidly and unpredictably -- e.g. interrupt handlers. If the page is currently subject to a DMA transfer it must be kept in RAM even if that process is not running in software.  
 }
 
-\card{
+\card{MidTermQ: 
   What are the three main states a process can be in? 
 }{
   Ready, running and blocked.
 }
 
-\card{
+\card{MidTermQ: 
   How can a state change?
 }{
   \begin{flushleft}
@@ -68,7 +231,7 @@
   Ways in which states can change.
 }
 
-\card{
+\card{MidTermQ: 
   In a virtual memory system, under what circumstances might a page fault occur?
 }{
   \begin{flushleft}
@@ -80,25 +243,25 @@
   Reasons which may cause a page fault.
 }
 
-\card{
+\card{MidTermQ: 
   What does the operating system need to do to classify and process a page fault?
 }{
   Identify the faulting address. Check validity against the process' segment definitions; permissions can be obtained and checked. If the address or the operation was illegal, a segmentation fault is indicated and the process is terminated. Else, if the operation was legitimate and the page is present but the page permissions have been artificially reduced, increase the permissions and return to the faulting operation (a minor page fault). Else, if the page is absent, set up a DMA transfer to fetch the faulting page from the disk.
 }
 
-\card{
+\card{MidTermQ: 
   Give an example of a hard real-time computer system. 
 }{
   Any decent example will do: flight control, in-car control system, Segway balancing system etc.
 }
 
-\card{
+\card{MidTermQ: 
   What is the basic difference in process scheduling in a hard real-time computer compared to a Windows or Unix system? What is the role of the process' priority in each case?
 }{
   A real-time system schedules to minimise latency, particularly preferring high-priority processes. It can assume that every process will block reasonable quickly and the processor(s) will spend some time in enforced idleness. Timeslicing is counterproductive and may not be used, or be confined to processes of equal priority. An interactive scheduler tries to balance general throughput; it will assume that any process may be running indefinitely and will timeslice running processes. All processes will progress: low-priority processes will receive a smaller share of (rather than no) processor time.
 }
 
-\card{
+\card{MidTermQ: 
   A real-time system has three processes, at high, medium and low priority. The high and the low priority processes share a data structure which is protected by a mutex. Describe how it might be possible to reach a circumstance where the medium priority process is delaying the running of the high-priority process.
 }{
   \begin{flushleft} 
@@ -111,19 +274,19 @@
   This is the classic priority inversion.
 }
 
-\card{
+\card{MidTermQ: 
   What is the main difference between a process and a thread? In what way(s) are they similar?
 }{
   The context which is private to a process includes the address space and the resources it is using. Threads within a process share access to these resources. Both processes and threads are independently schedulable code units. Each has some private data such as register values and a stack.
 }
 
-\card{
+\card{MidTermQ: 
   Why is thread-switching within a process usually much quicker than process-switching?  Outline all the differences which you believe may have a significant impact on the time penalty for switching  processes in a system using virtual memory and note which (if any) are unnecessary when thread switching. 
 }{
   Switching the processor context (registers) is common to both and takes a noticeable time. The major difference is the change of the memory view in process switching. Switching page tables is quite quick but the consequence of changing the virtual memory map is that the TLB and the (virtual) L1 cache(s) will need to be flushed. There is a penalty in writing back the dirty lines from the cache, plus an ongoing performance impact until the cache(s) and TLB have refilled for the new process. 
 }
 
-\card{
+\card{MidTermQ: 
   What implications are there for thread and process scheduling if the computer has multiple processors (using the same physical memory) rather than a single CPU?
 }{
   For processes, really not much as each process has an independent context. For threads, the virtual address space is shared but will be  managed independently on each processor. Threads can only be switched cheaply if they use the same processor, otherwise they will be similar to processes. A kernel-based thread scheduler may take this into account.
@@ -133,35 +296,35 @@
   A \blank{critical section} is one which must be executed atomically.
 }
 
-\card{
+\card{MidTermQ: 
   A critical section of code is used by a single system call.  What are the simplest ways of guaranteeing its correct operation in a single-tasking uniprocessor system?
 }{
   In a single-tasking system there can be no interruptions so there is no need for anything other than the code itself. 
 }
 
-\card{
+\card{MidTermQ: 
   A critical section of code is used by a single system call.  What are the simplest ways of guaranteeing its correct operation in a multi-tasking uniprocessor system?
 }{
   In a multi-tasking system, context switching needs to be avoided; this can be done by disabling interrupts over the critical section. 
 }
 
-\card{
+\card{MidTermQ: 
   A critical section of code is used by a single system call.  What are the simplest ways of guaranteeing its correct operation in a multi-tasking, shared memory multiprocessor system?
 }{
   In a multi-processor system interference from other processors must be prevented; some form of lock (e.g. a "mutex") will be needed.]
 }
 
-\flashcard{
+\flashcard{MidTermQ: 
   \blank{Caching} is the keeping of copies of a subset of available data in a local, fast store. If the data is wanted in again it is   available rapidly.
 }
 
-\card{
+\card{MidTermQ: 
   What has happened if part of a cache is "dirty"?
 }{
   There has been a write operation and the cache area is inconsistent with the original copy; it will need saving, later.
 }
 
-\card{
+\card{MidTermQ: 
   Give some examples of where the principle of caching is applied in computing, and how the kernel is involved (if it is).
 }{
   \begin{flushleft}
@@ -173,7 +336,7 @@
   Examples of caching
 }
 
-\card{
+\card{MidTermQ: 
   In the general context of caching, what is "LRU" and why is it generally effective? 
 }{
   LRU is "Least Recently Used" - an algorithm which can be used to evict part of a cache contents. It selects the part which has not been used in the longest time. It works because, statistically, data which haven't been used for some time are typically not going to be used in the immediate future either.
