@@ -1,12 +1,8 @@
-% Bascically just an adaption of Todd Davies flashcards for the subjects,
-% with plans to basically expand upon them
-
-\documentclass[frontgrid]{flacards}
+\documentclass[frontgrid,a4paper]{flacards}
 \usepackage{color}
-% For funky database symbols
-\usepackage{newlfont}
-\usepackage{tabularx}
-\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 \definecolor{light-gray}{gray}{0.75}
 \fboxsep=20pt
@@ -24,13 +20,15 @@
         #1
     }%
 }
- 
+
 \begin{document}
 
-\pagesetup{2}{4} 
+\pagesetup{2}{4}
 
-\input{yoichi.tex}
+\input{semester1.tex}
 
-\input{edward.tex}
+\input{semester2-part1.tex}
 
-\end{document} 
+\input{semester2-part2.tex}
+
+\end{document}
