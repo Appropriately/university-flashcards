@@ -1,5 +1,195 @@
+% ====== Week 1 ====== %
+
+\flashcard{
+  A vector-based display \blank{can draw lines, text and points}.
+}
+
+\flashcard{
+  A pixel-based display \blank{approximates shapes}.
+}
+
 \card{
-  Test
+  In a graphics pipeline, what is a fragment?
 }{
-  Test
+  \textbf{A candidate pixel, which or may not end up being displayed.} \\
+  A loose definition of a fragment is a "potential pixel". The fragment (x,y) will be drawn on the screen only if it meets certain criteria, such as, it's nearer to the viewer than the pixel already recorded (if any) for position (x,y).
+}
+
+\card{
+  What is the fundamental difference between a fixed and a programmable graphics pipeline?
+}{
+  There are parts of a programmable pipeline that the user must program themselves.
+}
+
+\card{
+  Describe OpenGL in one sentence. 
+}{
+  An API for doing 3D computer graphics
+}
+
+\flashcard{
+  \blank{Khronos} oversees the development of OpenGL.
+}
+
+\card{
+  What kind of matrix does OpenGL use to encode 3D transformations?
+}{
+  \textbf{$4\times4$} \\ 
+  You can encode 3D scaling and 3D rotations in a 3x3 matrix, but if you want to include translations too, you need a 4x4.
+}
+
+% ====== Week 2 ====== %
+
+\card{
+  Why do we use 4x4 transformation matrices in 3D graphics?
+}{
+  They can encode translations as well as scales and rotations.
+}
+
+\flashcard{
+  In 2D a rotation is defined with respect to a point. In 3D a rotation is defined with respect to \blank{a 3D vector}.
+}
+
+\card{
+  Assuming we represent 3D points using column vector notation, if I take a point P and first transform it by matrix M1, then matrix M2, and finally matrix M3, whats the expression that gives P', the final value of P?
+}{
+  $P' = M3 \times M2 \times M1 \times P$
+}
+
+\card{
+  Given a matrix A and its inverse B, what is the result P' of applying the composite transformation (A x B) to a point P?
+}{
+  \textbf{$P'=P$} \\
+  Multiplying a matrix by its inverse results in the identity transformation, which transforms a point to itself (i.e., doesn't change it).
+}
+
+\card{
+  What is the effect on a vector V of normalising it?
+}{
+  Scaling V so that it has a magnitude of 1, without affecting its direction.
+}
+
+\card{
+  Given two normalised 3D vectors V1 and V2, what gives the vector V3 which is perpendicular to both V1 and V2?
+}{
+  $V3 = V1 \times V2$ \\
+  Where $\times$ means cross product.
+}
+
+\card{
+  What is the purpose of the Z-buffer?
+}{
+  To almost guarantee that only pixels nearest to the camera are displayed. This is not always true as there can be some problems, such as Z-fighting.
+}
+
+\flashcard{
+  \blank{Tessellation} is the process of splitting a complex polygon into a set of separate convex ones. \blank{Tessellating} an odd-shaped polygon guarantees that it can be rendered correctly.
+}
+
+% ====== Week 3 ====== %
+
+\card{
+  What is the the purpose of "viewing" a model in computer graphics?
+}{  
+  To enable the user to control how parts of the model are seen on screen.
+}
+
+\flashcard{
+  In a simple 2D window-to-viewport view, we have 3 steps: M1 shifts the window to the origin; M2 scales the window to be the same size as the viewport; M3 shifts the viewport to the desired place. The overall view transformation is \blank{$M3 * M2 * M1$}.
+}
+
+\card{
+  What best describes "the duality of modelling and viewing"?
+}{
+  Moving the model by some transformation is equivalent to applying the inverse transformation to the camera viewing it.
+}
+
+\card{
+  When defining the coordinate system for the the camera, why do we not create a system with axes Q, V, and F, where Q = normalise(V x F)? (assume V and F are normalised).
+}{
+  Because it would only work if V, which is specified by the user, is orthogonal to F. It may not be.
+}
+
+\card{
+  What are the two main classes of projections?
+}{
+  Orthographic and perspective.
+}
+
+\card{
+  In perspective projection a point ($x,y,z$) will project to ($xp,yp,zp$) on a projection plane. By what method can we find ($xp,yp,zp$)?
+}{
+  Similar triangles.
+}
+
+\card{
+  OpenGL combines a matrix for applying modelling transformations, M, with a matrix V for applying the camera. In which logical order are they applied to coordinates?
+}{
+  First M and then V.
+}
+
+\card{
+  What is the view volume in parallel projection?
+}{
+  A tetrahedron.
+}
+
+\card{
+  What is the main purpose of projection normalization?
+}{
+  It allows us to keep the z coordinates, which would otherwise have been set to the z-value of the projection plane.
+}
+
+% ====== Week 4 ====== %
+
+\card{
+  What is themselves difference between local and global illumination models?
+}{
+  A gobal model takes into account light interactions between objects; a local model doesn't.
+}
+
+\flashcard{
+  \blank{Diffuse reflection} makes materials look dull and matte.
+}
+
+\flashcard{
+  Ambient light is an approximation of the \blank{overall light level in an environment}.
+}
+
+\card{
+  What is the function of the n exponent in the Phong specular term?
+}{
+  It models how shiny a surface is. n small means not very shiny; n large means very shiny.
+}
+
+\card{
+  Does the use of Ks allow us to render metal accurately?
+}{
+  No, because it doesn't capture the complex interactions between light and metals.
+}
+
+\flashcard{
+  In Gouraud shading, the \blank{pixel colour} is interpolated along a scan line.
+}
+
+\flashcard{
+  In Phong shading, the \blank{normal vector} is interpolated along a scan line.
+}
+
+\card{
+  What is Mach banding?
+}{
+  The illusion that changes of intensity are greater than they actually are.
+}
+
+\card{
+  What is the main purpose of mip-mapping?
+}{
+  To deal with mismatches between texel and pixel resolutions.
+}
+
+\card{
+  What is the basic principle behind bump mapping?
+}{
+  To make a surface look bumpy by altering normals during rendering.
 }
