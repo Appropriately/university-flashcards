@@ -4,3 +4,4 @@
 *.aux
 *.gz
 .nfs*
+*/__latexindent_temp.tex
