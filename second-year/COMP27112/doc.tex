@@ -22,19 +22,22 @@
     }{%
         \let\blank\backcard% and like \backcard the second time
         #1
-    }%
-}
-
+    }% 
+}   
+ 
 \begin{document}
-
+   
 \pagesetup{2}{4} 
 
-\card{
-  FRONT
-}{
-  BACK
-}
+\input{weekly-quiz.tex}
 
-\flashcard{This is \blank{hidden}}
+\input{introduction.tex} 
+
+\input{viewing.tex}
+
+\input{rendering.tex}
+
+\input{region-processing.tex}
 
 \end{document} 
+ 
