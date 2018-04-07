@@ -1,0 +1,169 @@
+% ====== Web Frameworks/ MVC Architectural Design Pattern ======
+
+\flashcard{
+  \blank{MVC architecture} is a basic pattern where you separate the model (data), view (display), and controller (logic) into different files and directories.
+}
+
+\flashcard{
+  \blank{Models} represent knowledge. Could be a single object or a structure of objects.
+}
+
+\flashcard{
+  A \blank{view} is a (visual) representation of its model
+}
+
+\flashcard{
+  The \blank{controller} is the link between the user and the system.
+}
+
+\flashcard{
+  With the MVC Design Pattern, \blank{Model} objects encapsulate the data, doesn't communicate directly with View \& defines the logic, manipulation and processing of the data.
+}
+
+\flashcard{
+  With the MVC Design Pattern, \blank{View} objects present the data and enables user interaction with it. It communicates with controller, notified about changes in data \& controller notifies of any user-made changes.
+}
+
+\card{
+  What are the benefits of the MVC architecture?
+}{
+  \begin{flushleft}
+    - More reusable: use the same View for multiple application \\ 
+    - Easily adaptable: Each object has a clearly defined role. Good design principle
+  \end{flushleft}
+  Benefits fo the MVC architecture
+}
+
+% ====== User Interface Design ======
+
+\card{
+  What are the stages of UX design?
+}{
+  $Sketches \longrightarrow Wireframe \longrightarrow Mockups \longrightarrow Prototypes$
+}
+
+\card{
+  Why would you produce Mock-ups in the first place?
+}{
+  \begin{flushleft}
+    - Dialogue with customers; can be used to confirm requirements, show different choices \& exchange ideas. \\ 
+    - Acts as a form of testing, by preventing misunderstanding and removing bugs early.
+  \end{flushleft}
+  Reasons for Mockups
+}
+
+\card{
+  What are the 8 golden rules of user interface design?
+}{
+  \begin{flushleft}
+    Strive for consistency \\ 
+    Seek universal usability \\
+    Offer informative feedback \\
+    Design dialogues that bring closure \\
+    Prevent errors \\
+    Permit easy reversal \\ 
+    Keep Users in control \\
+    Reduce short term memory load
+  \end{flushleft}
+  8 golden rules
+}
+
+% ====== Modelling Data ======
+
+\flashcard{
+  In Spring “model” and “\blank{entity}” used interchangeably.
+}
+
+\card{
+  In the context of Spring, what is a \textbf{Repository}?
+}{
+  Data lives in a repository. Repositories are the Spring Mechanism for querying the underlying DB. We used CRUD (Create, Read, Update, Delete) repository.
+}
+
+% ====== Testing Functionality in Isolation ======
+
+\card{
+  What are some important features of unit testing?
+}{
+  Test’s don’t build on other tests. They test one thing. Stay within class/process/network boundaries - don’t test database as a side effect.
+}
+
+\card{
+  Integration Testing: Testing the system from end to end. What are the steps?
+}{
+  Client submits a request to the web server. Web server maps request to a controller. Controller gets data via the DAO layer which gets data from DB. Controller passes data to view. View is processed. Web server sends view to client.
+}
+
+\flashcard{
+  \blank{Dummy} objects are passed around but never actually used. Usually they are just used to fill parameter lists.
+}
+
+\flashcard{
+  \blank{Fake} objects actually have working implementations, but usually take some shortcut which makes them not suitable for production.
+}
+
+\flashcard{
+  \blank{Stubs} provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
+}
+
+\flashcard{
+  \blank{Mocks} are pre-programmed with expectations which form a specification of the calls they are expected to receive. They can throw an exception if they receive a call they don't expect and are checked during verification to ensure they got all the calls they were expecting.
+}
+
+% ====== Integrating external Services ======
+
+\card{
+  What is Spring Social?
+}{
+  Framework of Spring Boot; establishes connections between Spring boot apps and SaaS(Software as a service) providers e.g. Twitter, Facebook. \\
+  $SaaS = API + resources + Interface$
+}
+
+% ====== Meeting Customer Requirements ======
+
+\flashcard{
+  An \blank{acceptance test} is a formal description of the behavior of a software product, expressed as a example or a usage scenario.
+}
+
+\card{
+  What are the benefits of \textbf{Acceptance Tests}?
+}{
+  \begin{flushleft}
+    Closer collaboration between developers and user/customer \\
+    Providing clear and unambiguous “contract” \\
+    Decrease chance and severity of defects 
+  \end{flushleft}
+  Acceptance tests benefits
+}
+
+% ====== RESTful WebServices and Test Driven ======
+
+\flashcard{
+  \blank{Representational State Transfer (REST)} is an architectural style that is the underlying architectural principal of the WWW. Clients can operate without knowing anything about \blank{the server} \& \blank{the server's resources}. Client and server must agree on the \blank{media type} used.
+}
+
+\card{
+  What does \textbf{RED}, \textbf{GREEN} \& \textbf{REFACTOR} mean in the context of \textbf{Test Driven Development (TDD)}? 
+}{
+  \begin{flushleft}
+    - Write a test that does not work (RED) \\
+    - Make the test work (GREEN) \\
+    - Improve the code and eliminate duplication (REFACTOR)
+  \end{flushleft}
+  \textbf{Test Driven Development (TDD)}
+}
+
+\card{
+  Give some reasons why you would use \textbf{Test Driven Development}?
+}{
+  \begin{flushleft}
+    - Quality Assurance becomes proactive rather than reactive. \\ 
+    - Estimations can be accurate enough to involve real customers in daily development. \\ 
+    - Short iterations. Each iteration produces a working product. \\ 
+    - Encourages good OO design practise. \\ 
+    - Encourages design for testability. \\ 
+    - Get an unambiguous progress meter. \\ 
+    - Build up a set of regression test as we go along.
+  \end{flushleft}
+  Test Driven Development
+}

@@ -1,0 +1,37 @@
+% Bascically just an adaption of Todd Davies flashcards for the subjects,
+% with plans to basically expand upon them
+
+\documentclass[frontgrid]{flacards}
+\usepackage{color}
+% For funky database symbols
+\usepackage{newlfont}
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+\definecolor{light-gray}{gray}{0.75}
+\fboxsep=20pt
+
+\newcommand{\frontcard}[1]{\fboxsep=2pt\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
+\newcommand{\backcard}[1]{#1}
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
+
+\newcommand{\flashcard}[1]{% create new command for cards with blanks
+    \card{% call the original \card command with twice the same argument (#1)
+        \let\blank\frontcard% but let \blank behave like \frontcard the first time
+        #1
+    }{%
+        \let\blank\backcard% and like \backcard the second time
+        #1
+    }% 
+}   
+ 
+\begin{document}
+   
+\pagesetup{2}{4} 
+
+\input{notes.tex} 
+
+\input{mock.tex}
+
+\end{document} 
+ 
