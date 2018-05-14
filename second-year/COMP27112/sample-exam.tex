@@ -1,0 +1,66 @@
+\flashcard{
+  Median smoothing is used to \blank{suppress noise in an image}.
+}
+
+\card{What is convolution of an image and a template? What is it used for?}{
+  Convolution is the process of adding each element of the image to its local neighbors, weighted by the kernel. \\ 
+  It measures the similarity between image patches and the template.
+}
+
+\flashcard{
+  Stretching the grey scale in a black and white image will \blank{increase the amount of contrast in the image}.
+}
+
+\flashcard{
+  In order to scan-convert a triangle, we must always \blank{know the coordinates of the triangle's vertices}.
+}
+
+\card{What problem does the \textbf{Z-buffer} solve?}{
+  The hidden-surface problem.
+}
+
+\flashcard{
+  Homogeneous coordinates are used in Computer Graphics to provide a \blank{consistent representation for different types} of transformations.
+}
+
+\card{Explain the distinction between the activities of “modelling” and 
+“rendering”, in Computer Graphics.}{
+  Modelling is about constructing something to represent an idea; in CG the model is usually geometrical; rendering is the process of creating a visual representation of the model.
+}
+
+\card{What is a limitation of using a $3\times3$	matrix to represent 3D 
+transformations?}{
+  A $3\times3$ matrix cannot represent a 3D translation transformation.
+}
+
+\flashcard{
+  In 3D computer graphics, the function of a camera transforms coordinates to simulate the operation of a real camera which creates 2D images of a 3D world.
+}
+
+\card{In viewing, what is meant by the near and far clip planes?}{
+  The near and far clip planes set the forward and rear boundaries of the view volume; geometry is clipped at these	boundaries.
+}
+
+\card{Explain how you would apply the local illumination model to a triangle mesh, such that it is smoothly shaded, and correctly takes into account specular reflection.}{
+  We deal with each triangle T in the mesh in the same way. First we need to	compute the average normal vectors at each	vertex V of T by averaging the surface normal of the triangles which also share V; then we process each scanline for the triangle; for the part of scanline S which covers T, we compute an averaged normal at the pixels at the start (P) and end (Q) of the scanline segment by averaging from the respective vertices; we then step along the scanline from P to Q, and apply the full local illumination model for each pixel, smoothly interpolating the normal for each pixel between P and Q.
+}
+
+\card{What is a normalized vector? Give an example of its use in computer graphics}{
+  A vector with length one; common use: surface normal, to give the direction a triangle is facing, needed during rendering.
+}
+
+\card{What is the purpose of the OpenGL "matrix stack"? Illustrate your answer with a practical example of its use.}{
+  The matrix stack is for saving the current transformation T; the user can modify T, and then reset T to the saved value. Example of uses: drawing an overlay on the screen for a framerate counter. We stack the current view, replace it with the overlay view, then unstack and restore the usual view.
+}
+
+\card{Why do textures usually need to be filtered during rendering? Describe the bilinear interpolation filter.}{
+  Usually texel resolution does not match pixel resolution, therefore we need to apply a filter to resolve the mis-match; the bilinear interpolation filter is used when the texel resoluion is less than the pixel resolution; each pixel receives a colour averaged from adjacent texels.
+}
+
+\flashcard{
+  The histogram of an image represents the \blank{frequency of occurrence of each grey or colour value}.
+}
+
+\card{What data would you use to identify coloured objects in a range of light intensities?}{
+  Chromaticities - either HS from HSV or normalized red and normalized green.
+}
