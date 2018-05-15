@@ -23,44 +23,90 @@
   Homogeneous coordinates are used in Computer Graphics to provide a \blank{consistent representation for different types} of transformations.
 }
 
-\card{Explain the distinction between the activities of “modelling” and 
-“rendering”, in Computer Graphics.}{
+% =============================== Sample Exam =============================== %
+
+% 1)
+\card{Explain the distinction between the activities of “modelling” and “rendering”, in Computer Graphics.}{
   Modelling is about constructing something to represent an idea; in CG the model is usually geometrical; rendering is the process of creating a visual representation of the model.
 }
 
-\card{What is a limitation of using a $3\times3$	matrix to represent 3D 
+% 2)
+\card{What is a limitation of using a $3\times3$ matrix to represent 3D 
 transformations?}{
   A $3\times3$ matrix cannot represent a 3D translation transformation.
 }
 
+% 3)
 \flashcard{
   In 3D computer graphics, the function of a camera transforms coordinates to simulate the operation of a real camera which creates 2D images of a 3D world.
 }
 
+% 4)
+
+% 5)
 \card{In viewing, what is meant by the near and far clip planes?}{
-  The near and far clip planes set the forward and rear boundaries of the view volume; geometry is clipped at these	boundaries.
+  The near and far clip planes set the forward and rear boundaries of the view volume; geometry is clipped at these boundaries.
 }
 
+% 6)
 \card{Explain how you would apply the local illumination model to a triangle mesh, such that it is smoothly shaded, and correctly takes into account specular reflection.}{
-  We deal with each triangle T in the mesh in the same way. First we need to	compute the average normal vectors at each	vertex V of T by averaging the surface normal of the triangles which also share V; then we process each scanline for the triangle; for the part of scanline S which covers T, we compute an averaged normal at the pixels at the start (P) and end (Q) of the scanline segment by averaging from the respective vertices; we then step along the scanline from P to Q, and apply the full local illumination model for each pixel, smoothly interpolating the normal for each pixel between P and Q.
+  We deal with each triangle T in the mesh in the same way. First we need to compute the average normal vectors at each vertex V of T by averaging the surface normal of the triangles which also share V; then we process each scanline for the triangle; for the part of scanline S which covers T, we compute an averaged normal at the pixels at the start (P) and end (Q) of the scanline segment by averaging from the respective vertices; we then step along the scanline from P to Q, and apply the full local illumination model for each pixel, smoothly interpolating the normal for each pixel between P and Q.
 }
 
+% 7)
 \card{What is a normalized vector? Give an example of its use in computer graphics}{
   A vector with length one; common use: surface normal, to give the direction a triangle is facing, needed during rendering.
 }
 
+% 8)
 \card{What is the purpose of the OpenGL "matrix stack"? Illustrate your answer with a practical example of its use.}{
   The matrix stack is for saving the current transformation T; the user can modify T, and then reset T to the saved value. Example of uses: drawing an overlay on the screen for a framerate counter. We stack the current view, replace it with the overlay view, then unstack and restore the usual view.
 }
 
+% 9)
+
+
+% 10)
 \card{Why do textures usually need to be filtered during rendering? Describe the bilinear interpolation filter.}{
   Usually texel resolution does not match pixel resolution, therefore we need to apply a filter to resolve the mis-match; the bilinear interpolation filter is used when the texel resoluion is less than the pixel resolution; each pixel receives a colour averaged from adjacent texels.
 }
 
+% 11)
 \flashcard{
   The histogram of an image represents the \blank{frequency of occurrence of each grey or colour value}.
 }
 
+% 12)
+\card{An image might be non-uniformly illuminated. What is the consequence of this for thresholding? How could this be corrected?}{
+  Consequence is the threshold is correct in some regions, too high or too low in others. Correction is by adjusting the threshold throughout the image.
+}
+
+% 13)
+\card{Explain	the	process	of	convolution	as	it	is	used	in	image	processing.	Give	a	simple	interpretation	of	the	meaning	of	the	results.}{
+  Convolution	requires	a	template.	This	is	placed	at	all	locations on	the	image,	overlapping	image/template	values	are	multiplied	and added	to	give	a	result.		Special	consideration	in	areas	where	the	template	extends	beyond	the	image	boundary: either	ignore	these	locations	or	pad	the	image. The	result	measures	the	resemblance	of	the	template	with	that	portion	of	the	image.
+}
+
+% 14)
+\card{What	principles	would	you	follow	to	design	the	kernel	to	be	used	to	recognize	cars	from	a	rear	view?	What	would	your	kernel	look	like?}{
+  Always	looking	for	invariants	– properties	of	the	object	that	are	the	same	for	all	instances	of	the	object.	In	this	case	it	could	be	the	shadow	under	the	car.
+}
+
+% 15)
+\card{You’ve	been	asked	to	implement	software	to	identify	flooded	areas	from	low-level	aerial	images,	such	as	the	one	below.	How	will	you	do	this?	How	will	you	validate	your	results?}{
+  Task	could	be	achieved	by	thresholding	– would	expect	the	answer	to	include	a	discussion	of	how	to	find	a	threshold.	Or	by	using	texture	–you’d	expect	waterlogged	regions	to	look	different	on	a	small	scale	to	dry	areas.	So	if	you	can	measure	local	properties	of	an	image	you	have	a	way	
+of	classifying,	local	properties	could	include	variance	[3	marks]. The	
+classification	image	should	be	cleaned	up	to	reduce	false	
+positives/negatives	– median	filter	[1	mark].	Validation	is	by	comparing	
+to	manually	labelled	images	[1	mark]
+}
+
+% 16)
+\card{Colour data	is	represented	by	using	three	primitives.	What	are	they	and	why	were	they	chosen?}{
+
+}
+
+% 17)
 \card{What data would you use to identify coloured objects in a range of light intensities?}{
   Chromaticities - either HS from HSV or normalized red and normalized green.
 }
+

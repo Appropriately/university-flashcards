@@ -25,3 +25,17 @@
   OpenGL only generates \blank{pixels}! It \textbf{doesn't} handle \blank{interaction}, additional libraries like GLUT are needed.
 }
 
+\flashcard{
+  A transformation matrix used with column vectors is the \blank{transpose} of the equivalent matrix used with row vectors.
+}
+
+\card{What is \textbf{Polygon Soup} and why is it usually undesirable?}{
+  A huge list of individual polygons, colouring them individually and drawing them all in order. \\ 
+  Wastes space, loss of semantics, makes interaction complex, etc.
+}
+
+\card{Name ways to resolve \textbf{Z-buffer fighting/stitching}?}{
+  Z-fighting can be reduced through the use of a higher resolution depth buffer, by z-buffering in some scenarios, or by simply moving the polygons further apart. \\
+  Z-fighting which is caused by insufficient precision in the depth buffer can be resolved by simply reducing the visible distance in the world. This reduces the distance between the near and far planes, and solves the precision issue. 
+}
+
