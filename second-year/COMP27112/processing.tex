@@ -1,11 +1,11 @@
 \card{What is Nyquist's Theorem?}{
-  A periodic signal can be reconstructed if the sampling interval is half the period. \\ 
+  A periodic signal can be reconstructed if the sampling interval is half the period. \\
   An object can be detected if two samples span the smallest dimension.
 }
 
 \card{What is the \textbf{Convoluion} pseudo-code?}{
-  > place template on image
-  > multiply overlapping values in image and template
-  > > limits are template size
-  > sum products (and normalize)
+  place template on image, pixel by pixel \\
+  multiply overlapping values in image and template \\
+  limits are template size, ignore or pad egde cases \\
+  sum products of each overlapping cell (and normalize)
 }
