@@ -50,7 +50,7 @@ transformations?}{
 
 % 6)
 \card{Explain how you would apply the local illumination model to a triangle mesh, such that it is smoothly shaded, and correctly takes into account specular reflection.}{
-  We deal with each triangle T in the mesh in the same way. First we need to compute the average normal vectors at each vertex V of T by averaging the surface normal of the triangles which also share V; then we process each scanline for the triangle; for the part of scanline S which covers T, we compute an averaged normal at the pixels at the start (P) and end (Q) of the scanline segment by averaging from the respective vertices; we then step along the scanline from P to Q, and apply the full local illumination model for each pixel, smoothly interpolating the normal for each pixel between P and Q.
+  For each triangle T in mesh: Compute the average normal vectors at each vertex V of T by averaging surface normal of the triangles which share V; then process each scanline for the triangle; for the part of scanline S which covers T, compute an averaged normal for pixels at the start (P) and end (Q) of the scanline segment by averaging from the respective vertices; then step along the scanline from P to Q, and apply the full local illumination model for each pixel, smoothly interpolating the normal for each pixel between P and Q.
 }
 
 % 7)
@@ -82,25 +82,23 @@ transformations?}{
 }
 
 % 13)
-\card{Explain	the	process	of	convolution	as	it	is	used	in	image	processing.	Give	a	simple	interpretation	of	the	meaning	of	the	results.}{
-  Convolution	requires	a	template.	This	is	placed	at	all	locations on	the	image,	overlapping	image/template	values	are	multiplied	and added	to	give	a	result.		Special	consideration	in	areas	where	the	template	extends	beyond	the	image	boundary: either	ignore	these	locations	or	pad	the	image. The	result	measures	the	resemblance	of	the	template	with	that	portion	of	the	image.
+\card{Explain the process of convolution as it is used in image processing. Give a simple interpretation of the meaning of the results.}{
+  Convolution requires a template. This is placed at all locations on the image, overlapping image/template values are multiplied and added to give a result.  Special consideration in areas where the template extends beyond the image boundary: either ignore these locations or pad the image. The result measures the resemblance of the template with that portion of the image.
 }
 
 % 14)
-\card{What	principles	would	you	follow	to	design	the	kernel	to	be	used	to	recognize	cars	from	a	rear	view?	What	would	your	kernel	look	like?}{
-  Always	looking	for	invariants	– properties	of	the	object	that	are	the	same	for	all	instances	of	the	object.	In	this	case	it	could	be	the	shadow	under	the	car.
+\card{What principles would you follow to design the kernel to be used to recognize cars from a rear view? What would your kernel look like?}{
+  Always looking for invariants – properties of the object that are the same for all instances of the object. In this case it could be the shadow under the car.
 }
 
 % 15)
-\card{You’ve	been	asked	to	implement	software	to	identify	flooded	areas	from	low-level	aerial	images,	such	as	the	one	below.	How	will	you	do	this?	How	will	you	validate	your	results?}{
-  Task	could	be	achieved	by	thresholding	– would	expect	the	answer	to	include	a	discussion	of	how	to	find	a	threshold.	Or	by	using	texture	–you’d	expect	waterlogged	regions	to	look	different	on	a	small	scale	to	dry	areas.	So	if	you	can	measure	local	properties	of	an	image	you	have	a	way	of	classifying,	local	properties	could	include	variance	[3	marks]. The	classification	image	should	be	cleaned	up	to	reduce	false	
-positives/negatives	– median	filter	[1	mark].	Validation	is	by	comparing	
-to	manually	labelled	images	[1	mark]
+\card{You’ve been asked to implement software to identify flooded areas from low-level aerial images, such as the one below. How will you do this? How will you validate your results?}{
+  Task could be achieved by thresholding – would expect the answer to include a discussion of how to find a threshold. Or by using texture –you’d expect waterlogged regions to look different on a small scale to dry areas. So if you can measure local properties of an image you have a way of classifying, local properties could include variance. The classification image should be cleaned up to reduce false positives/negatives – median filter. Validation is by comparing to manually labelled images.
 }
 
 % 16)
-\card{Colour data	is	represented	by	using	three	primitives.	What	are	they	and	why	were	they	chosen?}{
-
+\card{Colour data is represented by using three primitives. What are they and why were they chosen?}{
+  Primitives are called RGB but they’re not really red, green, blue. They are matched to the response of the human visual system to longer, medium and shorter wavelength illuminants.
 }
 
 % 17)
