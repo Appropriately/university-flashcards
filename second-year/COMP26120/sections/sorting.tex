@@ -1,0 +1,72 @@
+\card{
+  What are the best, average and worst case complexities of \textbf{Bubble Sort}?
+}{
+  Best: $O(n)$,\\ Average: $O(n^2)$,\\ Worst: $O(n^2)$
+}
+
+\card{
+  What are the best, average and worst case complexities of \textbf{Merge Sort}?
+}{
+  Best: $O(n\log_2n)$,\\ Average: $O(n\log_2n)$,\\ Worst: $O(n\log_2n)$
+}
+
+
+\card{
+  Give pseudo code for merging 2 sorted lists, as part of merge sort.
+}{
+  \begin{flushleft}
+    Merge($L_1$, $L_2$) \\
+    \tab if $L_1 = []$ return $L_2$ \\
+    \tab if $L_2 = []$ return $L_1$ \\
+    \tab $x_1 = L_1 [0]$ \\
+    \tab $x_2 = L_2 [0]$ \\
+    \tab $L'_1 = L_1 [1 : \vert L_1 \vert - 1]$ \\
+    \tab $L'_2 = L_2 [1 : \vert L_2 \vert - 1]$ \\
+    \tab if $x_1 \leq x_2$ \\
+    \tab \tab return $[x_1]+$Merge($L'_1$ ,$L_2$) \\
+    \tab return $[x_2]+$Merge($L_1$ ,$L'_2$)
+  \end{flushleft}
+  \textit{Merge two sorted lists}
+}
+
+\card{
+  Give pseudo code for MergeSort(L).
+}{
+  \begin{flushleft}
+    MergeSort(L) \\
+    \tab if $\vert L \vert \leq 1$ \\
+    \tab \tab return L \\
+    \tab Split L into roughly equal halves, $L_l$ and $L_r$ \\
+    \tab return Merge(MergeSort($L_l$),MergeSort($L_r$))
+  \end{flushleft}
+  \textit{MergeSort(L)}
+}
+
+\card{
+  What are the best, average and worst case complexities of \textbf{Quick Sort}?
+}{
+  Best: $O(n\log_2n)$,\\ Average: $O(n\log_2n)$,\\ Worst: $O(n^2)$
+}
+
+\card{
+  What would the pseudo code be for Quick Sort?
+}{
+  \begin{flushleft}
+    quicksort(L) \\
+    \tab if length of $L \leq 1$ \\
+    \tab\tab return L \\
+    \tab remove the first element, x, from L \\
+    \tab $L_\leq :=$ elements of L less than or equal to x \\
+    \tab $L_> :=$ elements of L greater than x \\
+    \tab $L_l :=$ quicksort($L_\leq$) \\
+    \tab $L_r :=$ quicksort($L_>$) \\
+    \tab return $L_l$ + [x] + $L_r$ \\
+  \end{flushleft}
+  \textit{Quick Sort}
+}
+
+\card{
+  What is the minimum time for any sorting algorithm that uses only number comparisons?
+}{
+  $n\log_2n$
+}

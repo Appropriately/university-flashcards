@@ -4,6 +4,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage{fancyvrb} 
+\fvset{fontsize=\small,xleftmargin=\parindent}
+
 \definecolor{light-gray}{gray}{0.75}
 \fboxsep=20pt
 
@@ -25,10 +28,11 @@
 
 \pagesetup{2}{4}
 
-\input{semester1.tex}
-
-\input{semester2-part1.tex}
-
-\input{semester2-part2.tex}
+\input{sections/complexity.tex}
+\input{sections/cryptography.tex}
+\input{sections/sorting.tex}
+\input{sections/matrices.tex} 
+\input{sections/graphs.tex}
+\input{sections/labratories.tex}
 
 \end{document}

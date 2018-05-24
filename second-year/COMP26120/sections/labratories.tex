@@ -1,0 +1,29 @@
+
+
+% ================================ Dijkstra's ================================ &
+
+\flashcard{
+  Dijkstra’s algorithm is a \blank{shortest path} algorithm for graph structures.
+}
+
+\card{Give the pseudocode for Dijkstra's algorithm w/ priority queue}{
+  \scriptsize{
+  \begin{flushleft}
+    function Dijkstra(Graph, Source): \\ 
+    \tab dist[source] = 0, create Q \\ 
+    \tab for each vertex v in Graph: \\  
+    \tab \tab if v != source, dist[v] = INFINITY \\
+    \tab \tab prev[v] = UNDEFINED \\ 
+    \tab \tab Q.addWithPriority(v, dist[v]) \\ 
+    \tab while Q != empty \\ 
+    \tab \tab u = Q.extractMin() \\ 
+    \tab \tab for each neighbour v of u: \\ 
+    \tab \tab \tab alt = dist[u] + length(u, v) \\
+    \tab \tab \tab if alt < dist[v] \\ 
+    \tab \tab \tab \tab dist[v] = alt, prev[v] = u \\
+    \tab \tab \tab \tab Q.decreasePriority(v, alt) \\
+    \tab return dist, prev
+  \end{flushleft}
+  Code for dijkstras 
+  }
+}
