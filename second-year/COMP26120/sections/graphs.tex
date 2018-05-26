@@ -90,3 +90,33 @@
   the moved node with its smallest child until it is smaller than both its
   children or it has no children.
 }
+
+% Priority Queue %
+
+\card{What is a priority queue?}{
+  A \textbf{priority queue} $P$ is a container of elements with keys associated to them at the time of insertion.\\
+  \begin{flushleft}
+    - $insertItem(k, e)$: Inserts an element $e$ with key $k$ into $P$.
+    - $removeMin()$: Returns and removes from $P$ an element with the smallest key.
+  \end{flushleft}
+  Two fundamental methods in a priority queue.
+}
+
+% Heap %
+
+\card{What is a heap?}{
+  A \textbf{heap} is a binary that stores a collection of keys at its internal nodes that satifies two addtional properties: \\
+  A relational property that affects how the keys are stored & a structural property. \\
+  It allows insertions and removals to be performed in logarithmic time.
+}
+
+\flashcard{
+  A \textit{heap-based priority queue} consists of: \\
+  \blank{Heap}: A complete binary tree with keys that satisfy the heap-order property.\\
+  \blank{Last}: A reference to the last node in $T$.\\
+  \blank{Comp}: A comparator that defines the total order relation among keys. 
+}
+
+\card{What is an \textbf{AVL Tree}?}{
+  An AVL tree is another balanced binary search tree. Named after their inventors, Adelson-Velskii and Landis, they were the first dynamically balanced trees to be proposed. Like red-black trees, they are not perfectly balanced, but pairs of sub-trees differ in height by at most 1, maintaining an $O(logn)$ search time.
+}
