@@ -133,7 +133,21 @@
   Graph colouring is an example of an NP-complete problem. The only algorithms known for NP-complete problems are \blank{exponential}.
 }
 
-\card{Define \textbf{tractable} and \textbf{intractable problems}.}{
-  Tractable: An algorithm that can be solved in \textbf{polynomial} time.\\
-  Intractable: A problem that can be solved in theory (e.g. given large but finite resources, especially time), but for which in practice any solution takes too many resources to be useful.
+\card{Describe the difference between a \textbf{directed} and \textbf{undirected graph}. Give an example of each.}{
+  An undirected graph is one where more than one edge is possible between a pair of nodes. \\
+  Directed example: Trees, Utility networks. \\
+  Undirected example: Graphic models, Social networks, Transport links.
+}
+
+\flashcard{
+  An edge is \blank{incident} on a node if it has the node as source or target (directed) or if it links the node to another (undirected).
+}
+
+\card{Define the terms \textbf{sparse} and \textbf{dense} in the context of graphs.}{
+  A graph is sparse if it has few edges, more specifically, $Edges=O(Nodes)$.\\
+  It is dense if most pairs of nodes are joined by edges. More specifically, $Edges=O(Nodes^2)$
+}
+
+\card{What is a \textbf{connected component} of a graph $G$?}{
+  The largest connected sub-graph (i.e. the one that cannot be expanded with additional nodes without becoming disconnected.)
 }
