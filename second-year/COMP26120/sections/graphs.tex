@@ -151,3 +151,32 @@
 \card{What is a \textbf{connected component} of a graph $G$?}{
   The largest connected sub-graph (i.e. the one that cannot be expanded with additional nodes without becoming disconnected.)
 }
+
+\card{What is the Pseudo-code for Depth-first search?}{
+  \begin{flushleft}
+    forall nodes $u$ do $dfsnum(u)=0$ end;\\
+    $i=0$; \\ 
+    visit(u): \\
+    \tab $i++$; \\
+    \tab $dfsnum(v)=i$;\\
+    \tab forall nodes $v$ adjacent to $u$: \\
+    \tab \tab if $dfsnum(v)=0$ \\
+    \tab \tab visit(v); \\
+    forall nodes $u$: \\
+    \tab if $dfsnum(u)=0$ \\ 
+    \tab \tab visit(u);
+  \end{flushleft}
+  Depth-first search
+}
+
+\card{How do you do a \textbf{Depth-First Search}?}{
+  Visit all descendants of a node, before visiting sibling nodes. Revisiting of nodes takes place through backtracking.
+}
+
+\card{How do you do a \textbf{Breadth-First Search}}{
+  Visit all children of a node, then all children of those nodes.
+}
+
+\card{How do you do a priority search?}{
+  Visit the root node. At each step, visit a node that has the \textbf{highest priority} amongst unvisited children of visited nodes.
+}
