@@ -1,0 +1,46 @@
+\flashcard{\blank{Design dialogues to yield closure} and \blank{Provide informative feedback} are guidelines focuesed on the communication aspects of the user interface}
+
+\card{In the MVC architecture, what is a role of the model?}{
+    Operations on the data occur in the model.\\
+    Business logic also happens in the model, but any display of this is dealt with in the view.\\
+    Mapping requests from the browser occurs in the controller. 
+}
+
+\card{HTTP methods such as GET, PUT and DELETE are idempotent. What does this mean in practice?}{
+    If an HTTP method is idempotent, it can be applied multiple times without changing the initial result.
+}
+
+\card{What is the roll of an acceptance test?}{
+    An acceptance test checks whether software meets functional requirements.\\
+    \textit{Whether the software is high in learnability would be assessed via a usability test.\\
+    A constraint refers to an aspect of the project that does not concern functionality, such as a release date, or the type of technology that must be used.}
+}
+
+\flashcard{
+    Test-driven development can help \blank{reduce regression}, by providing a test suite that will pick up errors affecting existing functionality that are introduced by writing further production code. \\
+    Following a TDD process will not reduce \blank{errors in test code}, or ensure production code is error-free (unfortunately errors remain a hazard whatever method is used).
+}
+
+\flashcard{
+    The specification by example process \blank{reduces ambiguity in requirements capture}.
+}
+
+\card{What is the earliest point at which you could start testing the layout of a user interface?}{
+    In a paper prototyping exercise. \\
+    \textit{Paper prototyping involves representing the user interface with pieces of paper that can be moved around, and is an early way of testing the format of the UI meets customer requirements. It is possible to test at all the other stages, but paper prototyping is the earliest.}
+}
+
+\card{What is a natural consequence of whole team responsibility?}{
+    Developers have a broader knowledge of the code base.\\
+    \textit{Whole team responsibility means that developers take ownership of the entire code base, rather than only working on specific parts of it.}
+} 
+
+\flashcard{
+    If an API is designed according to RESTful architectural principles, the server must \blank{Provide responses that are self-descriptive}.\\
+    This helps the user (human or otherwise) navigate it without any prior knowledge of it.
+}
+
+\flashcard{
+    The Create, Reuse, Update, Delete (CRUD) pattern may be used in \blank{The database and the user interface}.\\
+    \textit{Although system architecture involves design, this is at a much coarser level of granularity, and would not include the kinds of software design patterns that map directly to code.}
+}

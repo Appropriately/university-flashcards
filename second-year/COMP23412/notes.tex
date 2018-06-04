@@ -31,7 +31,7 @@
     - More reusable: use the same View for multiple application \\ 
     - Easily adaptable: Each object has a clearly defined role. Good design principle
   \end{flushleft}
-  Benefits fo the MVC architecture
+  Benefits of the MVC architecture
 }
 
 % ====== User Interface Design ======
@@ -80,6 +80,89 @@
   Data lives in a repository. Repositories are the Spring Mechanism for querying the underlying DB. We used CRUD (Create, Read, Update, Delete) repository.
 }
 
+% ====== Security ======
+\card{
+  What is web app security mainly protecting?
+}{
+  Assets, which can either be tangible items such as a web page or a customer database, or intangible such as a company's reputation.
+}
+
+\card{
+  In the context of web app, what does security mainly rely on?
+}{
+  Authentication and authorization. It also relies on auditing, confidentiality, integrity and availability.
+}
+
+\flashcard{
+  A \blank{threat} is any potential occurrence, malicious or otherwise, that could harm an asset.
+}
+
+\flashcard{
+  A \blank{vulnerability} is a weakness that makes a threat possible.
+}
+
+\flashcard{
+  An \blank{attack} is an action that exploits a vulnerability or enacts a threat.
+}
+
+\card{
+  Give examples of web app vulnerabilities.
+}{
+  Code injection: malicious executable code inserted into legitimate traffic sent to an endpoint. \\
+  Broken authentication and session management: compromising user identities in a variety of ways. \\
+  Cross-site scripting: similar to code injection, but involving scripts instead, drawn from inappropriate sources. 
+}
+
+\card{
+  What are the main causes of vulnerabilities?
+}{
+  Poor programming in which exceptions, boundaries, credentials, etc., weren’t considered adequately.
+}
+
+\card{
+  What are the goals of Computer/network security hinges?
+}{
+  Keeping unauthorized persons from gaining access to resources. \\
+  Ensuring that authorized persons \textit{can} access the resources they need.
+}
+
+\card{
+  What is authentication?
+}{
+  The process of recognizing a user's identity. It is the mechanism of associating an incoming request with a set of identifying credentials.
+}
+
+\card{
+  Examples of authentication methods are?
+}{
+  \begin{flushleft}
+  An ID / password \\
+  A PIN (Personal Identification Number) code \\
+  An RFID card \\
+  Biometrics (usually considered the safest) \\
+    – Fingerprints \\
+    – Face Recognition \\
+  A USB token \\
+  A one-time password token\\
+  \end{flushleft}
+  A lot of sites now use two-factor authentication
+}
+
+\card{
+  What is authorization?
+}{
+  Authorization is a security mechanism to determine access levels or user/client privileges related to system resources including files, services, computer programs, data and application features. 
+}
+
+\flashcard{
+  \begin{flushleft}
+    - \blank{Admin}: can access everything. \\ 
+    - \blank{HR staff}: can access employee records and other relevant documents. \\
+    - \blank{Guest}: very limited access, usually don't need authentication. \\
+  \end{flushleft}
+  The User Roles
+}
+
 % ====== Testing Functionality in Isolation ======
 
 \card{
@@ -122,7 +205,7 @@
 % ====== Meeting Customer Requirements ======
 
 \flashcard{
-  An \blank{acceptance test} is a formal description of the behavior of a software product, expressed as a example or a usage scenario.
+  An \blank{acceptance test} is ablsnk formal description of the behavior of a software product, expressed as a example or a usage scenario.
 }
 
 \card{
@@ -136,10 +219,30 @@
   Acceptance tests benefits
 }
 
+\flashcard{
+  Authentication = \blank{connection} + \blank{sign-in}.
+}
+
 % ====== RESTful WebServices and Test Driven ======
 
 \flashcard{
   \blank{Representational State Transfer (REST)} is an architectural style that is the underlying architectural principal of the WWW. Clients can operate without knowing anything about \blank{the server} \& \blank{the server's resources}. Client and server must agree on the \blank{media type} used.
+}
+
+\card{
+  What are the two fundamental rules of TDD?
+}{
+  Write new code only if a test has failed \\
+  Eliminate Duplication
+}
+
+\card{
+  What are the mplications of TDD?
+}{
+  Developers must write the unit tests \\
+  Development environment must provide quick feedback \\
+  System must consist of many loosely coupled components: Makes testing easy \\
+  Design must be “organic”: Running code provides feedback between decisions
 }
 
 \card{
@@ -166,4 +269,22 @@
     - Build up a set of regression test as we go along.
   \end{flushleft}
   Test Driven Development
+}
+
+\card{
+  What are the limitations of TDD?
+}{
+  Conceptually hard to start with \\
+  Can all programming tasks be driven by tests \\
+    - Security \\
+    - Concurrency \\
+    - Performance
+}
+
+\flashcard{
+  HTTP status codes:
+  - 1xx: \blank{information} \\
+  - 2xx: \blank{successful} \\
+  - 3xx: \blank{redirection} \\
+  - 4xx: \blank{client error}
 }
