@@ -62,7 +62,7 @@
 
 \card{ \normalfont
   What are some \textbf{security problems and challenges}?
-}{\normalfont
+}{\normalfont \small
   \begin{flushleft}
     - Naive users: lack of security awareness \\
     - Inadequate management procedures \\
@@ -88,7 +88,7 @@
 
 \card{ \normalfont
   What is the \textbf{life cycle} of \textbf{achieving security}?
-}{ \normalfont
+}{ \normalfont \small
   \begin{flushleft}
     - Threats analysis and identification: decide \textbf{what to protect} \\
     - Policy specification (defining security goals): define \textbf{what is, and is not, allowed} \\
@@ -179,7 +179,7 @@
 
 \card{ \normalfont
   What are some of the uses of \textbf{cryptography}?
-}{ \normalfont
+}{ \normalfont \footnotesize
   \begin{flushleft}
     - Confidentiality (secrecy, privacy) of data in transmission and in storage \\
     - Integrity of data in transmission and in storage \\
@@ -262,7 +262,7 @@
   Encryption Techniques
 }
 
-\flashcard{\normalfont
+\flashcard{\normalfont \small
   \blank{\textbf{Ceaser Cipher}} or shift cipher uses simple substitution: each letter is translated to the letter a fixed number of letters after it in the alphabet. The operation could be expressed using addition modulo 26:
   \begin{flushleft}
     - The message must be a sequence of letters, each letter is identified with a number \\
@@ -361,8 +361,329 @@
 
 
 % ================================ Lecture 3 ===================================
+\flashcard{\normalfont
+  In a \blank{\textbf{block}} cipher, the plaintext is divided into \blank{blocks} of fixed length which are encrypted one at a time.
+}
 
 
+\card{\normalfont
+  What is the \textbf{design criteria} of \textbf{block ciphers}?
+}{\normalfont \small
+  \begin{flushleft}
+    - \textbf{Completeness}: each bit of the output should depend on every bit of the input and every bit of the key. \\
+    - \textbf{Avalanche effect (Diffusion)}: changing one bit in the input should change many bits in the output. Also, changing one key bit should result in the change of many bits in the output.\\
+    - \textbf{Statistical independence (Confusion)}: input and output should appear to be statistically independent.
+    A complex encryption function can be built out of some simple operations (round function) by repeatedly using them.
+  \end{flushleft}
+  Design Criteria of Block Ciphers
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Feistel block cipher}} is an example implementation of a block cipher. There is an initial permutation of bits which is then split in left and right halves. 16 rounds of identical operations, but each round uses a different subkey. Inverse initial permutation.
+}
+
+\flashcard{\normalfont
+  Ciphers that use substitution and permutation are called \blank{\textbf{substitution-permutation (S-P) networks}}. They can be efficiently implemented on both hardware and software platforms.
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{Data encryption Standard (DES)}} was first published in 1977 as a US Federal standard. IT is a de facto international standard for banking security. It’s a Feistel block cipher - block length is 64 bits, key K is 56 bits. The subkeys k1, k2… k16 are each 48 bits, generated from key K. \\
+  The DES decryption algorithm is the same as the encryption one; the only difference is that the keys for each round must be used in reverse order, i.e k16 first and k1 last.
+}
+
+\card{\normalfont
+  What is the architecture of \textbf{each round} of a \textbf{DES}?
+}{\normalfont
+  Li = Ri+1 and Ri - Li-1 xor f(Ri-1, Ki)
+}
+
+\card{\normalfont
+  What are the steps of a \textbf{round function} of a \textbf{DES}?
+}{\normalfont \small
+  \begin{flushleft}
+    1. \textbf{Expansion permutation}: Right half (32 bits) is expanded (and permuted) to 48 bits. Diffuses relationship of input bits to output bits. \\
+    2. \textbf{Use of Round Key}: 48 bits are XOR-ed with the round key (48 bits). \\
+    3. \textbf{Splitting}: result is split into eight lots of six bits each.\\
+    4. \textbf{S-Box} (S = Substitution): each six bit lot is used as an index to an S-box to produce a four bit result.
+    5. \textbf{P-Box} (P = Permutation): 32 bits output from 8 S-Boxes are permuted = the output of f.
+  \end{flushleft}
+  DES round function steps
+}
+
+\card{\normalfont
+  What is the operation of an \textbf{S-Box}?
+}{\normalfont
+  \begin{flushleft}
+    - Each of the 8 different S-boxes is a table of 4 rows and 16 columns \\
+    - The 6 input bits specify which row and column, i.e. cell, to use. Bits 1 and 6 select the row, while bits 2-5 select the column.
+    - The decimal value in the cell is then converted into a 4-bit result, which is the output from the S-box
+  \end{flushleft}
+  S-Box Operation
+}
+
+\card{\normalfont
+  What is the \textbf{weakness} of an \textbf{S-Box}?
+}{\normalfont
+  \begin{flushleft}
+    The 56-bit key which is good enough to deter casual DES key browsing, but not for a dedicated adversary. \\
+    Use of a 56-bit key can be broken on average in 255 (i.e. 3.6 * 1016) trials. \\
+    - A DES chip does 1 million encryptions per second.\\
+    - A million chips in parallel do 1012 trials per second. \\
+    For today’s computing power, the key size should be at least 128 bits. Improvements: Triple DES (3DES), AES (Rijndael).
+  \end{flushleft}
+  S-Box weakness
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Triple DES}} involves use of \blank{two} or \blank{three} DES keys.
+}
+
+\card{\normalfont
+  What are the \textbf{two types} of \textbf{Triple DES}?
+}{\normalfont
+  \begin{flushleft}
+    1. EDE2 (triple DES using 2 keys): It uses 2 DES keys (K1, K2), encryption algorithm Em and decryption algorithm D, i.e. C = EK1(Dk2(EK1(M))). So the key length is 112 bits. The use of D here does not have any security implication; it just makes triple DEs backward competitive with single DES if K1 = K2.\\
+    2. EDE3 (triple DES using three keys): It uses three keys, so C = EK3(Dk2(EK1(M))). The key length is 168 bits.
+  \end{flushleft}
+  Types of Triple DES
+}
+
+\card{\normalfont
+  How does the \textbf{meet-in-the-middle attack} work?
+}{\normalfont
+  \begin{flushleft}
+    A table of keys is built and f(k, M) computed for every possible key, where f is an encryption function, and M is a known message. Eavesdrop a value f(k’, M) and if it’s the same as f(k, M) then there is a good chance k’ = k.
+  \end{flushleft}
+  Meet-in-the-middle Attack
+}
+
+\card{\normalfont
+  Why did NIST call for \textbf{algorithms} to \textbf{replace DES}?
+}{\normalfont
+  Because algorithm and implementation characteristics are fast and have low resource consumption. \\
+  Cost: fast in both hardware and software.
+}
+
+\card{\normalfont
+  What was the officially nominated \textbf{Advanced Encryption Standard (AES)} in 2001?
+}{\normalfont
+  Vincent Rijmen and Joan Daemen’s algorithm, Rijndael.
+}
+
+\flashcard{\normalfont
+  \textbf{DES} and \textbf{AES} are both a \blank{\textbf{symmetric block}} cipher.
+}
+
+\card{\normalfont
+  What does a \textbf{symmetric block cipher} entail?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - The same key is used to encrypt and decrypt the message. \\
+    - The plaintext and the ciphertext have the same size. \\
+    - Block size is 128 bits (others are allowed but not recognised by the standard). \\
+    - The key lengths are 128 192, or 256 bits, i.e. the standard comprises three block ciphers: AES-128, AES-192 and AES-256. \\
+    - It is a substitution-permutation cipher involving r rounds: For key length 128, r = 10; For key length 193, r = 12; For key length 256, r = 14.
+  \end{flushleft}
+  Symmetric block cipher properties
+}
+
+\card{\normalfont
+  What does the \textbf{round transformation} consist of?
+}{\normalfont
+  \begin{flushleft}
+    - Byte substitution. \\
+    - Shift rows. \\
+    - Mix columns. \\
+    - Round key addition.
+  \end{flushleft}
+  Round Transformation Elements
+}
+
+\card{\normalfont
+  What are some properties of the \textbf{AES}?
+}{\normalfont
+  AES has a sequential and light-weight key schedule. \\
+  AES has a fixed block size of 128  bits (16 bytes) called a state.
+}
+
+\card{\normalfont
+  How does the \textbf{substitute bytes} of an AES work?
+}{\normalfont \small
+  \begin{flushleft}
+    - This SubBytes transformation is a simple table lookup. \\
+    - Only one S-Box for the whole cipher, a 16 x 16 matrix of byte values, that contains a permutation of all possible 256 8-bit values. \\
+    - Each individual byte of state is mapped into a new byte in this way: leftmost 4 bits of the byte are used as a row value; rightmost 4 bits used as a column value. \\
+    - These row and column values serve as indexes into the S-box to select a unique 8-bit output value.
+  \end{flushleft}
+  AES Substitute Bytes
+}
+
+\card{\normalfont
+  How does the \textbf{ShiftRows} transformation of an AES work?
+}{\normalfont
+  \begin{flushleft}
+    - 1st row: not altered; \\
+    - 2nd row: a 1-byte circular left shift; \\
+    - 3rd row: a 2-byte circular left shift; \\
+    - 4th row: a 3-byte circular left shift. \\
+    Decryption uses shift to the right. \\
+    This step permutes between the columns.
+  \end{flushleft}
+  AES ShiftRows
+}
+
+\card{\normalfont
+  How does the \textbf{MixColumns} transformation of an AES work?
+}{\normalfont
+  The \textbf{MixColumns} transformation operates on each column individually. Each byte of a column is mapped into a new value hat is a function of all four bytes in the column; the transformation is performed in GF(28). \\
+  This with \textbf{ShiftRows} transformation provides \textbf{diffusion}.
+}
+
+\card{\normalfont
+  How does the \textbf{AddRoundKey} transformation of an AES work?
+}{\normalfont
+  In the \textbf{AddRoundKey} transformation, each byte of the state is combined with the round key using XOR, i.e. the 128 bits of state are bitwise XORed with the 128 bits of the round key (the round key is derived from the cipher key using a key schedule).
+}
+
+\card{\normalfont
+  What is the pseudo-code for \textbf{AddRoundKey} for \textbf{AES-128 Encryption}?
+}{\normalfont
+  \begin{flushleft}
+    \textbf{AddRoundKey(S, K[0]);} K[0] is the cipher key, K, and other round keys are expanded from K. \\
+    for(i = 1; i<=9; i++)
+    \begin{center}
+      SubBytes(S); \\
+      ShiftRows(S); \\
+      MixColumns(S); \\
+      AddROundKeys(S, K[i]);
+    \end{center}
+    SubBytes(S); \\
+    ShiftRows(S); \\
+    AddRoundKey(S, K[10]);
+  \end{flushleft}
+  AddRoundKey AES-128 Encryption Pseudo-code
+}
+
+\card{\normalfont
+  What is the pseudo-code for \textbf{AddRoundKey} for \textbf{AES-128 Decryption}?
+}{\normalfont
+  \begin{flushleft}
+    (first apply InvMixColumns to the round key) \\
+    AddRoundKey(S, K[10]); \\
+    for(i = 9; i>=1; i++) \\
+    \begin{center}
+      InvSubBytes(S); \\
+      InvShiftRows(S); \\
+      InvMixColumns(S); \\
+      AddRoundKey(S, K[i]);
+    \end{center}
+    InvSubBytes(S); \\
+    InvShiftRows(S); \\
+    AddRoundKeys(S, K[0]);
+  \end{flushleft}
+  AddRoundKey AES-128 Decryption Pseudo-Code
+}
+
+\card{\normalfont
+  What are the properties of a \textbf{DES}?
+}{\normalfont
+  \begin{flushleft}
+    - Substitution-Permutation, iterated cipher, Feistel structure. \\
+    - 64-bit block size, 56-bit key size. \\
+    - 8 different S-boxes. \\
+    - design optimised for hardware implementations. \\
+    - closed (secret) design process.
+  \end{flushleft}
+  Data Encryption Standard (DES)
+}
+
+\card{\normalfont
+  What are the properties of an \textbf{AES}?
+}{\normalfont
+  \begin{flushleft}
+    - Substitution-Permutation, iterated cipher. \\
+    - 128-bit block size, 128-bit (192 or 256) key size. \\
+    - 1 S-Box. \\
+    - Design optimised for byte-oriented implementations. \\
+    - Open design and evaluation process.
+  \end{flushleft}
+  Advanced Encryption Standard (AES)
+}
+
+\card{\normalfont
+  What are the three \textbf{modes of operation} when encrypting large messages?
+}{\normalfont
+  \begin{flushleft}
+    - ECB - Electronic Code Book \\
+    - CBC - Cipher Book Chaining \\
+    - CTR - Counter mode \\
+  \end{flushleft}
+  These modes of operation have been standardised internationally and are applicable to any block ciphers.
+}
+
+\card{\normalfont
+  What are the properties of an \textbf{ECB mode} encryption?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Block are encrypted independently of other blocks. Reordering ciphertext blocks result in correspondingly reordered plaintext blocks. Ciphertext blocks can be cut from one message and pasted in another, so block replay or block insertion (or deletion) attacks may go undetected.\\
+    - The same block of plaintext always produces the same ciphertext (with the same key): Patterns in plaintext show up in ciphertext. \\
+    - Error propagation: one bit error in a ciphertext block affects only the corresponding plaintext block. \\
+    - Not recommended for messages longer than one block, or if keys are reused for more than one block.
+  \end{flushleft}
+  ECB mode
+}
+
+\card{\normalfont
+  What are the properties of a \textbf{CBC mode} encryption?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Plaintext is divided into blocks and the last block is padded if necessary. \\
+    - Cn = Ek(Mn xor Cn-1) where C0 = IV (initialisation vector)\\
+    - In this example, the plaintext is M1M2, and the ciphertext is C0C1C2.\\
+    - Ciphertext blocks Cj depends on Mj and all preceding plaintext blocks. Any repeated patterns in the plaintext are concealed by the feedback. \\
+    - Using different IVs in different encryption operations will result in the same plaintext producing different ciphertexts.
+  \end{flushleft}
+  CBC mode
+}
+
+\card{\normalfont
+  What are the properties of a \textbf{CTR mode} encryption?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Uses a counter, equal to the plaintext block size. Its value must be different for each plaintext block. Typically the counter is initialised to some value, and then incremented by 1 for each subsequent block (modulo 2n, where n is the block length). \\
+    - Each block can be decrypted independently of the others: Parallelizable, Support random access, The values to be XORed with the plaintext can be precomputed \\
+    - The counter needs to be synchronised: If a block is inserted into or deleted from the ciphertext stream then synchronisation is lost and the plaintext cannot be recovered \\
+    - No error propagation: A ciphertext block that is modified during transmission affects only the decryption of that block.
+  \end{flushleft}
+  CTR mode
+}
+
+\card{\normalfont
+  What are the differences between a \textbf{block cipher} and a \textbf{stream cipher}?
+}{\normalfont \small
+  \begin{flushleft}
+    While block ciphers encrypt block of characters, stream ciphers encrypt individual characters or bit streams. \\
+    Stream ciphers:\\
+    - Are usually faster than block ciphers in hardware; mostly used for continuous communications and/or real time applications. \\
+    - Requires less memory space, so cheaper for resource restrained devices such as embedded sensors. \\
+    - Have limited or no error propagation, so advantageous when transmission errors are probable. \\
+    - Can be built out of block ciphers, e.g. by using CRT modes.
+  \end{flushleft}
+  Block Ciphers vs Stream Ciphers
+}
 
 
 % ================================ Lecture 4 ===================================
+
+
+
+% ================================ Lecture 5 ===================================
+
+
+
+
+% ================================ Lecture 6 ===================================
+
+
+
+% ================================ Lecture 7 ===================================
