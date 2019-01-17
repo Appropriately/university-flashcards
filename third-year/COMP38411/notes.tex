@@ -1027,7 +1027,7 @@ DH is a key agreement algorithm. \\
 
 \card{\normalfont
   What are the \textbf{differences} between the \textbf{RSA} algorithm and the \textbf{DSA} algorithm?
-}{\normalfont \small
+}{\normalfont \footnotesize
   \begin{flushleft}
     - Security is based on RSA: difficulty of factoring large number and DSA: difficulty of taking discrete logarithms  \\
     - RSA Can encrypt and sign while DSA can only sign messages \\
@@ -1040,3 +1040,93 @@ DH is a key agreement algorithm. \\
 
 
 % ================================ Lecture 7 ===================================
+\flashcard{\normalfont
+  \blank{\textbf{Public Key Infrastructure (PKI)}} provides functions, technologies policies and services that enable practical deployment and wide-scale application of public-key cryptography (secure public key distribution).
+}
+
+\card{\normalfont
+  What are the PKI supported \textbf{security services}?
+}{\normalfont
+  \begin{flushleft}
+    - Certificate-based user/entity authentication. \\
+    - Digital signing of electronic documents, emails, software for authentication, integrity and nonrepudiation protections. \\
+    - Encryption, typically for symmetric key distributions.
+  \end{flushleft}
+  PKI Supported Security Services
+}
+
+\card{\normalfont
+  What are some of the common PKI \textbf{applications}?
+}{\normalfont
+  \begin{flushleft}
+    - Web browsers, servers and services, e.g. SSL (secure socket layer). \\
+    - Virtual Private Networks (VPNs), e.g. IPSec. \\
+    - Secure email services, e.g. S/MIME, PGP (pretty good privacy). \\
+    - Secure file storage services, e.g. PGP. \\
+    - Secure electronic transactions, e.g. SET. \\
+    - Visa Master smartcards. \\
+    - Copyright protection (DRM), etc. \\
+  \end{flushleft}
+  PKI Applications
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{digital certificate}} is a statement which certifies that this public key belongs to a this identity, and that the owner with this identity possesses the corresponding private key.
+}
+
+\card{\normalfont
+  What are the two \textbf{trust models} of PKI?
+}{\normalfont
+  \begin{flushleft}
+    SPKI (Simple PKI): a bottom up approach \\
+    - Uses Web-of-trust model. \\
+    - Public keys are signed/certified by friends or friends’ friends. \\
+    - You are supposed to trust some of the friends. \\
+    - Used in the PGP (pretty good privacy) solution. \\
+    X509 PKI: a top-down approach \\
+    - Public keys are signed/certified by trusted authorities, Certification Authorities (CAs). \\
+    - A CA or CA hierarchy digitally sign keys in a top-down manner.
+  \end{flushleft}
+  PKI Trust Models
+}
+
+\card{\normalfont
+  Certification is a secure and scalable way of distributing public keys. What does a \textbf{digital certificate} do?
+}{\normalfont
+  \begin{flushleft}
+    - Binds an entity’s public key (+ one/more attributes) to its identity (the entity = person, hardware device, software process). \\
+    - Is digitally signed by the CA so you need CA’s public key to verify the certificate. \\
+    - Its contents are application dependent, e.g. a certificate for secure email contains the entity’s email address; a certificate for financial purpose may contain credit card number and credit limit, etc.
+  \end{flushleft}
+  Digital Certificate
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Certificate Revocation Lists (CRLs)}} are a  mechanism to let the world know that a certificate is no longer valid. It is a black list of revoked certificates (i.e. prematurely terminated certificates). A CRL is a data structure, digitally signed by the issuing CA, containing: the date and time of the CRL publications; the name of the issuing CA and the serial numbers of all the revoked certificates.
+}
+
+\card{\normalfont
+  Why isn't using CAs straightforward?
+}{\normalfont
+  \begin{flushleft}
+    - The issuing CA needs to keep the CRL up-to-date. \\
+    - A certificate-using application should obtain the most recent CRL and ensure that the certificate serial number is not on the CRL list; in other words, a certificate is said to be valid if and only if the following verifications are positive: it has a valid CA signature; it has not expired; it is not listed in the CA’s most recent CRL. \\
+    - There are some scalability issues. That’s why short expiration policies are important.
+  \end{flushleft}
+  CA not straightforward
+}
+
+
+% ================================ Lecture 8 ===================================
+
+
+
+% ================================ Lecture 9 ===================================
+
+
+
+% =============================== Lecture 10 ===================================
+
+
+
+% =============================== Lecture 11 ===================================
