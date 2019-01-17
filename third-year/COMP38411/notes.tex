@@ -27,6 +27,12 @@
   \blank{\textbf{Disclosure}} is the release of message contents to any person or process not possessing the appropriate cryptographic key (e.g. \blank{snooping}, \blank{sniffing}).
 }
 
+\card{\normalfont
+  What is meant by \textbf{non repudiation}?
+}{\normalfont
+  \textbf{Non repudiation} means that the signer can not falsely deny that they have generated the signature.
+}
+
 \flashcard{ \normalfont
   \blank{\textbf{Deception}} examples include:
   \begin{flushleft}
@@ -982,7 +988,55 @@ DH is a key agreement algorithm. \\
 
 
 % ================================ Lecture 6 ===================================
+\flashcard{\normalfont
+  A \blank{\textbf{digital signature}} associates a mark unique to an individual with a body of text (e.g. Only A can sign a message, since only A has access to the private key. Anyone can verify A’s signature, since everyone has access to its public key).
+}
 
+\card{\normalfont
+  What are the requirements of a \textbf{digital signature}?
+}{\normalfont
+  \begin{flushleft}
+    - \textbf{Message dependent}: Non Reusable and Ensures integrity \\
+    - \textbf{Signer dependent}: Unforgeable and Ensures authenticity \\
+    - \textbf{Verifiable}: others should be able to verify that the signature is indeed from the originator.
+    Both integrity and authenticity are necessary to ensure \textbf{non-repudiation}, i.e. the signer can not falsely deny that they have generated the signature.
+  \end{flushleft}
+  Digital Signature Requirements
+}
+
+\card{\normalfont
+  What does a \textbf{digital signature} scheme consist of?
+}{\normalfont
+  \begin{flushleft}
+    - A key generation algorithm \\
+    - A signature (generation) algorithm \\
+    - A signature verification algorithm
+  \end{flushleft}
+  Digital Signature Scheme Components
+}
+
+\card{\normalfont
+  Which are the two well known \textbf{digital signature} schemes?
+}{\normalfont
+  \begin{flushleft}
+    - \textbf{RSA} encryption algorithm can be used in reverse to produce a signature. \\
+    - \textbf{DSA} is a signature algorithm based on discrete logarithms. 
+  \end{flushleft}
+  Digital Signature Schemes
+}
+
+\card{\normalfont
+  What are the \textbf{differences} between the \textbf{RSA} algorithm and the \textbf{DSA} algorithm?
+}{\normalfont \small
+  \begin{flushleft}
+    - Security is based on RSA: difficulty of factoring large number and DSA: difficulty of taking discrete logarithms  \\
+    - RSA Can encrypt and sign while DSA can only sign messages \\
+    - RSA is faster than DSA in signature verification, and about the same in signature generation. In DSA some signature computation can be computed a priori \\
+    - RSA can recover the message digest from the signature, while DSA can not. \\
+    - DSA: need to choose a unique secret number k for each message
+  \end{flushleft}
+  RSA vs DSA
+}
 
 
 % ================================ Lecture 7 ===================================
