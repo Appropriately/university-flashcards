@@ -660,7 +660,7 @@
 
 \card{\normalfont
   What are the differences between a \textbf{block cipher} and a \textbf{stream cipher}?
-}{\normalfont \small
+}{\normalfont \footnotesize
   \begin{flushleft}
     While block ciphers encrypt block of characters, stream ciphers encrypt individual characters or bit streams. \\
     Stream ciphers:\\
@@ -674,7 +674,175 @@
 
 
 % ================================ Lecture 4 ===================================
+\flashcard{\normalfont
+  \textbf{Conventional/ symmetric} cryptography is based on \blank{\textbf{shared secret keys}}.
+}
 
+\card{\normalfont
+  What are the problems with \textbf{symmetric/ conventional cryptography}?
+}{\normalfont
+  \begin{flushleft}
+    A separate key is needed for each pair of users (or even for each ciphertext encryption -> session key) \\
+    - So an n-user system requires n*(n-1)/2 keys -> the n2 problem. \\
+    - Generating and distributing these keys are a challenging problem. \\
+    - Maintaining security for the keys already distributed is also challenging: can one remember so many keys? \\
+    As two parties share the same key, non-repudiation can not be achieved.
+  \end{flushleft}
+  Problems with symmetric/ conventional cryptography
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Public key}} cryptosystems are based on mathematically hard problems rather than substitution/ transportation (permutation) ciphers.
+}
+
+\card{\normalfont
+  How does \textbf{public-key} cryptography work?
+}{\normalfont
+  \begin{flushleft}
+    A pair of keys is used: One is private (secret), the other can be made public. The pair of private and public keys are related mathematically. It is infeasible to generate one from the other. \\
+  Encryption generated with one key can only be decrypted with the other key in the pair.
+  \end{flushleft}
+  Public-key cryptography
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Confidentiality}} protection is only applied to short messages, e.g. for secure transportation of symmetrical keys. \\
+  It is achieved by encrypting the plaintext M using the recipient's public key. Only the recipient has the corresponding private key so M can only be read by the recipient.
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{signature}} is put on the hash value of M, and a \blank{\textbf{timestamp}} should also be included. This is used for message authentication and integrity and non repudiation of message origin. \\
+  It it achieved by \blank{signing} M (actually the hash of it) using the sender's \textbf{private key}. Only the seder has the private key, so the message must have been signed by the sender.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Public key cryptography}} is based on the idea of a \textit{trapdoor} function, or mathematically hard problems.
+}
+
+\card{\normalfont
+  Why is PKC using mathematically hard problems?
+}{\normalfont
+  \begin{flushleft}
+    - Easy to generate keys (public and private) \\
+    - Easy to encrypt and decrypt if the right key is known. \\
+    - Hard to compute private key from public key. \\
+    - Hard to recover plaintext from ciphertext without the right key.
+  \end{flushleft}
+  Reasons for using mathematically hard problems for PKC
+}
+
+\card{\normalfont
+  What is the mathematical definition of \textbf{modulo}?
+}{\normalfont
+  \textit{a = b mod n}, which means there exists an integer number k such that a can be represented as a = k *n + b with the condition that 0 <= b <= n-1. \\
+  Given integers a, b, and n != 0, a is congruent to b modulo n, if and only if a - b = k * n for some integer k, i.e. n divided (a-b). The notation is a = b (mod n). We call n the \textbf{modulus}, and b is \textbf{remainder} or \textbf{residue} of a modulo n.
+}
+
+\card{\normalfont
+  What does the \textbf{RSA algorithm} consist of?
+}{\normalfont
+  \begin{flushleft}
+    The algorithm consists of two numbers, the modulus (represented by the letter n) and the public exponent (represented by the letter e). \\
+    The modulus is the product of two very large prime numbers (100 to 400 digits), represented by letters p and q (they need to be kept secret). \\
+    It is a block cipher in which the plaintext and ciphertext are integers between 0 and n-1 for some n.
+  \end{flushleft}
+  RSA Algorithm
+}
+
+\card{\normalfont
+  What are the three stepts of the \textbf{RSA algorithm}?
+}{\normalfont
+  \begin{flushleft}
+    1. Key generation \\
+    2. Encryption \\
+    3. Decryption
+  \end{flushleft}
+  RSA Algorithm Steps
+}
+
+\card{\normalfont
+  What is the pseudo-code for the \textbf{key generation} step of the \textbf{RSA algorithm}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Select two large primes (e.g. 200 digits) p and q \\
+    - Calculate n = p * q and phi(n) = (p-1) * (q-1) \\
+    - Select integer e relatively prime to phi(n) and 1 < e < phi(n) \\
+    - Calculate d = e (to -1) mod phi(n) (or de = 1 mod phi(n)) \\
+    - \textbf{Public key = {e, n}} \\
+    - \textbf{Private key = {d, n}} \\
+    - So: p and q are private and chosen; n= p * q is public and calculated (but keep p and q secret); e is public and chosen, and d is private and calculated.
+  \end{flushleft}
+  RSA Key Generation Step Pseudo Code
+}
+
+\card{\normalfont
+  What is the pseudo-code for the \textbf{encryption} step of the \textbf{RSA algorithm}?
+}{\normalfont
+  \begin{flushleft}
+    - Represent the plaintext as an integer M in [0, n-1], i.e. M < n \\
+    - Ciphertext: C = M (to e) mod n
+  \end{flushleft}
+  RSA Encryption Step Pseudo Code
+}
+
+\card{\normalfont
+  What is the pseudo-code for the \textbf{decryption} step of the \textbf{RSA algorithm}?
+}{\normalfont
+  \begin{flushleft}
+    - Ciphertext is C \\
+    - Plaintext is M = C (to d) mod n
+  \end{flushleft}
+  RSA Decryption Step Pseudo Code
+}
+
+\card{\normalfont
+  What does the \textbf{security} of the \textbf{RSA algorithm} rely on?
+}{\normalfont \small
+  \begin{flushleft}
+    - The security of the RSA relies on the difficulty of finding d given {e, n}. The problem of computing d from {e, n} is computationally equivalent to the problem of factoring n: if one can factorise n, then he can find p and q, and hence calculate d. \\
+    - p and q should differ in length by only a few digits, and both should be on the order of 100-200 digits or even larger. n with 150 digits could be factored in about 1 year. Factoring n with 200 digits could take about 1000 years (assuming about 1012 operations per second).
+  \end{flushleft}
+  RSA Security
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{hybrid cryptosystem}} was introduces because the \blank{\textbf{symmetric ciphers}} have key management problems and can not provide non repudiation services without the involvement of a trusted third party.
+}
+
+\flashcard{\normalfont
+  \textbf{Hybrid cryptosystems} are the combination of \blank{\textbf{public key ciphers}} and \blank{\textbf{symmetric ciphers}}.
+}
+
+\card{\normalfont
+  What does a \textbf{hybrid cryptosystem} contain?
+}{\normalfont
+  A \textbf{hybrid cryptosystem} contains a public cipher for symmetric key establishment/transportation and/or for digital signature generation and a symmetric cipher for bulk encryption.
+}
+
+\card{\normalfont
+  \textbf{Hybrid cryptosystems} are used to speed thing up. This process is called \textbf{digital enveloping}. What does it entail?
+}{\normalfont
+  \begin{flushleft}
+    - A symmetrical algorithm with a random session key (bulk encryption key) is used to encrypt the message; \\
+    - A public-key algorithm is used to encrypt the random session (symmetric) key.
+  \end{flushleft}
+  Digital Enveloping
+}
+
+\card{\normalfont
+  What are the two primary uses of \textbf{publi key cryptography}?
+}{\normalfont \small
+  \begin{flushleft}
+    1. Key establishment \\
+    \begin{flushleft}
+      - Key exchange (or key transportation): a generates asymmetric key and transports it to b using b’s public key. RSA can be used for key exchange. \\
+      - Key agreement: Both a and b co-operate to generate a shared key.
+DH is a key agreement algorithm. \\
+    \end{flushleft}
+    2. Digital signatures: often using RSA or DSS (Digital Signature Standard) \\
+  \end{flushleft}
+  Public key cryptography provides capabilities that can not be attained with symmetric cryptography, but it is too inefficient to be used alone for large text encryption.
+}
 
 
 % ================================ Lecture 5 ===================================
