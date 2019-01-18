@@ -1,0 +1,197 @@
+% ================================ Lecture 1 ===================================
+
+\card{\normalfont
+  What does \textbf{network security} consist of?
+}{\normalfont
+ \begin{flushleft}
+   - Security problems and countermeasures in the transmission of information. \\
+   - Security problems and countermeasures in networked computer systems.
+ \end{flushleft}
+ Network Security
+}
+
+\card{\normalfont
+  What are some examples of \textbf{security threats}?
+}{\normalfont
+  \begin{flushleft}
+    - Disclosure \\
+    - Deception \\
+    - Disruption \\
+    - Attacks via Malware \\
+    - Hacking as a Service \\
+  \end{flushleft}
+  Security Threats
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Disclosure}} is the release of message contents to any person or process not possessing the appropriate cryptographic key (e.g. \blank{snooping}, \blank{sniffing}).
+}
+
+\card{\normalfont
+  What is meant by \textbf{non repudiation}?
+}{\normalfont
+  \textbf{Non repudiation} means that the signer can not falsely deny that they have generated the signature.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Deception}} examples include:
+  \begin{flushleft}
+    - Interception \\
+    - Modification \\
+    - Spoofing \\
+    - Repudiation of origin \\
+    - Denial of receipt \\
+  \end{flushleft}
+  Security Threats
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Disruption}} examples include:
+  \begin{flushleft}
+    - Modification \\
+    - Delay \\
+    - Denial of Service (DoS) \\
+  \end{flushleft}
+  Security Threats
+}
+
+\card{\normalfont
+  What are some examples of \textbf{malware types} from Attacks Via Malware?
+}{\normalfont
+  \begin{flushleft}
+    - Worms
+    - Viruses
+    - Trojan
+  \end{flushleft}
+  Malware Types
+}
+
+\card{\normalfont
+  What are some \textbf{security problems and challenges}?
+}{\normalfont \small
+  \begin{flushleft}
+    - Naive users: lack of security awareness \\
+    - Inadequate management procedures \\
+        - Insecure system set-up and configuration \\
+        - Lack of proper policy making, implementation and enforcement procedures \\
+    - Global networks without national boundaries \\
+    - Heterogeneous devices, e.g. laptops, iPhones and PDAs, with universal connections \\
+    - Wireless and open channels \\
+    - Anonymous nature of many internet based services \\
+  \end{flushleft}
+  Security Problems and Challenges
+}
+
+\flashcard{\normalfont
+  Securing information through CIA: \\
+  \begin{flushleft}
+    - \blank{\textbf{Confidentiality}}: keeping data and resources hidden \\
+    - \blank{\textbf{Integrity}}: data \blank{integrity} (making sure data is authentic) and origin \blank{integrity} (authentication) \\
+    - \blank{\textbf{Availability}}: ensuring data/service is available to authorised users.
+  \end{flushleft}
+  CIA
+}
+
+\card{\normalfont
+  What is the \textbf{life cycle} of \textbf{achieving security}?
+}{\normalfont \small
+  \begin{flushleft}
+    - Threats analysis and identification: decide \textbf{what to protect} \\
+    - Policy specification (defining security goals): define \textbf{what is, and is not, allowed} \\
+    - Design and implementation (enforcing policies to achieve security goal): decide \textbf{how to protect} in order to \textbf{satisfy the specification} with technical and procedural measures \\
+    - Operation and maintenance (security assurance): assess \textbf{how well} the implementation has \textbf{achieved} its security \textbf{goal}
+  \end{flushleft}
+  Life Cycle of Achieving Security
+}
+
+\card{\normalfont
+  What does the \textbf{threat analysis} do?
+}{\normalfont
+  \begin{flushleft}
+    - Identify assets, threats and vulnerabilities \\
+    - Assess the levels of risks on the assets based upon: \\
+    --- Values of assets \\
+    --- Threats to assets and their importance (Vulnerabilities and likelihood of exploitation) \\
+    --- Not all threats are worth defeating (cost vs benefit) \\
+    - This may be carried out by using an Attack Tree \\
+    - Cost-benefit analysis: is it cheaper to prevent (using security mechanisms), recover (e.g. using restoration from backup), or just ignore?
+  \end{flushleft}
+  Threat Analysis
+}
+
+\flashcard{\normalfont
+  An \blank{\textbf{Attack Tree (Threat Tree)}} is a conceptual diagram showing how an asset, or target, might be attacked.
+}
+
+\card{\normalfont
+  What does an \textbf{Attack Tree} consists of?
+}{\normalfont
+  \begin{flushleft}
+    - root node: the attack goal \\
+    - children nodes: conditions which must be satisfied to make the direct parent node true \\
+    - leaf nodes
+  \end{flushleft}
+  Attack Tree
+}
+
+\card{\normalfont
+  What are the two conditions in an Attack Tree?
+}{\normalfont
+  \begin{flushleft}
+    - OR: represents alternative attack methods or avenues in the attack \\
+    - AND: represents multiple steps in launching an attack
+  \end{flushleft}
+  Attack Tree Conditions
+}
+
+\flashcard{\normalfont
+  Each node may be given a value to indicate, e.g: \\
+  \begin{flushleft}
+    - \blank{Likelihood} that an attacker will mount the attack, or \blank{probability} of succeeding the attack \\
+    - \blank{Cost} in succeeding the attack, in terms of monetary cost, or time taken to accomplish the attack, etc. \\
+  \end{flushleft}
+  Like this you could identify and make a decision as what, where and how to protect your asset.
+}
+
+\flashcard{\normalfont
+  In order to produce an \textbf{Attack Tree}, one needs to identify an \blank{\textbf{attack goal}} and identify all the possible \blank{\textbf{attack methods}} or \blank{\textbf{avenues}} to achieve it.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Security measures}} are a method, protocol, tool or procedure used to address the risks identified (or to enforce a security policy).
+}
+
+\flashcard{\normalfont
+  \blank{Prevention} is a security measure which:
+  \begin{flushleft}
+    - Block attacks by closing vulnerabilities \\
+    - Reduce the level of risks by making attacks harder \\
+    - Make another target more attractive than this one \\
+    - E.g. access control (firewalls), encryption, digital signatures
+  \end{flushleft}
+  Security Measures
+}
+
+\flashcard{\normalfont
+  \blank{Detection} is a security measure which measures taken during or after the attacks, e.g. auditing and intrusion \blank{\textbf{detection}}.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Recovery}} is a security measure which stops attacks, asses and repairs damage. It continues t function correctly even if the attacks succeed.
+}
+
+\flashcard{\normalfont
+  There is a security measure consisting of \blank{\textbf{accepting}} the attack and doing \blank{\textbf{nothing}}.
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{communication}} security model: emphasis is on protecting data while in transit.
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{network}} security model: focus is on protecting data and services on a \blank{\textbf{network}} against external attacks or unauthorised usage. It has multi-level security measures, however, the use of mobile devices will make the boundary hard to define.
+}
+
+\flashcard{\normalfont
+  An \blank{\textbf{e-commerce}} security model: the opponent is a misbehaving insider. The third party is now a trusted third party TTP, e.g an arbitrator, that offers some services. Non-repudiation services generate the evidence the arbitrator will consider when resolving a dispute.
+}

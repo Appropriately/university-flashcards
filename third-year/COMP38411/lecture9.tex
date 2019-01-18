@@ -1,0 +1,197 @@
+% ================================ Lecture 9 ===================================
+\flashcard{\normalfont
+  \blank{\textbf{Entity authentication}} is the process of verifying a claimed identity. \\
+  It provides mutual identification and \textit{authentication}. The user identity is a parameter in access control decisions (\textit{authorisation}) and is recorded when logging security-relevant events in an audit trial (\textit{accounting}). This is the so called \textit{AAA services}.
+}
+
+\card{\normalfont
+  What are some of the methods used for user identification/ authorisation?
+}{\normalfont \small
+  \begin{flushleft}
+    - Where you are (location authentication, physical location/ specific terminal, e.g. based on IP address). \\
+    - Something you know (passwords, PIN). \\
+    - Something you have (keys - soft tokens, and hard tokens (smart cards)) - may require special hardware. \\
+    - Something you are (biometrics - fingerprint matching, voice recognition, face recognition, iris scanning, etc) require special hardware. \\
+    -Combined (or multiple) methods may be used for a higher level of assurance.
+  \end{flushleft}
+  User identification/ authorisation methods
+}
+
+\card{\normalfont
+  Which are the prominent schemes for authentication?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Client-server authentication solutions: Password-based authentication or Smart-card-based (token-based) authentication: Symmetric key based or PKI based: Digital signatures and X.509 certificates. \\
+    - Enterprise-wide authentication solutions: Kerberos (a password centric solution) and RADIUS (a centralised AAA service). \\
+    - Shibboleth (authentication access to multiple enterprises/organisations). \\
+    Different authentication schemes = different levels of assurance. There is a trade-off between the level of security vs the complexity vs cost.
+  \end{flushleft}
+  Authentication Schemes
+}
+
+\flashcard{\normalfont
+  Unix system chooses not to store plaintext passwords, rather it stores \blank{\textit{encrypted/hashed}} passwords in the password file. Storing passwords for all the system users plainly visible in a password file is vulnerable to theft and accidental disclosure (e.g. due to programming errors). \\
+  The \blank{\textit{hashing algorithm}} is a one-way function, called crypt(), that is modified based on the DES algorithm. It uses salt to make the DES-based one-way function different from DES and to make dictionary attacks harder to succeed.
+}
+
+\card{\normalfont
+  What is the pseudo-code for Unix's \textbf{crypt()} algorithm?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Using DES with first 7 bits of the first 8 characters of passwords as the key. \\
+    - Iterated 25 times on constant string 0s; making the process slower. \\
+    - Using salt to perturb the DES algorithm, so that: DES chip can not be used to (dictionary) attack the algorithm; and It makes pre-compiled dictionary attacks harder (by a factor of 4,096) \\
+    - It prevents an identical password from producing the same encrypted password. \\
+    - The final 63 bits are unpacked into a string of 11 printable characters, called the encrypted password.
+  \end{flushleft}
+  Unix \textit{crypt()} Algorithm
+}
+
+\card{\normalfont
+  What does the \textit{/bin/passwd} program do when a user creates an account ot changes a password?
+}{\normalfont
+  \begin{flushleft}
+    - Selects a salt based on the time of the day; the DES salt is a 12-bit number, between 0 and 4095, that is converted into a two-character string and is stored in the \textit{/etc/passwd} file along with the encrypted password. \\
+    - The password is used as the encryption key to encrypt a block of zero bits using \textit{crypt()} to generate the encrypted password.
+  \end{flushleft}
+  \textit{/bin/passwd} when creating account or changing password
+}
+
+\card{\normalfont
+  What happends when a user tries to \textbf{login}?
+}{\normalfont
+  When a user tries to \textbf{login}, the program \textit{/bin/login} takes the password the user typed, and the salt from the password file, to generate a fresh encrypted password, and compares the newly generated one with the one stored in the \textit{/etc/passwd} file. If the to encrypted results match, the system lets the user in.
+}
+
+\card{\normalfont
+  The unix password file is \textit{/etc/passwd}. Each entry is for one account and has several fields separated by colons. Which are those?
+}{\normalfont \small
+  \begin{flushleft}
+    - User name: the account name; \\
+    - Password: the hashed password preceded by a salt value to be used with the password. Salt make the passwords more difficult to guess and the hashing algorithm slower; \\
+    - User ID: a number assigned to this user name for system use in identifying the account; \\
+    - Group ID: a number for the user’s group; \\
+    - Home Directory; \\
+    - Shell: the user’s default shell program.
+  \end{flushleft}
+  \textit{/etc/passwd} fields
+}
+
+\flashcard{\normalfont
+  The attack where an attacker can eavesdrop on a network to get our login ID and encrypted password and later replays (re-sends) it to gain access to the network is called a \blank{\textbf{replay attack}}.
+}
+
+\card{\normalfont
+  How does the \textbf{replay attack} work?
+}{\normalfont \small
+  \begin{flushleft}
+    In order to perform this attack, the attacker needs to: \\
+    - Modify the client/logon software so that it does not encrypt the encrypted password, but rather replay it directly; \\
+    - Eavesdrop on the network (or access to the password file) \\
+    Usually we assume that: \\
+    - The LAN is secure, i.e. eavesdropping can be noticed \\
+    - You do not bring your own client software in \\
+    So we tend to overlook this problem in LAN environment.
+  \end{flushleft}
+  The Replay Attack
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{one-time password}} is a password that can only be used once, and that thwarts sniffing and replay attacks.
+}
+
+\card{\normalfont
+  What are the approaches of the \textit{one time password}?
+}{\normalfont
+  \begin{flushleft}
+    Challenge response \\
+    - Random number based OTP \\
+    - Clock based OTP (need token) but the clock has to be reliable, and secure; and the clocks between the entities must be synchronised. \\
+    - Counter-based OTP (need token) \\
+    - If a hard token is used, then it should be locked with a PIN or password. \\
+    S/Key
+  \end{flushleft}
+  One-time Password Approaches
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{smart card}} is an authentication token that a person carries around and uses in authenticating.
+}
+
+\card{\normalfont
+  What are the advantages and disatvantages of using a \textbf{smart card}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    Advantages: \\
+    - Unlike memory cards, they can do more than just containing some secret information; they can perform simple crypto operations. \\
+    - Support mobility, can ‘memorise’ your secret, and can provide two factor authentication. \\
+    Disadvantages: \\
+    - Smart-cards require special hardware reader on every access device, which may be expensive and requires standardisation. \\
+    - They are subject to theft, so used in conjunction with some other authentication mechanisms such as PIN/password.
+  \end{flushleft}
+  Pro and Con for using a Smart Card
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{man-in-the-middle attack}} consists of a third person posing as A to b and as B to A.
+}
+
+\card{\normalfont
+  What is the \textbf{X.509 Certificate Based Authentication Service}, and what does it do?
+}{\normalfont \small
+  \begin{flushleft}
+    - It defines a framework - a system to enable the validation of, and to give legal meaning to, digital signatures (which require the use of hash functions). \\
+    - It allows mutual authentication using public key technology - digital signatures and digital certificates. \\
+    - It does not dictate the use of a specific public-key cryptographic algorithm but recommends RSA, nor does it define a specific hash algorithm. \\
+    - It is used in S/MIME, IP Security, SSL/TLS and SET.
+  \end{flushleft}
+  X.509 Certificate Based Authentication Service
+}
+
+\card{\normalfont
+  How does the \textbf{challenge-response authentication method} work using \textbf{public keys}?
+}{\normalfont
+  \begin{flushleft}
+    - As only B can decrypt the random number (nonce), r1, correctly, the message (2) authenticates B to A. \\
+    - Message (3) authenticates A to B. \\
+  \end{flushleft}
+  Challenge-response Authentication method with Public Keys
+}
+
+\card{\normalfont
+  How does \textbf{challenge-response authentication method} work using \textbf{digital signatures}?
+}{\normalfont
+  \begin{flushleft}
+    - As only B can generate the rightful signature, message (2) authenticates B to A. \\
+    - Message (3) authenticates A to B.
+  \end{flushleft}
+  Challenge-response Authentication method with Digital Signatures
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Enterprise Authentication}} is a central authentication for a number of systems in an organisation. It has one central authority (security server) at a site to manage all the passwords instead of each computer having its own. By this, we can enforce organisation wide security policies, including authentication, authorisation and accounting (i.e. the AAA services). The security server is responsible for providing AAA services to edge devices, e.g. VPN servers and wireless access points.
+}
+
+\card{\normalfont
+  What are some examples of \textbf{systems} for \textbf{enterprise authentication}?
+}{\normalfont
+  \begin{flushleft}
+    - Radius: remote authentication for dial-in user services. Initially used for providing authentication services for one or more access servers. Later extended to handle enterprise AAA services.\\
+    - Kerberos
+  \end{flushleft}
+  Enterprise Authentication Systems
+}
+
+\card{\normalfont
+  What is the \textbf{RADIUS} protocol?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    Client forwards the user access request to a RADIUS server \\
+    The Server: \\
+    - Replies with reject access or allow access based upon a user supplied password/credential. \\
+    - Challenge (when challenge-response protocol is used, e.g. CHAP). \\
+    - If challenge-response is used, client forwards Challenge to the user, and the user sends their response to the client that then forwards it to the server. \\
+    - One RADIUS server may act as a client to another RADIUS server for consultation, etc.
+  \end{flushleft}
+  RADIUS Protocol
+}

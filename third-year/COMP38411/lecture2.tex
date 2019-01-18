@@ -1,0 +1,196 @@
+% ================================ Lecture 2 ===================================
+\flashcard{\normalfont
+  \blank{\textbf{Cryptography}} is \textit{the art of keeping messages secure}. (Schneier)
+}
+
+\card{\normalfont
+  What are some of the uses of \textbf{cryptography}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Confidentiality (secrecy, privacy) of data in transmission and in storage \\
+    - Integrity of data in transmission and in storage \\
+    - Origin authentication of data \\
+    - Authentication of identity \\
+    - Credentialing systems (a proof of qualifications or competence of a person) \\
+    - Digital signatures \\
+    - Electronic money \\
+    - Threshold cryptosystems \\
+    - Secure multi-party communications \\
+    - Digital right management \\
+    - Electronic voting, etc.\\
+  \end{flushleft}
+  Cryptography Uses
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Encryption}} can be used to achieve secure communications over an insecure channel.
+}
+
+\card{\normalfont
+  What are the two types of \textbf{encryption}?
+}{\normalfont
+  \begin{flushleft}
+    - \textbf{Symmetric} key based encryption uses conventional ciphers. The same key is used for encryption and decryption (e.g. historical ciphers, modern ciphers). \\
+    - \textbf{Asymmetric} key based encryption uses public key ciphers. Different keys are used for encryption and decryption (e.g. modern ciphers).
+  \end{flushleft}
+  Types of Encryption
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Plaintext}} or \blank{\textbf{cleartext}} is a message in its original form.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Ciphertext}} is a message in an encrypted form.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Encryption}} is coding a message to hide its meaning, while \blank{\textbf{decryption}} is converting an \blank{\textbf{encrypted}} message back to its original form.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Cipher}} or \blank{\textbf{Cryptosystem}} is the system that performs encryption and decryption.
+}
+
+\flashcard{\normalfont
+  An \blank{\textbf{unconditional security}} is the system that cannot be defeated, no matter how much power is available by the adversary.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Computational security}} is the perceived level of computation required to defeat the system using th best known attack exceeds, by a comfortable margin, the computational resources of the hypothesized adversary (e.g. given limited computing resources, it takes very long time to break a cipher).
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{provable}} security means that the difficulty of defeating the system can be shown to be essentially as difficult as solving a well-known and supposedly difficult problem (e.g. integer factorisation).
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Ad hoc}} security are claims of security which generally remain questionable, where unforseen attacks remain a threat.
+}
+
+\card{\normalfont
+  What are the two classical ciphers?
+}{\normalfont
+  \begin{flushleft}
+    1. Substitution ciphers: monoalphabetic and polyalphabetic. \\
+    2. Transportation ciphers.
+  \end{flushleft}
+  Classical Ciphers
+}
+
+\card{\normalfont
+  What are the encryption techniques?
+}{\normalfont
+  \begin{flushleft}
+    - Classical (historical) algorithms are based on substitution (based on confusion, e.g. a becomes b) and permutation/transposition (based on diffusion, e.g. abcd becomes dacb) \\
+    - XOR operator \\
+    - Simple non-secure ciphers: Shift cipher - caesar cipher; Vigenere Cipher, etc. \\
+    - Secure cipher: One-time pad
+  \end{flushleft}
+  Encryption Techniques
+}
+
+\flashcard{\normalfont \small
+  \blank{\textbf{Ceaser Cipher}} or shift cipher uses simple substitution: each letter is translated to the letter a fixed number of letters after it in the alphabet. The operation could be expressed using addition modulo 26:
+  \begin{flushleft}
+    - The message must be a sequence of letters, each letter is identified with a number \\
+    - The key k is a number in the range 1 to 25 \\
+    - Encryption/decryption involves +- k to each letter (mod 26) \\
+  \end{flushleft}
+  Shift Cipher
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Brute force attack}} or exhaustive key search tries all possible keys.
+ }
+
+ \card{\normalfont
+   What are the three characteristics that make the \textbf{Brute Force Attack} practical?
+ }{\normalfont
+  \begin{flushleft}
+    - The encryption and decryption algorithms are in public domain \\
+    - There are only 25 keys to try out \\
+    - The language of the plaintext is easily recognisable (e.g. compressed text not) \\
+  \end{flushleft}
+  Brute force attack practical reasons
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{one-time pad}} is a special variant of the stream cipher and it is truly a perfect cipher: it uses a one-time random key that is as long as the plaintext with no repetitions (only used once). If used properly, it is provably unbreakable.
+}
+
+\card{\normalfont
+  What are some of the \textbf{problems} with the \textbf{one-time pad}?
+}{\normalfont
+  \begin{flushleft}
+    - No way to remember the entirety of the random key string. \\
+    - It’s too expensive for most applications as it consumes as much key material as there is traffic. \\
+    - Key management is hard as the need for non-repeating keys has a problem with storing and distributing them. \\
+    - Absolute synchronisation between sender and receiver is really hard to achieve.\\
+  \end{flushleft}
+  Problems with the one-time pad
+}
+
+\card{\normalfont
+  What is the main idea of a \textbf{stream cipher}?
+}{\normalfont
+  \begin{flushleft}
+    To replace the random key in one-time pad by a pseudo-random sequence, generated by a cryptographic pseudo-random generator that is seeded with the key. \\
+    \textit{Ciphertext = plaintext XOR keystream} \\
+    This is a dangerous security property and we must never reuse the same keystream to encrypt two different messages.
+  \end{flushleft}
+  Stream Cipher
+}
+
+\flashcard{\normalfont
+  The structure of \blank{\textbf{stream ciphers}} is to generate a keystream from a short key that initialises the generator.
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{transportation (permutation)}} technique performs a permutation on the plaintext.
+}
+
+\card{\normalfont
+  What are some common types of \textbf{attacks}?
+}{\normalfont
+  \begin{flushleft}
+    - Try to break or crack the algorithm by exploring any flaws in it e.g. frequency analysis. \\
+    - Assume attacker recognises plaintext, try to decrypt ciphertext with every possible key until…, e.g. brute force attack (Also exhaustive key search attack) \\
+    - Run the algorithm on massive amounts of plaintext and find the one plaintext that encrypts to the ciphertext that it’s being analysed, e.g. dictionary attack.\\
+  \end{flushleft}
+  Common types of attacks
+}
+
+\card{\normalfont
+  Ciphertext-only attacks? (e.g. frequency attcks)
+}{\normalfont
+  \begin{flushleft}
+    - Attacker knows ciphertexts of several messages encrypted with the same key, plaintext is recognisable. \\
+    - The goal is to find the plaintext, possibly the key \\
+  \end{flushleft}
+  Ciphertext-only attacks
+}
+
+\card{\normalfont
+  Known-plaintext attack? (e.g. dictionary attack)
+}{\normalfont
+  \begin{flushleft}
+    - Attacker observes <plaintext, ciphertext> pairs encrypted with the same key. \\
+    - The goal is to find the key. \\
+  \end{flushleft}
+  Known-plaintext attack
+}
+
+\card{\normalfont
+  Chosen-plaintext attack?
+}{\normalfont
+  \begin{flushleft}
+    - Attacker can choose the plaintext and look at the paired ciphertext. \\
+    - The goal is to find the key. \\
+  \end{flushleft}
+  Chosen-plaintext attack
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Cryptanalysis attacks}} often exploit the redundancy of natural language: lossless compression before encryption removes redundancy.
+}

@@ -1,0 +1,61 @@
+% ================================ Lecture 8 ===================================
+\card{\normalfont
+  What is a \textbf{random number}'s definition?
+}{\normalfont
+  A \textbf{random number}: given an integer, k > 0, and a sequence of numbers, n1, n2, …, an observer can not predict nk even if all of n1, …, nk-1 are known. Physical sources of random numbers are based on nondeterministic physical phenomena, e.g. atmospheric noise; stock market data, etc.
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{session key}} is a symmetric (secret) key which is only used for one session.
+}
+
+\card{\normalfont
+  Why is it desirable to use different session keys in different sessions?
+}{\normalfont
+  \begin{flushleft}
+    - Limit available ciphertexts for cryptanalysis; \\
+    - Limit exposure (both in time period and amount of data) in an event of key compromise; \\
+    - Avoid long-term storage of a large number of secret keys by only creating them when needed.
+  \end{flushleft}
+  Reasons for using different session keys for different sessions
+}
+
+\card{\normalfont
+  What are the two session key establishment solutions?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - \textbf{Key agreement (exchange)} protocols: a shared secret is derived by the parties as a function of information contributed by each, such that no party can predetermine the resulting value - Diffie-Hellman (DH) protocol. \\
+    - \textbf{Key transportation} protocols: Without any use of a public-key cipher: session keys are generated and distributed with the help of a third party - the Needham-Schroeder protocol. With the use of a public key cipher: One party creates a secret value (session key), and securely transfers it to the other party using the recipient’s public key.
+  \end{flushleft}
+  Key Establishment Solutions
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{Diffie-Hellman}} key exchange (agreement) protocol allows two parties who have never met before to exchange messages in public and collectively generate a key that is private to them, and none of the parties could predetermine the key. Its security is based on the difficulty of calculating discrete logarithms in a finite field.
+}
+
+\card{\normalfont
+  What kind of attack is the DH protocol vulnerable to, and why?
+}{\normalfont
+  Neither party knows who it shares the secret with, so it is vulnerable to active, man-in-the-middle attacks.
+}
+
+\flashcard{\normalfont
+  The \blank{\textbf{Needham-Schroeder}} key distribution (transportation) protocol, without the use of any public-key cipher, session keys are generated and distributed with the help of a third party. The usage of a trusted 3rd party reduces the complexity of the problem from n (to 2) to n, making it more scalable.
+}
+
+\card{\normalfont
+  What is the distvantage of the Needham-Schroeder protocol?
+}{\normalfont
+  The distvantage of the Needham-Schroeder protocol is the requirement to trust KDC; KDC has enough information to impersonate anyone, if it is compromised all resources in the system are vulnerable. KDC is a single point of failure and performance bottleneck.
+}
+
+\card{\normalfont
+  What are the two distribution using PKC solutions and how do they work?
+}{\normalfont
+  \begin{flushleft}
+    1. \textbf{Two passes}: Secret key distribution with mutual authentication using public key cryptosystem + \textbf{timestamps}. \\
+    2. \textbf{Three passes}: Symmetric key distribution with mutual authentication using digital signatures + \textbf{nonces} (random numbers).
+  \end{flushleft}
+  Distribution using PKC solutions
+}

@@ -1,8 +1,8 @@
 % ================================ Lecture 1 ===================================
 
-\card{ \normalfont
+\card{\normalfont
   What does \textbf{network security} consist of?
-}{ \normalfont
+}{\normalfont
  \begin{flushleft}
    - Security problems and countermeasures in the transmission of information. \\
    - Security problems and countermeasures in networked computer systems.
@@ -10,9 +10,9 @@
  Network Security
 }
 
-\card{ \normalfont
+\card{\normalfont
   What are some examples of \textbf{security threats}?
-}{ \normalfont
+}{\normalfont
   \begin{flushleft}
     - Disclosure \\
     - Deception \\
@@ -23,7 +23,7 @@
   Security Threats
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{\textbf{Disclosure}} is the release of message contents to any person or process not possessing the appropriate cryptographic key (e.g. \blank{snooping}, \blank{sniffing}).
 }
 
@@ -33,7 +33,7 @@
   \textbf{Non repudiation} means that the signer can not falsely deny that they have generated the signature.
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{\textbf{Deception}} examples include:
   \begin{flushleft}
     - Interception \\
@@ -45,7 +45,7 @@
   Security Threats
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{\textbf{Disruption}} examples include:
   \begin{flushleft}
     - Modification \\
@@ -55,9 +55,9 @@
   Security Threats
 }
 
-\card{ \normalfont
+\card{\normalfont
   What are some examples of \textbf{malware types} from Attacks Via Malware?
-}{ \normalfont
+}{\normalfont
   \begin{flushleft}
     - Worms
     - Viruses
@@ -66,7 +66,7 @@
   Malware Types
 }
 
-\card{ \normalfont
+\card{\normalfont
   What are some \textbf{security problems and challenges}?
 }{\normalfont \small
   \begin{flushleft}
@@ -82,7 +82,7 @@
   Security Problems and Challenges
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   Securing information through CIA: \\
   \begin{flushleft}
     - \blank{\textbf{Confidentiality}}: keeping data and resources hidden \\
@@ -92,9 +92,9 @@
   CIA
 }
 
-\card{ \normalfont
+\card{\normalfont
   What is the \textbf{life cycle} of \textbf{achieving security}?
-}{ \normalfont \small
+}{\normalfont \small
   \begin{flushleft}
     - Threats analysis and identification: decide \textbf{what to protect} \\
     - Policy specification (defining security goals): define \textbf{what is, and is not, allowed} \\
@@ -104,13 +104,28 @@
   Life Cycle of Achieving Security
 }
 
-\flashcard{ \normalfont
+\card{\normalfont
+  What does the \textbf{threat analysis} do?
+}{\normalfont
+  \begin{flushleft}
+    - Identify assets, threats and vulnerabilities \\
+    - Assess the levels of risks on the assets based upon: \\
+    --- Values of assets \\
+    --- Threats to assets and their importance (Vulnerabilities and likelihood of exploitation) \\
+    --- Not all threats are worth defeating (cost vs benefit) \\
+    - This may be carried out by using an Attack Tree \\
+    - Cost-benefit analysis: is it cheaper to prevent (using security mechanisms), recover (e.g. using restoration from backup), or just ignore?
+  \end{flushleft}
+  Threat Analysis
+}
+
+\flashcard{\normalfont
   An \blank{\textbf{Attack Tree (Threat Tree)}} is a conceptual diagram showing how an asset, or target, might be attacked.
 }
 
-\card{ \normalfont
+\card{\normalfont
   What does an \textbf{Attack Tree} consists of?
-}{ \normalfont
+}{\normalfont
   \begin{flushleft}
     - root node: the attack goal \\
     - children nodes: conditions which must be satisfied to make the direct parent node true \\
@@ -119,7 +134,7 @@
   Attack Tree
 }
 
-\card{ \normalfont
+\card{\normalfont
   What are the two conditions in an Attack Tree?
 }{\normalfont
   \begin{flushleft}
@@ -129,7 +144,7 @@
   Attack Tree Conditions
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   Each node may be given a value to indicate, e.g: \\
   \begin{flushleft}
     - \blank{Likelihood} that an attacker will mount the attack, or \blank{probability} of succeeding the attack \\
@@ -138,11 +153,15 @@
   Like this you could identify and make a decision as what, where and how to protect your asset.
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
+  In order to produce an \textbf{Attack Tree}, one needs to identify an \blank{\textbf{attack goal}} and identify all the possible \blank{\textbf{attack methods}} or \blank{\textbf{avenues}} to achieve it.
+}
+
+\flashcard{\normalfont
   \blank{\textbf{Security measures}} are a method, protocol, tool or procedure used to address the risks identified (or to enforce a security policy).
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{Prevention} is a security measure which:
   \begin{flushleft}
     - Block attacks by closing vulnerabilities \\
@@ -153,7 +172,7 @@
   Security Measures
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{Detection} is a security measure which measures taken during or after the attacks, e.g. auditing and intrusion \blank{\textbf{detection}}.
 }
 
@@ -162,10 +181,10 @@
 }
 
 \flashcard{\normalfont
-  A security measure consists of \blank{\textbf{accepting}} the attack and doing \blank{\textbf{nothing}}.
+  There is a security measure consisting of \blank{\textbf{accepting}} the attack and doing \blank{\textbf{nothing}}.
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   A \blank{\textbf{communication}} security model: emphasis is on protecting data while in transit.
 }
 
@@ -179,13 +198,13 @@
 
 
 % ================================ Lecture 2 ===================================
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{\textbf{Cryptography}} is \textit{the art of keeping messages secure}. (Schneier)
 }
 
-\card{ \normalfont
+\card{\normalfont
   What are some of the uses of \textbf{cryptography}?
-}{ \normalfont \footnotesize
+}{\normalfont \footnotesize
   \begin{flushleft}
     - Confidentiality (secrecy, privacy) of data in transmission and in storage \\
     - Integrity of data in transmission and in storage \\
@@ -202,16 +221,18 @@
   Cryptography Uses
 }
 
-\flashcard{ \normalfont
+\flashcard{\normalfont
   \blank{\textbf{Encryption}} can be used to achieve secure communications over an insecure channel.
 }
 
-\flashcard{ \normalfont
-  \blank{\textbf{Symmetric}} key based encryption uses conventional ciphers. The same key is used for encryption and decryption (e.g. historical ciphers, modern ciphers).
-}
-
-\flashcard{\normalfont
-  \blank{\textbf{Asymmetric}} key based encryption uses public key ciphers. Different keys are used for encryption and decryption (e.g. modern ciphers).
+\card{\normalfont
+  What are the two types of \textbf{encryption}?
+}{\normalfont
+  \begin{flushleft}
+    - \textbf{Symmetric} key based encryption uses conventional ciphers. The same key is used for encryption and decryption (e.g. historical ciphers, modern ciphers). \\
+    - \textbf{Asymmetric} key based encryption uses public key ciphers. Different keys are used for encryption and decryption (e.g. modern ciphers).
+  \end{flushleft}
+  Types of Encryption
 }
 
 \flashcard{\normalfont
@@ -283,7 +304,7 @@
  }
 
  \card{\normalfont
-   What are the three characteristics that make the Brute force attack practical?
+   What are the three characteristics that make the \textbf{Brute Force Attack} practical?
  }{\normalfont
   \begin{flushleft}
     - The encryption and decryption algorithms are in public domain \\
@@ -298,7 +319,7 @@
 }
 
 \card{\normalfont
-  What are some of the \textbf{problems} of the \textbf{one-time pad}?
+  What are some of the \textbf{problems} with the \textbf{one-time pad}?
 }{\normalfont
   \begin{flushleft}
     - No way to remember the entirety of the random key string. \\

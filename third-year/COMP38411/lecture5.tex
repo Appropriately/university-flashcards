@@ -1,0 +1,134 @@
+% ================================ Lecture 5 ===================================
+\card{\normalfont
+  What is the \textbf{cryptographic checksum} used for/ protecting?
+}{\normalfont
+  \begin{flushleft}
+    - Content authentication (origin + integrity) for any kind of message including unstructured. \\
+    - Non-repudiation of origin (digital signature) \\
+    - Anti-replay (i.e achieve freshness)
+  \end{flushleft}
+  Cryptographic Checksum Protects
+}
+
+\card{\normalfont
+  What are some \textbf{threats} to message security?
+}{\normalfont
+  \begin{flushleft}
+    - Content disclosure \\
+    - Traffic flow analysis \\
+    - Sender masquerading \\
+    - Content modification \\
+    - Sequence modification \\
+    - Timing modification \\
+    - Repudiation of transmission \\
+    - Repudiation of receipt
+  \end{flushleft}
+  Threats to Message Security
+}
+
+\card{\normalfont
+  What is a \textbf{message digest} function?
+}{\normalfont
+  Given a message M of arbitrary length, a \textbf{Message Digest} function, H, produces a fixed-size output, h, (called a message digest, checksum, hash value, or fingerprint, of M), i.e. h = H(M). h should be a function of all the bits of M. This is a many-to-one mapping, so collisions are unavoidable, but we should make finding collisions as difficult as we can.
+}
+
+\card{\normalfont
+  What are the requirements of a \textbf{message digest} function?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - \textbf{Compression}: H can be applied to a block of data of any size, but produces a fixed-length output. \\
+    - \textbf{One-way property} (preimage resistant): H(x) is easy to compute for any given x. For any given h, it is hard to compute x such that H(x) = h. \\
+    - \textbf{Weak collision resistance} (2nd preimage resistant): Given x, it is hard to find y != x such that H(y) = H(x). \\
+    - \textbf{Strong collision resistance}(collision resistance): It is hard to find two different messages, x != y such that H(y) = H(x). If H is strong collision resistant, then H is also weak collision resistant.
+  \end{flushleft}
+  Message Digest Requirements
+}
+
+\card{\normalfont
+  What are the possible attacks of a \textbf{message digest} function?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Signature forgery if weak collision resistance property is not met: Assuming A has signed a message M; M ll EKRa[H(M)]. \\
+      An attacker E intercepts the message and finds another message M' with H(M) = H(M'). E has now A's signature and can use it to send messages pretending to be A \\
+    - Repudiation if strong collision resistance property is not met. Assuming that A is to send a signed message M to B. \\
+      A chooses two messages M and M’ with H(M)=H(M’); \\
+      A signs M by generating signature s=EKRa[H(M)] and sends B M ll s; Later A repudiates this signature, saying it was really a signature on the message M’. \\
+      B has no way of confirming that M' != M \\
+  \end{flushleft}
+  Message Digest Possible Attacks
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{Message Authentication Code (MAC)}} has a built in secret key, and is block cipher based. It is a public function with a shared secret key that produces a fixed-length output, i.e. MAC  = fk(M).
+}
+
+\card{\normalfont
+  What are the properties of using a \textbf{Message Authentication Code (MAC)}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    If only A and B know the secret key K, and if MAC = MAC', then the receiver can be assured that: \\
+    - The message has not been altered - \textbf{integration protection}; \\
+    - The message is from the alleged sender - \textbf{origin authentication}; \\
+    - The message is of the proper sequence if the message includes a sequence number; \\
+    - The message is \textbf{fresh} (i.e. not a replay, an old message which got sent again): If the message includes a timestamp or a random number contributed (fully or partially) by B (the recipient).
+  \end{flushleft}
+  MAC Properties
+}
+
+\card{\normalfont
+  What provides the \textbf{security} of a \textbf{MAC}?
+}{\normalfont
+  \begin{flushleft}
+    - Brute force attacks: Finding collisions, cost 2 (to n/2), where n is the bit-length of the MAC value, the longer the MAC value, the more secure; at least 160-bit MAC. Attack key space or MAC by exploiting MACs with known message-MAC pairs; at least 128-bit MAC. \\
+    - Cryptanalysis attacks exploiting weaknesses in algorithms \\
+    - Note: A MAC is not a digital signature; it does not provide non-repudiation.
+  \end{flushleft}
+  MAC Security
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{hash function}} doesn't have a built in secret key and is specifically designed.
+}
+
+\card{\normalfont
+  What is the fundamental \textbf{difference} between a \textbf{MAC} and a \textbf{hash function}?
+}{\normalfont
+  Fundamental difference between a MAC and a hash function is that a hash function does not have an embedded key. A hash value generated should be protected by a secret (i.e. an asymmetric private key or a symmetric key).
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{HMAC}} uses a hash function to construct a MAC function by concatenating a secret to the input of the hash function (Constructs MAC by applying message and key to cryptographic hash function in a nested manner. i.e. HMAC(K, M) = H[(K xor opad) ll H[(K xor ipad) ll M])
+}
+
+\card{\normalfont
+  \textbf{Authenticated Encryption} achieves both message authentication and confidentiality. What are its possible approaches?
+}{\normalfont
+  \begin{flushleft}
+    - Hash \textit{then} encrypt: E(K, (M ll H(M)); \\
+    - MAC \textit{then} encrypt (used in SSl): E(K2, (M ll MAC(K1,M)) or T = MAC(K1, M), E(K2, (M ll Tag)); T here stands for authentication Tag. \\
+    - Encrypt \textit{then} MAC (used in IPSec): C = E(K2, M), T - MAC(K1, C); \\
+    - Encrypt \textit{and} MAC (used in SSH): C = E(k2, M), Tag = MAC(k1, M).
+  \end{flushleft}
+  Authenticated Encryption Approaches
+}
+
+\card{\normalfont
+  MAC then encrypt, encrypt then MAC, which one is more vulnerable to DoS?
+}{\normalfont
+  \begin{flushleft}
+    MAC then encrypt is more vulnerable because the receiver has to make a decision whether to receive a message. \\
+    The decision is based on the verification of the Tag. \\
+    To verify this Tag, one will have to first do a decryption, which for the other one is not necessary. But it can be more secure as it has two keys. \\
+  \end{flushleft}
+  MAC then Encrypt vs Encrypt then MAC
+}
+
+\card{\normalfont
+  What are the implications of the performances of the three authentication encryption approaches?
+}{\normalfont
+  \begin{flushleft}
+    For \textit{then} 2 operations done one after the other, while for \textit{and} they can be done at the same time which makes the time a lot shorter than the one for then. \\
+    The more overlap the better, which is the essence for authenticated encryption (overlap = pipelining).
+  \end{flushleft}
+  Differences in Authenticated Encryption Approaches
+}

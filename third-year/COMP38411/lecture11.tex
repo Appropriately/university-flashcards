@@ -1,0 +1,206 @@
+% =============================== Lecture 11 ===================================
+\flashcard{\normalfont
+  \blank{\textbf{Hardware Security Modules (HSMs)}} are more difficult to tamper with so can increase the overall system security level; it can also be designed to accelerate cryptographic functions (asymmetric and symmetric cryptographic operations, key generation, etc.).
+}
+
+\card{\normalfont
+  What are some drawbacks of \textbf{Software-Only (SW)} solutions?
+}{\normalfont
+  \begin{flushleft}
+    - Certificate and private key are stores in conventional media: not secure. \\
+    - Consumers are tied to their PCs: not mobile. \\
+    - Consumers need to manage certificates: not simple.
+  \end{flushleft}
+  Drawbacks of Software-only Solutions
+}
+
+\card{\normalfont
+  \textbf{Smart cards}, a category of HSMs, support mobility, and are therefore secure portable devices. However, they are limited in capacity so the best approach is to combine them with software in order to get the best of both. How is this combination achieved?
+}{\normalfont
+  \begin{flushleft}
+    - Use SW for bulk symmetric data encryption/decryption \\
+    - Use smart card for: key generation/storage, digital envelope retrieval and signature generation.
+  \end{flushleft}
+  Combination of Smart Cards and Software-Only Solutions
+}
+
+\card{\normalfont
+  What are the types of \textbf{smart cards}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    1. \textbf{Memory cards}: Contain EEPROM (holds data that changes with time, e.g. in prepaid phone cards, it holds talk time left) and ROM (holds card number, card holder name). \\
+    2. \textbf{Chip and PIN cards}: On-board memory (RAM, ROM, and EEPROM). On-board Crypto coprocessor for performing crypto operations, random number generator for key generations, and intelligence for making decisions. Provides robust security so difficult to tamper with and uneconomical to counterfeit. Supports multiple applications (e.g. ePayment, ePassport, eIDs, Health, Transport, etc.) \\
+    3. \textbf{Interface}: Contact and Contactless (using RFID; commonly seen in mobile payment solutions and ePassport, etc.) \\
+    4. \textbf{Hybrid}: Operating System (OS), Java Cards, Multos
+  \end{flushleft}
+  Types of Smart Cards
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{EuroPay, MasterCard and Visa (EMV)}} is a standard for smart card based payments (Chip and PIN technology) to replace mag-stripe cards. \\
+  It was jointly developed by Europay, MasterCard and Visa for both contact and contactless cards (Using RFID). \\
+  It is a self-contained standard, but the physical and electrical aspects are based on ISO/IEC 7816. \\
+  It uses electronic authentication to replace hand signatures.
+}
+
+\card{\normalfont
+  What are th EMV \textbf{security techniques}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    1. Card-to-terminal authentication \\
+    a. Static Data Authentication (SDA): static authentication data on card is signed with issuer’s private key. \\
+    b. Dynamic Data Authentication (DDA): use a terminal generated nonce. \\
+    c. RSA digital signatures and digital certificates. \\
+    2. Transaction confidentiality/integrity protections: used between the Issuer’s host system and the smart card\\
+    - Encryption using 3DES-CBC (for confidentiality) and MAC (SHA-1) for integrity and authenticity. \\
+    3. PIN encryption at point of entry (optional service): PIN encrypted using Card’s public key, or Card’s PIN encryption public key
+  \end{flushleft}
+  EMV Security Techniques
+}
+
+\card{\normalfont
+  Why is the \textbf{MasterCard SecureCode Solution} needed?
+}{\normalfont
+  \begin{flushleft}
+    Need for a solution to prove that the cardholder (CH) has conducted and authorised the transaction in a virtual, non-face-to-face environment thereby reducing chargebacks and expenses associated with disputed transactions. \\
+    SecureCode is such a secure payment solution providing this proof; it is based on the “3-Domain Secure” model.
+  \end{flushleft}
+  Need for MasterCard SecureCode Solution
+}
+
+\card{\normalfont
+  What are the main features of the \textbf{3-D Secure Model}?
+}{\normalfont \small
+  \begin{flushleft}
+    - It uses SSL technology to protect transaction confidentiality, and to authenticate major parties involved in an online transaction thus supporting secure transactions over the Internet; \\
+    - It authenticates CHs in real-time and without using digital certificates: Requires the Ch to answer a challenge in real-time (challenge is from the issuing bank, not the merchant). Issuing bank then confirms the CH’s identity to merchant using a signed token. \\
+    - The signed token is the evidence of the cardholder’s authorisation of a payment transaction.
+  \end{flushleft}
+  3-D Secure Model Features
+}
+
+\card{\normalfont
+  What are the domains of the 3-D Secure Mode?
+}{\normalfont \small
+  \begin{flushleft}
+    - \textbf{Issuer Domain}: responsible for enrolment of the issuer’s cardholders in the service, and authentication of the cardholders in real-time during online purchase. \\
+    - \textbf{Acquire Domain}: ensures that the participating merchant operates under a merchant agreement, and validates the digital signature on purchase requests that have been successfully authenticated by the issuer. \\
+    - \textbf{Interoperability Domain}: facilitates the transaction exchange between the other two domains with a common protocol and shared services.
+  \end{flushleft}
+  3-D Secure Mode Domains
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Enrolment}} is a process for collecting a cardholder’s (CH’s) relevant identification and personal information such as a password and a Personal Assurance Message. Once the data is collected and verified (i.e. the CH is enrolled), the data is passed to the Issuer’s Access Control Server (ACS). Each time the CH conducts a transaction; this ACS is queried.
+}
+
+\card{\normalfont
+  What does the \textbf{Access Control Server (ASC)} do?
+}{\normalfont
+  \begin{flushleft}
+    - Verifies whether a given account number is encrolled. \\
+    - Performs the actual CH authentication process during purchase. \\
+    - Signs and returns the authN outcome to merchant.
+  \end{flushleft}
+  Access Control Server
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Directory Server}} provides centralised decision-making capabilities for merchants, e.g. to help merchants identify and query the issuer about its 3-D Secure capability. \\
+  \blank{\textbf{Transaction History Server}} is for logging transaction records, e.g. Payer Authentication Responses; currently it is not implemented by the MasterCard SecureCode infrastructure.
+}
+
+\card{\normalfont
+  What does the \textbf{directory server} do?
+}{\normalfont \small
+  \begin{flushleft}
+    - Upon CH purchase request, the merchant sends an Enrolment Verification Request message containing CH’s personal account number (PAN) to the Directory Server (DS). \\
+    - DS will first determine whether the issuer is 3-D enabled, and if yes, query the issuer if authentication is available for PAN. \\
+    - DS forwards the ACS’ response (containing ACS web address), or its own response (if no appropriate ACS is available), to MPI.
+  \end{flushleft}
+  Directory Server
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Merchant Plug-In (MPI)}} is an application software capable of processing 3-D Secure messages and interoperable with the MasterCard SecureCode infrastructure; it creates and processes payer authentication messages.
+}
+
+\card{\normalfont
+  What are the usual tasks that the Merchant Plug-In (MPI) performs?
+}{\normalfont \small
+  \begin{flushleft}
+    - Identifies the account number, and queries DS to determine if (1) card issuer has participated 3-D Secure and (2) the card is enrolled to the 3-D Secure service; \\
+    - If yes, it creates a Payer Authentication Request and sends it to the ACS via CH’s browser to request ACS-CH authentication. \\
+    - Verifies the signed Payer Authentication Response returned by ACS containing the authentication outcome and a SecureCode specific token, or DS’ response (if the account number is not 3-D Secure enabled). \\
+    - Returns control to the merchant software for further authorisation processing.
+  \end{flushleft}
+  Merchant Plug-In (MPI) Tasks
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Accountholder Authentication Value (AAV)}} is a MasterCard SecureCode specific token. It is generated by issuer and passed to merchant. If CH authentication is successful, the merchant will place the token in its authorisation request sent to the Acquirer. \\
+  In the event when there is a chargeback or other potential dispute, the \blank{AAV} will be used as the evidence to identify the processing parameter associated with the transaction.
+}
+
+\card{\normalfont
+  What are some of the informations that the \textbf{Accountholder Authentication Value (AAV)} includes?
+}{\normalfont
+  \begin{flushleft}
+    - The issuer ACS that created the AAV.\\
+    - The sequence number that can be used to positively identify the transaction within the universe of transactions for that location. \\
+    - A Message Authentication Code (MAC) generated using a secret key, which will not only ensure AAV data integrity but also bind the entire AAV structure to a specific PAN.
+  \end{flushleft}
+  Accountholder Authentication Value (AAV) Information
+}
+
+\card{\normalfont
+  What are the problems of \textbf{email security}?
+}{\normalfont
+  \begin{flushleft}
+    - Lack of confidentiality:
+    --- Sent in cleartext over open networks. \\
+    --- Stored in cleartext on client machines and servers. \\
+    - Lack of integrity: Both the header and content can be modified during transit or while in storage. \\
+    - Lack of authenticity (origin authentication and integrity): The sender of an email can be forged. \\
+    - Lack of non-repudiation:
+    --- The sender can later deny having sent an email. \\
+    --- The recipient can later deny having received the email.
+  \end{flushleft}
+  Email Security Problems
+}
+
+\card{\normalfont
+  What are \textbf{segmentation} \textbf{reassembly} in terms of \textbf{email security}?
+}{\normalfont
+  \begin{flushleft}
+    Email systems often limit the size of a message up to 50,000 octets. So, a longer message must be broken up into segments. After all other operations, PGP automatically subdivides a long message into small segments. \\
+    Once getting those emails, the receiver first strips of all email headers and reassemble the block, and then perform other processing.
+  \end{flushleft}
+  Email Security Segmentation and Reassembly
+}
+
+\card{\normalfont
+  What are \textbf{Key Identifiers (Key IDs)} used for?
+}{\normalfont
+  \begin{flushleft}
+    - One user usually uses, or has access to, more than one public/private key pairs. \\
+    - A recipient can identify which public key should be used for an incoming message by: \\
+    --- Sending the public key with the message, or \\
+    --- Use a key identifier to identify a particular key. \\
+    - PGP uses the latter approach, i.e. use a user ID plus a key ID to identify a public key. \\
+    Key ID = (KUa mod 2 (to 64), i.e. the least significant 64 bits of the public key.
+  \end{flushleft}
+  Key Identifiers Usage
+}
+
+\card{\normalfont
+  Each user maintains a pair of data structures (i.e. a pair of key rings) in their system. Which are these?
+}{\normalfont
+  \begin{flushleft}
+    - A \textbf{private-key ring} to store the private/public key pairs owned by the user. \\
+    - A \textbf{public-key ring} to store the public keys of others users known to this user. \\
+    Both key rings can be indexed by either User ID or Key ID.\\
+    The user’s private key is encrypted using the symmetric algorithms, CAST-128 (128-bit key), and the key-encryption key is the first 128 bits of the hash code of a passphrase, Pi, chosen by the user.
+  \end{flushleft}
+  User System Data structure Pair
+}

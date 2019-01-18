@@ -1,0 +1,283 @@
+% =============================== Lecture 10 ===================================
+\flashcard{\normalfont
+  A \blank{\textbf{Virtual Private Network (VPN)}} is a security solution, making use of tunneling, encryption, authentication, and access control technologies to allow you to achieve private communication over public networks such as the Internet.
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Tunneling}} includes encapsulation, transmission and decapsulation; \textbf{encapsulation} is to wrap data with a header that provides routing information allowing it to transmit across the Internet to reach its destination so as to emulate a dedicated point-to-point link.
+}
+
+\flashcard{\normalfont
+  \blank{\textit{VPN Routers/ Gateways}} are located at the corporate network perimeter; they perform tunneling, authentication, and data encryption/ decryption.
+}
+
+\card{\normalfont
+  What are the two types of \textbf{VPN Router/ Gateways}?
+}{\normalfont
+  \begin{flushleft}
+    - \textbf{Standalone VPNs} incorporate purpose-built devices. \\
+    - \textbf{Integrated} implementations add VPN functionality to existing devices such as routers and firewalls. \\
+    --- \textit{Router based VPNs} add encryption support to existing routers and can keep the upgrade costs of VPN low. \\
+    --- \textit{Firewall based VPNs} are workable solutions for small networks with low traffic volume.
+  \end{flushleft}
+  Types of VPN Routers/ Gateways
+}
+
+\flashcard{\normalfont
+  A \blank{\textbf{VPN Client}} is software used for remote VPN access. It creates a secure path from the remote client computer to a VPN gateway. It can be loaded onto an individual computer requesting remote access \textbf{or} a router that establishes a peer-to-peer (router-to-router) VPN connection.
+}
+
+\card{\normalfont
+  During tunnel setup, the devices on each side of the tunnel agree on the details of \textbf{authentication} and  \textbf{encryption?}. What do these do?
+}{\normalfont
+  \begin{flushleft}
+    - \textbf{Authentication} is for identifying VPN users and devices and for ensuring the authenticity of data; \\
+    - \textbf{Encryption} is for protecting the confidentiality of data while transit across the Internet.
+  \end{flushleft}
+  VPN Authentication and Encryption
+}
+
+\card{\normalfont
+  What are some of the \textbf{security risks} on the \textbf{internet}?
+}{\normalfont
+  \begin{flushleft}
+    - Loss of privacy (packet sniffing): a perpetrator may observe confidential data as it traverses the Internet. (Confidentiality - Encryption) \\
+    - Loss of data integrity: data may be modified maliciously or accidentally. (Integrity - HMAC) \\
+    - Identity spoofing: impersonation. (Entity Authentication - Keyed hash token) \\
+    - Denial of Service: attacks to cause computer systems to crash.
+  \end{flushleft}
+  Security Risks on the Internet
+}
+
+\card{\normalfont
+  What are the multiple ways of implementing a VPN?
+}{\normalfont
+  \begin{flushleft}
+    - PPTP (point-to-point tunneling protocol) is based upon PPP (point-to-point protocol). \\
+    - L2TP (Layer 2 tunneling protocol) is an extension or enhanced version of PPTP; often used together with IPSec. \\
+    - IPSec \\
+    Although IPSec has become the facto standard for LAN-WAN-LAN VPNs, PPTP and L2TP are heavily used for single client LAN connections. Therefore, many VPN products support IPSec, PPTP and L2TP.
+  \end{flushleft}
+  Ways to Implement a VPN
+}
+
+\card{\normalfont
+  What are the properties of \textbf{IPSec}?
+}{\normalfont \small
+  \begin{flushleft}
+    It operates at the IP (network) layer. \\
+    It provides security protection
+    - For the transport layer, including TCP and UDP, traffic; \\
+    - For all other traffic carries in the data files of the IP packet, e.g. ICMP messages; \\
+    - Also for IP packets (IPv4 and IPv6) when using tunnel mode. \\
+    The protection is transparent, i.e. there is on need to modify applications or transport-layer protocols to work with IPSec, and can be applied to all the application level programs.
+  \end{flushleft}
+  IPSec Properties
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Security Association (SA)}} refers to a set of attributes negotiated between two end-points for the protection of IP traffic for it:   Authentication mechanism (Default HMAC), Encryption algorithm and Algorithm mode (default DES-CBC), A shared session key, Initialisation Vector (IV), etc. \\
+  It is \textit{unidirectional}, so for two-way secure exchange two \blank{SAs} are needed. \\
+  Is uniquely identified by:\\
+  - A random 32-bit value SPI (secure parameter index);\\
+  - Destination (tunnel ending point) IP address; \\
+  - An identifier of the security protocol (AH or ESP).
+}
+
+\card{\normalfont
+  What are the to types of \textbf{key management}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    1. Manual management: \\
+    - Manually configure keying material and SA data for each system; \\
+    - Practical in small, static environments; does not scale well. \\
+    2. Automated key management \\
+    a. ISAKMP (Internet SA key Management Protocol): Defines procedures and packet formats to establish, negotiate, modify and delete SA. \\
+    b. IKE (Internet Key Exchange): Provides facilities to negotiate and derive keying material for establishing a session key
+    - DH-DSA: using Diffie-Hellman (DH) key agreement for deriving key material between peers on a public network, and DSA to sign the DH exchanges to counter the man-in-the-middle attack.
+    - Public key cryptography: using recipient’s public key for secure session key transportation.
+  \end{flushleft}
+  Key Management Types
+}
+
+\card{\normalfont
+  What are the three different types of authentication methods that the ISAKMP/IKE supports?
+}{\normalfont
+  \begin{flushleft}
+    1. Symmetric key cryptography: The same key is pre-installed on each host. The peers authenticate each other by computing and sending a keyed hash of data that includes the pre-shared keys.\\
+    2. Public key cryptography\\
+    3. Digital Signature: Each device signs some data contributed by the other entity; This method is similar to scheme teo, except that it does provide non-repudiation; Both RSA and DSS are supported.
+  \end{flushleft}
+  ISAKMP/IKE Authentication Methods
+}
+
+\card{\normalfont
+  What are the properties of the ISAKMP/IKE public key cryptography authentication method?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Each party generates a pseudo-random number (nonce) and encrypts it and its ID using the other party’s public key;\\
+    - The ability to decrypt the data with the local private key authenticates the parties to each other. \\
+    - The method requires the ability to generate random numbers, and perform public-key encryption/decryption; \\
+    - It does not provide non-repudiation (as in scheme one). \\
+    - Currently, only RSA algorithm is supported.
+  \end{flushleft}
+  SAKMP/IKE Public Key Cryptography Authentication Method
+}
+
+\flashcard{\normalfont
+  Once SA(s) is negotiated and session key established, packets are forwarded using \blank{\textbf{traffic protocols}}, \blank{\textbf{AH}} and/or \blank{\textbf{ESP}}.
+}
+
+\flashcard{\normalfont
+  IPSec (AH and ESP) may be employed in one of the two ways: \blank{\textbf{transport}} and \blank{\textbf{tunnel}} modes (or a combination of them).
+}
+
+\card{\normalfont
+  Multiple SAs may be combines into an SA bundle. An SA can only implement either AH or ESP. In what acses would one want to combine more SAs into a bundle?
+}{\normalfont
+  \begin{flushleft}
+    - To have both services; and/or \\
+    - Different flows in one communication path requires different services.
+  \end{flushleft}
+  Reasons for Combining Multiple SAs into a Bundle
+}
+
+\card{\normalfont
+  In what ways can SAs be combined into a bundle?
+}{\normalfont
+  \begin{flushleft}
+    1. Transport Adjacency: \\
+    - Apply ESP in transport mode without authentication; \\
+    - Apply AH in transport mode. \\
+    2. Iterated Tunneling (multiple nested tunnels): \\
+    - Use multiple IPSec services through IP tunneling; multiple SAs in one bundle mau terminate at different or same endpoint.
+  \end{flushleft}
+  Ways of Combining SAs into a Bundle
+}
+
+\card{\normalfont
+  Each of the IPSec traffic protocols defines a new set of headers to be added to IP datagrams. Which are those?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - Authentication Header (AH) provides: Data origin authentication, Data integrity, Anti-replay, Does not provide confidentiality protection. \\
+    - Encapsulating security payload (ESP) provides: Confidentiality (encryption) protection, Partial traffic flow confidentiality (Optional service: Data origin authentication, Data integrity, Anti-replay). \\
+    - Uses keyed-hash function, HMAC, for data integrity and authentication protection (no non-repudiation protection): \\
+    - Uses bulk encryption algorithms, 3-key triple DES, AES, IDEA, CAST, Blowfish and RC5, for confidentiality protection.
+  \end{flushleft}
+  IPSec Traffic Protocols
+}
+
+\card{\normalfont
+  What is the format of the \textbf{Authentication Header (AH)} of \textbf{IPSec}?
+}{\normalfont \small
+  \begin{flushleft}
+    - NextHeader: specifies the type of header immediately following the Authentication Header. \\
+    - PayloadLength: the length of AH in 4-byte unit, minus ‘2’. \\
+    - Reserved: not used for now, (set to 0). \\
+    - SPI (security Parameter Index): identifies a SA. \\
+    - SequenceNumber: contains a monotonically increasing counter to protect against replay. \\
+    - AuthenticationData: contains the message authentication code (MAC) for this packet (typically 96 bits long).
+  \end{flushleft}
+  IPSec's AH Format
+}
+
+\card{\normalfont
+  What is the MAC computation?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    The default MAC algorithm is HMAC built on keyed one-way hash function (MD5 or SHA-256 - which is detailed in the SA). It is truncated to the first 96 bits. It is stored in the AH AuthenticationData field. \\
+    The following rules are applied to IP Headers (transport mode) and New IP Headers (tunnel mode) when computing the MAC:\\
+    - Mutable IP header fields are zeroed prior to MAC calculation. All other (immutable) fields are included. \\
+    - The AH AuthenticationData field is zeroed. All other AH header fields are included. \\
+    - The entire upper-level protocol data are included.
+  \end{flushleft}
+  MAC Computation
+}
+
+\card{\normalfont
+  What are the \textbf{Integriy and Authentication Services}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    Outbound packet processing (by sender): \\
+    - SA lookup \\
+    - Sequence number generation - must not cycle for anti-replay \\
+    - MAC calculation \\
+    Inbound packet processing (by receiver): \\
+    - Re-assembly (if IP packet has been fragmented) \\
+    - SA lookup \\
+    - Sequence number verification \\
+    - MAC verification: Computes MAC and verifies that it is the same as the MAC included in AuthenticationData field.
+  \end{flushleft}
+  Integrity and Authentication Services
+}
+
+\flashcard{\normalfont
+  \blank{\textbf{Replay}} retransmits a packet to the intended destination.
+}
+
+\card{\normalfont
+  What does \textbf{anti-replay} do?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - The SequenceNumber field of an AH is used to thwart replay attacks. \\
+    - For a new SA, sequence number is initialised as 1 for the 1st packet, and increate it by 1 for each outgoing packet ( up to 232 - 1). If this limit is reached, the a new SA with a new key should be negotiated. \\
+    - IP service is connectionless and unreliable, but IPSec requires the receiver implement a (default) window of size W = 64 to track the out-of-order packets received, and to ensure that old or duplicated/replayed packets are discarded.
+  \end{flushleft}
+  Anti-replay
+}
+
+\card{\normalfont
+  How does \textbf{anti-replay} work?
+}{\normalfont \small
+  \begin{flushleft}
+    - A window size, W, specifies number of out-of-order packets that are tracked. The right edge of the window shows the highest sequence number, N, of the packet received so far. \\
+    - For packet with sequence numbers in the range from N - W + 1 to N: if MAC is correct, then mark it; otherwise, drop. \\
+    - If a received packet is to the right of the window and is correctly authenticated, mark the packet and advance the window. If a received packet is to the left window, drop the packet.
+  \end{flushleft}
+  Anti-replay and how it works
+}
+
+\card{\normalfont
+  What is the format of the \textbf{Encapsulating Security Payload (ESP)} of \textbf{IPSec}?
+}{\normalfont \footnotesize
+  \begin{flushleft}
+    - PayloadData: is a transport level segment, e.g. TCP segment, (transport mode), or IP packet (tunnel mode) that is protected by encryption. \\
+    - Padding: to expand the plaintext (consisted of PayloadData, Padding, PadLth, NextHdr) to the required length and to provide partial traffic flow confidentiality. \\
+    - PadLth: indicates the number of pad bytes immediately preceding it. \\
+    - NextHdr: identifies the type of data contained in the PayloadData field by identifying the first header in that payload. \\
+    - AuthenticationData: contains MAC computed over the ESP packet minus it.
+    Other headers are the same as in AH.
+  \end{flushleft}
+  IPSec's Encapsulating Security Payload (ESP) Format
+}
+
+\card{\normalfont
+  How does IPSec's ESP outbound packet processing look like?
+}{\normalfont
+  \begin{flushleft}
+    - SA lookup \\
+    - Packet encryption \\
+    --- Encapsulate relevant data into the ESP payload field. \\
+    --- Add any necessary padding. \\
+    --- Encrypts the result (PayloadData, Padding, PadLength, and NextHeader) using the key, encryption algorithm indicated by the SA. \\
+    - Sequence number generation. \\
+    - MAC calculation (if authentication is selected by the SA).
+  \end{flushleft}
+  IPSec's ESP Outbound Packet Processing
+}
+
+\card{\normalfont
+  How does IPSec's ESP inbound packet processing look like?
+}{\normalfont
+  \begin{flushleft}
+    - Re-assembly (if IP packet has been fragmented by the routers en route) \\
+    - SA lookup \\
+    - Sequence number verification \\
+    - MAC verification \\
+    - Packet decryption: \\
+    --- Decrypt the relevant data. \\
+    --- Process any padding as specified in the encryption algorithm specification. \\
+    --- Reconstructs the original IP datagram.
+  \end{flushleft}
+  IPSec'sESP Inbound Packet Processing
+}
