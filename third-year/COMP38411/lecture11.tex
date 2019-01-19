@@ -7,7 +7,7 @@
   What are some drawbacks of \textbf{Software-Only (SW)} solutions?
 }{\normalfont
   \begin{flushleft}
-    - Certificate and private key are stores in conventional media: not secure. \\
+    - Certificate and private key are stored in conventional media: not secure. \\
     - Consumers are tied to their PCs: not mobile. \\
     - Consumers need to manage certificates: not simple.
   \end{flushleft}
@@ -44,7 +44,7 @@
 }
 
 \card{\normalfont
-  What are th EMV \textbf{security techniques}?
+  What are the EMV \textbf{security techniques}?
 }{\normalfont \footnotesize
   \begin{flushleft}
     1. Card-to-terminal authentication \\
@@ -73,7 +73,7 @@
 }{\normalfont \small
   \begin{flushleft}
     - It uses SSL technology to protect transaction confidentiality, and to authenticate major parties involved in an online transaction thus supporting secure transactions over the Internet; \\
-    - It authenticates CHs in real-time and without using digital certificates: Requires the Ch to answer a challenge in real-time (challenge is from the issuing bank, not the merchant). Issuing bank then confirms the CH’s identity to merchant using a signed token. \\
+    - It authenticates CHs in real-time and without using digital certificates: Requires the CH to answer a challenge in real-time (challenge is from the issuing bank, not the merchant). Issuing bank then confirms the CH’s identity to merchant using a signed token. \\
     - The signed token is the evidence of the cardholder’s authorisation of a payment transaction.
   \end{flushleft}
   3-D Secure Model Features
@@ -98,7 +98,7 @@
   What does the \textbf{Access Control Server (ASC)} do?
 }{\normalfont
   \begin{flushleft}
-    - Verifies whether a given account number is encrolled. \\
+    - Verifies whether a given account number is enrolled. \\
     - Performs the actual CH authentication process during purchase. \\
     - Signs and returns the authN outcome to merchant.
   \end{flushleft}
@@ -116,13 +116,13 @@
   \begin{flushleft}
     - Upon CH purchase request, the merchant sends an Enrolment Verification Request message containing CH’s personal account number (PAN) to the Directory Server (DS). \\
     - DS will first determine whether the issuer is 3-D enabled, and if yes, query the issuer if authentication is available for PAN. \\
-    - DS forwards the ACS’ response (containing ACS web address), or its own response (if no appropriate ACS is available), to MPI.
+    - DS forwards the ACS’ response (containing ACS's web address), or its own response (if no appropriate ACS is available), to MPI.
   \end{flushleft}
   Directory Server
 }
 
 \flashcard{\normalfont
-  \blank{\textbf{Merchant Plug-In (MPI)}} is an application software capable of processing 3-D Secure messages and interoperable with the MasterCard SecureCode infrastructure; it creates and processes payer authentication messages.
+  \blank{\textbf{Merchant Plug-In (MPI)}} is an application software capable of processing 3-D Secure messages and is interoperable with the MasterCard SecureCode infrastructure; it creates and processes payer authentication messages.
 }
 
 \card{\normalfont
@@ -155,14 +155,14 @@
 
 \card{\normalfont
   What are the problems of \textbf{email security}?
-}{\normalfont
+}{\normalfont \small
   \begin{flushleft}
-    - Lack of confidentiality:
+    - Lack of confidentiality: \\
     --- Sent in cleartext over open networks. \\
     --- Stored in cleartext on client machines and servers. \\
     - Lack of integrity: Both the header and content can be modified during transit or while in storage. \\
     - Lack of authenticity (origin authentication and integrity): The sender of an email can be forged. \\
-    - Lack of non-repudiation:
+    - Lack of non-repudiation: \\
     --- The sender can later deny having sent an email. \\
     --- The recipient can later deny having received the email.
   \end{flushleft}
@@ -174,7 +174,7 @@
 }{\normalfont
   \begin{flushleft}
     Email systems often limit the size of a message up to 50,000 octets. So, a longer message must be broken up into segments. After all other operations, PGP automatically subdivides a long message into small segments. \\
-    Once getting those emails, the receiver first strips of all email headers and reassemble the block, and then perform other processing.
+    Once getting those emails, the receiver first strips off all email headers and reassembles the block, and then performs other processing.
   \end{flushleft}
   Email Security Segmentation and Reassembly
 }
@@ -183,12 +183,12 @@
   What are \textbf{Key Identifiers (Key IDs)} used for?
 }{\normalfont
   \begin{flushleft}
-    - One user usually uses, or has access to, more than one public/private key pairs. \\
+    - One user usually uses, or has access to, more than one public/private key pair. \\
     - A recipient can identify which public key should be used for an incoming message by: \\
     --- Sending the public key with the message, or \\
     --- Use a key identifier to identify a particular key. \\
     - PGP uses the latter approach, i.e. use a user ID plus a key ID to identify a public key. \\
-    Key ID = (KUa mod 2 (to 64), i.e. the least significant 64 bits of the public key.
+    Key ID = (KUa mod 2 (to 64)), i.e. the least significant 64 bits of the public key.
   \end{flushleft}
   Key Identifiers Usage
 }
@@ -198,7 +198,7 @@
 }{\normalfont
   \begin{flushleft}
     - A \textbf{private-key ring} to store the private/public key pairs owned by the user. \\
-    - A \textbf{public-key ring} to store the public keys of others users known to this user. \\
+    - A \textbf{public-key ring} to store the public keys of other users known to this user. \\
     Both key rings can be indexed by either User ID or Key ID.\\
     The user’s private key is encrypted using the symmetric algorithms, CAST-128 (128-bit key), and the key-encryption key is the first 128 bits of the hash code of a passphrase, Pi, chosen by the user.
   \end{flushleft}
