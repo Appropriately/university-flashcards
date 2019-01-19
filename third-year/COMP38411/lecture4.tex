@@ -37,7 +37,7 @@
 
 \flashcard{\normalfont
   A \blank{\textbf{signature}} is put on the hash value of M, and a \blank{\textbf{timestamp}} should also be included. This is used for message authentication and integrity and non repudiation of message origin. \\
-  It it achieved by \blank{signing} M (actually the hash of it) using the sender's \textbf{private key}. Only the seder has the private key, so the message must have been signed by the sender.
+  It it achieved by \blank{signing} M (actually the hash of it) using the sender's \textbf{private key}. Only the sender has the private key, so the message must have been signed by the sender.
 }
 
 \flashcard{\normalfont
@@ -59,7 +59,7 @@
 \card{\normalfont
   What is the mathematical definition of \textbf{modulo}?
 }{\normalfont
-  \textit{a = b mod n}, which means there exists an integer number k such that a can be represented as a = k *n + b with the condition that 0 <= b <= n-1. \\
+  \textit{a = b mod n}, which means there exists an integer number k such that a can be represented as a = k * n + b with the condition that 0 <= b <= n-1. \\
   Given integers a, b, and n != 0, a is congruent to b modulo n, if and only if a - b = k * n for some integer k, i.e. n divided (a-b). The notation is a = b (mod n). We call n the \textbf{modulus}, and b is \textbf{remainder} or \textbf{residue} of a modulo n.
 }
 
@@ -93,8 +93,8 @@
     - Calculate n = p * q and phi(n) = (p-1) * (q-1) \\
     - Select integer e relatively prime to phi(n) and 1 < e < phi(n) \\
     - Calculate d = e (to -1) mod phi(n) (or de = 1 mod phi(n)) \\
-    - \textbf{Public key = {e, n}} \\
-    - \textbf{Private key = {d, n}} \\
+    - \textbf{Public key = (e, n)} \\
+    - \textbf{Private key = (d, n)} \\
     - So: p and q are private and chosen; n= p * q is public and calculated (but keep p and q secret); e is public and chosen, and d is private and calculated.
   \end{flushleft}
   RSA Key Generation Step Pseudo Code
@@ -120,14 +120,14 @@
   What does the \textbf{security} of the \textbf{RSA algorithm} rely on?
 }{\normalfont \small
   \begin{flushleft}
-    - The security of the RSA relies on the difficulty of finding d given {e, n}. The problem of computing d from {e, n} is computationally equivalent to the problem of factoring n: if one can factorise n, then he can find p and q, and hence calculate d. \\
+    - The security of the RSA relies on the difficulty of finding d given (e, n). The problem of computing d from (e, n}) is computationally equivalent to the problem of factoring n: if one can factorise n, then he can find p and q, and hence calculate d. \\
     - p and q should differ in length by only a few digits, and both should be on the order of 100-200 digits or even larger. n with 150 digits could be factored in about 1 year. Factoring n with 200 digits could take about 1000 years (assuming about 1012 operations per second).
   \end{flushleft}
   RSA Security
 }
 
 \flashcard{\normalfont
-  The \blank{\textbf{hybrid cryptosystem}} was introduces because the \blank{\textbf{symmetric ciphers}} have key management problems and can not provide non repudiation services without the involvement of a trusted third party.
+  The \blank{\textbf{hybrid cryptosystem}} was introduced because \blank{\textbf{symmetric ciphers}} have key management problems and can not provide non repudiation services without the involvement of a trusted third party.
 }
 
 \flashcard{\normalfont
@@ -137,7 +137,7 @@
 \card{\normalfont
   What does a \textbf{hybrid cryptosystem} contain?
 }{\normalfont
-  A \textbf{hybrid cryptosystem} contains a public cipher for symmetric key establishment/transportation and/or for digital signature generation and a symmetric cipher for bulk encryption.
+  A \textbf{hybrid cryptosystem} contains a public cipher for symmetric key establishment/transportation and/or for digital signature generation, and a symmetric cipher for bulk encryption.
 }
 
 \card{\normalfont
