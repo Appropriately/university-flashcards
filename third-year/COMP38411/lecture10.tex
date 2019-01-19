@@ -8,7 +8,7 @@
 }
 
 \flashcard{\normalfont
-  \blank{\textit{VPN Routers/ Gateways}} are located at the corporate network perimeter; they perform tunneling, authentication, and data encryption/ decryption.
+  \blank{\textbf{VPN Routers/ Gateways}} are located at the corporate network perimeter; they perform tunneling, authentication, and data encryption/ decryption.
 }
 
 \card{\normalfont
@@ -28,11 +28,11 @@
 }
 
 \card{\normalfont
-  During tunnel setup, the devices on each side of the tunnel agree on the details of \textbf{authentication} and  \textbf{encryption?}. What do these do?
+  During tunnel setup, the devices on each side of the tunnel agree on the details of \textbf{authentication} and  \textbf{encryption}. What do these do?
 }{\normalfont
   \begin{flushleft}
     - \textbf{Authentication} is for identifying VPN users and devices and for ensuring the authenticity of data; \\
-    - \textbf{Encryption} is for protecting the confidentiality of data while transit across the Internet.
+    - \textbf{Encryption} is for protecting the confidentiality of data while in transit across the Internet.
   \end{flushleft}
   VPN Authentication and Encryption
 }
@@ -66,7 +66,7 @@
 }{\normalfont \small
   \begin{flushleft}
     It operates at the IP (network) layer. \\
-    It provides security protection
+    It provides security protection \\
     - For the transport layer, including TCP and UDP, traffic; \\
     - For all other traffic carries in the data files of the IP packet, e.g. ICMP messages; \\
     - Also for IP packets (IPv4 and IPv6) when using tunnel mode. \\
@@ -85,7 +85,7 @@
 }
 
 \card{\normalfont
-  What are the to types of \textbf{key management}?
+  What are the two types of \textbf{key management}?
 }{\normalfont \footnotesize
   \begin{flushleft}
     1. Manual management: \\
@@ -106,7 +106,7 @@
   \begin{flushleft}
     1. Symmetric key cryptography: The same key is pre-installed on each host. The peers authenticate each other by computing and sending a keyed hash of data that includes the pre-shared keys.\\
     2. Public key cryptography\\
-    3. Digital Signature: Each device signs some data contributed by the other entity; This method is similar to scheme teo, except that it does provide non-repudiation; Both RSA and DSS are supported.
+    3. Digital Signature: Each device signs some data contributed by the other entity; This method is similar to scheme two, except that it does provide non-repudiation; Both RSA and DSS are supported.
   \end{flushleft}
   ISAKMP/IKE Authentication Methods
 }
@@ -133,7 +133,7 @@
 }
 
 \card{\normalfont
-  Multiple SAs may be combines into an SA bundle. An SA can only implement either AH or ESP. In what acses would one want to combine more SAs into a bundle?
+  Multiple SAs may be combines into an SA bundle. An SA can only implement either AH or ESP. In what cases would one want to combine more SAs into a bundle?
 }{\normalfont
   \begin{flushleft}
     - To have both services; and/or \\
@@ -150,7 +150,7 @@
     - Apply ESP in transport mode without authentication; \\
     - Apply AH in transport mode. \\
     2. Iterated Tunneling (multiple nested tunnels): \\
-    - Use multiple IPSec services through IP tunneling; multiple SAs in one bundle mau terminate at different or same endpoint.
+    - Use multiple IPSec services through IP tunneling; multiple SAs in one bundle may terminate at different or same endpoint.
   \end{flushleft}
   Ways of Combining SAs into a Bundle
 }
@@ -160,7 +160,7 @@
 }{\normalfont \footnotesize
   \begin{flushleft}
     - Authentication Header (AH) provides: Data origin authentication, Data integrity, Anti-replay, Does not provide confidentiality protection. \\
-    - Encapsulating security payload (ESP) provides: Confidentiality (encryption) protection, Partial traffic flow confidentiality (Optional service: Data origin authentication, Data integrity, Anti-replay). \\
+    - Encapsulating security payload (ESP) provides: Confidentiality (encryption) protection, Partial traffic flow confidentiality (Optional services: Data origin authentication, Data integrity, Anti-replay). \\
     - Uses keyed-hash function, HMAC, for data integrity and authentication protection (no non-repudiation protection): \\
     - Uses bulk encryption algorithms, 3-key triple DES, AES, IDEA, CAST, Blowfish and RC5, for confidentiality protection.
   \end{flushleft}
@@ -174,7 +174,7 @@
     - NextHeader: specifies the type of header immediately following the Authentication Header. \\
     - PayloadLength: the length of AH in 4-byte unit, minus ‘2’. \\
     - Reserved: not used for now, (set to 0). \\
-    - SPI (security Parameter Index): identifies a SA. \\
+    - SPI (Security Parameter Index): identifies an SA. \\
     - SequenceNumber: contains a monotonically increasing counter to protect against replay. \\
     - AuthenticationData: contains the message authentication code (MAC) for this packet (typically 96 bits long).
   \end{flushleft}
@@ -195,7 +195,7 @@
 }
 
 \card{\normalfont
-  What are the \textbf{Integriy and Authentication Services}?
+  What are the \textbf{Integrity and Authentication Services}?
 }{\normalfont \footnotesize
   \begin{flushleft}
     Outbound packet processing (by sender): \\
@@ -220,8 +220,8 @@
 }{\normalfont \footnotesize
   \begin{flushleft}
     - The SequenceNumber field of an AH is used to thwart replay attacks. \\
-    - For a new SA, sequence number is initialised as 1 for the 1st packet, and increate it by 1 for each outgoing packet ( up to 232 - 1). If this limit is reached, the a new SA with a new key should be negotiated. \\
-    - IP service is connectionless and unreliable, but IPSec requires the receiver implement a (default) window of size W = 64 to track the out-of-order packets received, and to ensure that old or duplicated/replayed packets are discarded.
+    - For a new SA, sequence number is initialised as 1 for the 1st packet, and increased by 1 for each outgoing packet (up to 232 - 1). If this limit is reached, then a new SA with a new key should be negotiated. \\
+    - IP service is connectionless and unreliable, but IPSec requires the receiver to implement a (default) window of size W = 64 to track the out-of-order packets received, and to ensure that old or duplicated/replayed packets are discarded.
   \end{flushleft}
   Anti-replay
 }
@@ -277,7 +277,7 @@
     - Packet decryption: \\
     --- Decrypt the relevant data. \\
     --- Process any padding as specified in the encryption algorithm specification. \\
-    --- Reconstructs the original IP datagram.
+    --- Reconstruct the original IP datagram.
   \end{flushleft}
   IPSec'sESP Inbound Packet Processing
 }
