@@ -93,7 +93,7 @@
 \card{\normalfont
   What is the fundamental \textbf{difference} between a \textbf{MAC} and a \textbf{hash function}?
 }{\normalfont
-  Fundamental difference between a MAC and a hash function is that a hash function does not have an embedded key. A hash value generated should be protected by a secret (i.e. an asymmetric private key or a symmetric key).
+  The fundamental difference between a MAC and a hash function is that a hash function does not have an embedded key. A generated hash value should be protected by a secret (i.e. an asymmetric private key or a symmetric key).
 }
 
 \flashcard{\normalfont
@@ -105,7 +105,7 @@
 }{\normalfont
   \begin{flushleft}
     - Hash \textit{then} encrypt: E(K, (M ll H(M)); \\
-    - MAC \textit{then} encrypt (used in SSl): E(K2, (M ll MAC(K1,M)) or T = MAC(K1, M), E(K2, (M ll Tag)); T here stands for authentication Tag. \\
+    - MAC \textit{then} encrypt (used in SSL): E(K2, (M ll MAC(K1,M)) or T = MAC(K1, M), E(K2, (M ll Tag)); T here stands for authentication Tag. \\
     - Encrypt \textit{then} MAC (used in IPSec): C = E(K2, M), T - MAC(K1, C); \\
     - Encrypt \textit{and} MAC (used in SSH): C = E(k2, M), Tag = MAC(k1, M).
   \end{flushleft}
@@ -127,7 +127,7 @@
   What are the implications of the performances of the three authentication encryption approaches?
 }{\normalfont
   \begin{flushleft}
-    For \textit{then} 2 operations done one after the other, while for \textit{and} they can be done at the same time which makes the time a lot shorter than the one for then. \\
+    For \textit{then} 2 operations done one after the other, while for \textit{and} they can be done at the same time which makes the time a lot shorter than the one for \textit{then}. \\
     The more overlap the better, which is the essence for authenticated encryption (overlap = pipelining).
   \end{flushleft}
   Differences in Authenticated Encryption Approaches
