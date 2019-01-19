@@ -28,7 +28,7 @@
     - Takes a n-bit block  to a n-bit block. \\
     - Each use of the round function employs a subkey derived from K. \\
     \textbf{Block size, n}: \\
-    - Larger block sizes mean greater security but make encryption/decryption slower. \\
+    - Larger block sizes mean greater security but make encryption/ decryption slower. \\
     - Typically 128-bit or 256-bit. \\
     \textbf{Key size, s}: \\
     - Larger key size means greater security but reduced speed. \\
@@ -43,7 +43,7 @@
 }
 
 \flashcard{\normalfont
-  The \blank{\textbf{Data encryption Standard (DES)}} was first published in 1977 as a US Federal standard. IT is a de facto international standard for banking security. It’s a Feistel block cipher - block length is 64 bits, key K is 56 bits. The subkeys k1, k2… k16 are each 48 bits, generated from key K. \\
+  The \blank{\textbf{Data Encryption Standard (DES)}} was first published in 1977 as a US Federal standard. It is a de facto international standard for banking security. It’s a Feistel block cipher - block length is 64 bits, key K is 56 bits. The subkeys k1, k2… k16 are each 48 bits, generated from key K. \\
   The DES decryption algorithm is the same as the encryption one; the only difference is that the keys for each round must be used in reverse order, i.e k16 first and k1 last.
 }
 
@@ -59,8 +59,8 @@
   \begin{flushleft}
     1. \textbf{Expansion permutation}: Right half (32 bits) is expanded (and permuted) to 48 bits. Diffuses relationship of input bits to output bits. \\
     2. \textbf{Use of Round Key}: 48 bits are XOR-ed with the round key (48 bits). \\
-    3. \textbf{Splitting}: result is split into eight lots of six bits each.\\
-    4. \textbf{S-Box} (S = Substitution): each six bit lot is used as an index to an S-box to produce a four bit result.
+    3. \textbf{Splitting}: result is split into eight lots of six bits each. \\
+    4. \textbf{S-Box} (S = Substitution): each six bit lot is used as an index to an S-box to produce a four bit result. \\
     5. \textbf{P-Box} (P = Permutation): 32 bits output from 8 S-Boxes are permuted = the output of f.
   \end{flushleft}
   DES round function steps
@@ -71,8 +71,8 @@
 }{\normalfont
   \begin{flushleft}
     - Each of the 8 different S-boxes is a table of 4 rows and 16 columns \\
-    - The 6 input bits specify which row and column, i.e. cell, to use. Bits 1 and 6 select the row, while bits 2-5 select the column.
-    - The decimal value in the cell is then converted into a 4-bit result, which is the output from the S-box
+    - The 6 input bits specify which row and column, i.e. cell, to use. Bits 1 and 6 select the row, while bits 2-5 select the column. \\
+    - The decimal value in the cell is then converted into a 4-bit result, which is the output from the S-box. \\
     It’s efficient for encryption/decryption, so it’s mainly used for encryption of message contents - \textbf{confidentiality}.
   \end{flushleft}
   S-Box Operation
@@ -99,7 +99,7 @@
   What are the \textbf{two types} of \textbf{Triple DES}?
 }{\normalfont
   \begin{flushleft}
-    1. EDE2 (triple DES using 2 keys): It uses 2 DES keys (K1, K2), encryption algorithm Em and decryption algorithm D, i.e. C = EK1(Dk2(EK1(M))). So the key length is 112 bits. The use of D here does not have any security implication; it just makes triple DEs backward competitive with single DES if K1 = K2.\\
+    1. EDE2 (triple DES using 2 keys): It uses 2 DES keys (K1, K2), encryption algorithm Em and decryption algorithm D, i.e. C = EK1(Dk2(EK1(M))). So the key length is 112 bits. The use of D here does not have any security implication; it just makes triple DES backward competitive with single DES if K1 = K2.\\
     2. EDE3 (triple DES using three keys): It uses three keys, so C = EK3(Dk2(EK1(M))). The key length is 168 bits.
   \end{flushleft}
   Types of Triple DES
@@ -138,8 +138,8 @@
     - The same key is used to encrypt and decrypt the message. \\
     - The plaintext and the ciphertext have the same size. \\
     - Block size is 128 bits (others are allowed but not recognised by the standard). \\
-    - The key lengths are 128 192, or 256 bits, i.e. the standard comprises three block ciphers: AES-128, AES-192 and AES-256. \\
-    - It is a substitution-permutation cipher involving r rounds: For key length 128, r = 10; For key length 193, r = 12; For key length 256, r = 14.
+    - The key lengths are 128, 192, or 256 bits, i.e. the standard comprises three block ciphers: AES-128, AES-192 and AES-256. \\
+    - It is a substitution-permutation cipher involving r rounds: For key length 128, r = 10; For key length 192, r = 12; For key length 256, r = 14.
   \end{flushleft}
   Symmetric block cipher properties
 }
@@ -192,7 +192,7 @@
 \card{\normalfont
   How does the \textbf{MixColumns} transformation of an AES work?
 }{\normalfont
-  The \textbf{MixColumns} transformation operates on each column individually. Each byte of a column is mapped into a new value hat is a function of all four bytes in the column; the transformation is performed in GF(28). \\
+  The \textbf{MixColumns} transformation operates on each column individually. Each byte of a column is mapped into a new value that is a function of all four bytes in the column; the transformation is performed in GF(28). \\
   This with \textbf{ShiftRows} transformation provides \textbf{diffusion}.
 }
 
@@ -212,7 +212,7 @@
       SubBytes(S); \\
       ShiftRows(S); \\
       MixColumns(S); \\
-      AddROundKeys(S, K[i]);
+      AddRoundKeys(S, K[i]);
     \end{center}
     SubBytes(S); \\
     ShiftRows(S); \\
@@ -282,7 +282,7 @@
   What are the properties of an \textbf{ECB mode} encryption?
 }{\normalfont \footnotesize
   \begin{flushleft}
-    - Block are encrypted independently of other blocks. Reordering ciphertext blocks result in correspondingly reordered plaintext blocks. Ciphertext blocks can be cut from one message and pasted in another, so block replay or block insertion (or deletion) attacks may go undetected.\\
+    - Blocks are encrypted independently of other blocks. Reordering ciphertext blocks result in correspondingly reordered plaintext blocks. Ciphertext blocks can be cut from one message and pasted in another, so block replay or block insertion (or deletion) attacks may go undetected.\\
     - The same block of plaintext always produces the same ciphertext (with the same key): Patterns in plaintext show up in ciphertext. \\
     - Error propagation: one bit error in a ciphertext block affects only the corresponding plaintext block. \\
     - Not recommended for messages longer than one block, or if keys are reused for more than one block.
