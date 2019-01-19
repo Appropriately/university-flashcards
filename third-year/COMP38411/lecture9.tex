@@ -40,7 +40,7 @@
   \begin{flushleft}
     - Using DES with first 7 bits of the first 8 characters of passwords as the key. \\
     - Iterated 25 times on constant string 0s; making the process slower. \\
-    - Using salt to perturb the DES algorithm, so that: DES chip can not be used to (dictionary) attack the algorithm; and It makes pre-compiled dictionary attacks harder (by a factor of 4,096) \\
+    - Using salt to perturb the DES algorithm, so that: DES chip can not be used to (dictionary) attack the algorithm; and it makes pre-compiled dictionary attacks harder (by a factor of 4,096) \\
     - It prevents an identical password from producing the same encrypted password. \\
     - The final 63 bits are unpacked into a string of 11 printable characters, called the encrypted password.
   \end{flushleft}
@@ -48,7 +48,7 @@
 }
 
 \card{\normalfont
-  What does the \textit{/bin/passwd} program do when a user creates an account ot changes a password?
+  What does the \textit{/bin/passwd} program do when a user creates an account or changes a password?
 }{\normalfont
   \begin{flushleft}
     - Selects a salt based on the time of the day; the DES salt is a 12-bit number, between 0 and 4095, that is converted into a two-character string and is stored in the \textit{/etc/passwd} file along with the encrypted password. \\
@@ -68,7 +68,7 @@
 }{\normalfont \small
   \begin{flushleft}
     - User name: the account name; \\
-    - Password: the hashed password preceded by a salt value to be used with the password. Salt make the passwords more difficult to guess and the hashing algorithm slower; \\
+    - Password: the hashed password preceded by a salt value to be used with the password. Salt makes the passwords more difficult to guess and the hashing algorithm slower; \\
     - User ID: a number assigned to this user name for system use in identifying the account; \\
     - Group ID: a number for the user’s group; \\
     - Home Directory; \\
@@ -91,7 +91,7 @@
     Usually we assume that: \\
     - The LAN is secure, i.e. eavesdropping can be noticed \\
     - You do not bring your own client software in \\
-    So we tend to overlook this problem in LAN environment.
+    So we tend to overlook this problem in a LAN environment.
   \end{flushleft}
   The Replay Attack
 }
@@ -126,14 +126,14 @@
     - Unlike memory cards, they can do more than just containing some secret information; they can perform simple crypto operations. \\
     - Support mobility, can ‘memorise’ your secret, and can provide two factor authentication. \\
     Disadvantages: \\
-    - Smart-cards require special hardware reader on every access device, which may be expensive and requires standardisation. \\
+    - Smart-cards require a special hardware reader on every access device, which may be expensive and requires standardisation. \\
     - They are subject to theft, so used in conjunction with some other authentication mechanisms such as PIN/password.
   \end{flushleft}
   Pro and Con for using a Smart Card
 }
 
 \flashcard{\normalfont
-  The \blank{\textbf{man-in-the-middle attack}} consists of a third person posing as A to b and as B to A.
+  The \blank{\textbf{man-in-the-middle attack}} consists of a third person posing as A to B and as B to A.
 }
 
 \card{\normalfont
