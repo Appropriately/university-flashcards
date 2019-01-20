@@ -106,8 +106,8 @@
   \begin{flushleft}
     - Hash \textit{then} encrypt: E(K, (M ll H(M)); \\
     - MAC \textit{then} encrypt (used in SSL): E(K2, (M ll MAC(K1,M)) or T = MAC(K1, M), E(K2, (M ll Tag)); T here stands for authentication Tag. \\
-    - Encrypt \textit{then} MAC (used in IPSec): C = E(K2, M), T - MAC(K1, C); \\
-    - Encrypt \textit{and} MAC (used in SSH): C = E(k2, M), Tag = MAC(k1, M).
+    - Encrypt \textit{then} MAC (used in IPSec): C = E(K2, M), T -= MAC(K1, C); \\
+    - Encrypt \textit{and} MAC (used in SSH): C = E(K2, M), Tag = MAC(K1, M).
   \end{flushleft}
   Authenticated Encryption Approaches
 }
