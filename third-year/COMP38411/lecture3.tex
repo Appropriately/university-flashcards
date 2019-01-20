@@ -79,7 +79,7 @@
 }
 
 \card{\normalfont
-  What is the \textbf{weakness} of an \textbf{S-Box}?
+  What is the \textbf{weakness} of the \textbf{DES} algorithm?
 }{\normalfont
   \begin{flushleft}
     The 56-bit key which is good enough to deter casual DES key browsing, but not for a dedicated adversary. \\
@@ -88,7 +88,7 @@
     - A million chips in parallel do 1012 trials per second. \\
     For today’s computing power, the key size should be at least 128 bits. Improvements: Triple DES (3DES), AES (Rijndael).
   \end{flushleft}
-  S-Box weakness
+  DES weakness
 }
 
 \flashcard{\normalfont
@@ -99,8 +99,8 @@
   What are the \textbf{two types} of \textbf{Triple DES}?
 }{\normalfont
   \begin{flushleft}
-    1. EDE2 (triple DES using 2 keys): It uses 2 DES keys (K1, K2), encryption algorithm Em and decryption algorithm D, i.e. C = EK1(Dk2(EK1(M))). So the key length is 112 bits. The use of D here does not have any security implication; it just makes triple DES backward competitive with single DES if K1 = K2.\\
-    2. EDE3 (triple DES using three keys): It uses three keys, so C = EK3(Dk2(EK1(M))). The key length is 168 bits.
+    1. EDE2 (triple DES using 2 keys): It uses 2 DES keys (K1, K2), encryption algorithm E and decryption algorithm D, i.e. C = EK1(DK2(EK1(M))). So the key length is 112 bits. The use of D here does not have any security implication; it just makes triple DES backward competitive with single DES if K1 = K2.\\
+    2. EDE3 (triple DES using three keys): It uses three keys, so C = EK3(DK2(EK1(M))). The key length is 168 bits.
   \end{flushleft}
   Types of Triple DES
 }
@@ -135,17 +135,19 @@
   What does a \textbf{symmetric block cipher} entail?
 }{\normalfont \footnotesize
   \begin{flushleft}
+    Symmetric Block ciphers: \\
     - The same key is used to encrypt and decrypt the message. \\
     - The plaintext and the ciphertext have the same size. \\
+    For AES: \\
     - Block size is 128 bits (others are allowed but not recognised by the standard). \\
     - The key lengths are 128, 192, or 256 bits, i.e. the standard comprises three block ciphers: AES-128, AES-192 and AES-256. \\
     - It is a substitution-permutation cipher involving r rounds: For key length 128, r = 10; For key length 192, r = 12; For key length 256, r = 14.
   \end{flushleft}
-  Symmetric block cipher properties
+  Symmetric block cipher and AES properties
 }
 
 \card{\normalfont
-  What does the \textbf{round transformation} consist of?
+  What does the AES \textbf{round transformation} consist of?
 }{\normalfont
   \begin{flushleft}
     - Byte substitution. \\
@@ -153,7 +155,7 @@
     - Mix columns. \\
     - Round key addition.
   \end{flushleft}
-  Round Transformation Elements
+  AES Round Transformation Elements
 }
 
 \card{\normalfont
@@ -203,7 +205,7 @@
 }
 
 \card{\normalfont
-  What is the pseudo-code for \textbf{AddRoundKey} for \textbf{AES-128 Encryption}?
+  What is the pseudo-code for \textbf{AES-128 Encryption}?
 }{\normalfont
   \begin{flushleft}
     \textbf{AddRoundKey(S, K[0]);} K[0] is the cipher key, K, and other round keys are expanded from K. \\
@@ -218,11 +220,11 @@
     ShiftRows(S); \\
     AddRoundKey(S, K[10]);
   \end{flushleft}
-  AddRoundKey AES-128 Encryption Pseudo-code
+  AES-128 Encryption Pseudo-code
 }
 
 \card{\normalfont
-  What is the pseudo-code for \textbf{AddRoundKey} for \textbf{AES-128 Decryption}?
+  What is the pseudo-code for \textbf{AES-128 Decryption}?
 }{\normalfont
   \begin{flushleft}
     (first apply InvMixColumns to the round key) \\
@@ -238,7 +240,7 @@
     InvShiftRows(S); \\
     AddRoundKeys(S, K[0]);
   \end{flushleft}
-  AddRoundKey AES-128 Decryption Pseudo-Code
+  AES-128 Decryption Pseudo-Code
 }
 
 \card{\normalfont
